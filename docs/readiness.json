@@ -1,0 +1,370 @@
+{
+  "date": "2026-11-18",
+  "source_count_unit": "고유 URL, 문서 내 앵커 합산. 웹 경로·지침·데이터 파일 포함.",
+  "source_paths": 103,
+  "source_hosts": 67,
+  "source_outcomes": {
+    "network_blocked": 72,
+    "page_read": 21,
+    "document_read": 1,
+    "data_read": 8,
+    "unavailable": 1
+  },
+  "datasets": 42,
+  "korean_domestic_datasets": 19,
+  "release_metadata": {
+    "release_unconfirmed": 32,
+    "file_and_dictionary": 8,
+    "provider_documentation": 2
+  },
+  "direct_files": 8,
+  "downloaded_distinct_files": 8,
+  "r_imported_distinct_files": 8,
+  "stata_imported_files": 0,
+  "substantive_analysis_count": 0,
+  "paper_statistic_comparisons": 0,
+  "reason_for_not_running_models": "구체적인 연구질문·원논문·비교 수치 미제공",
+  "run_id": "33c3a4b355e9",
+  "engine_bundle": {
+    "engine": "r",
+    "executable": "/workspace/.polihub-tools/r/bin/Rscript",
+    "script": "scripts/load-study.R",
+    "log": "logs/load-study-2c8b1e73.log",
+    "started": "2026-11-18T04:58:12+00:00",
+    "status": "passed",
+    "exit_code": 0
+  },
+  "doctor": {
+    "at": "2026-11-18T04:59:57+00:00",
+    "os": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "python": "/workspace/polisci-data-combine/.venv/bin/python",
+    "python_version": "3.12.14",
+    "context": "cloud",
+    "disk_free": 60300738560,
+    "credentials": {
+      "MANIFESTO_API_KEY": false
+    },
+    "r": {
+      "path": "/workspace/.polihub-tools/r/bin/Rscript",
+      "status": "available",
+      "versions": [
+        "R version 4.5.3 (2026-03-11) ",
+        "readr 2.2.0 ",
+        "haven 2.5.5"
+      ],
+      "exit_code": 0
+    },
+    "writable": true,
+    "stata": {
+      "path": null,
+      "status": "unavailable",
+      "reason": "stata 실행파일을 찾을 수 없습니다."
+    },
+    "network": [
+      {
+        "host": "raw.githubusercontent.com",
+        "http": 206,
+        "status": "reachable"
+      },
+      {
+        "host": "kgss.skku.edu",
+        "status": "unavailable",
+        "reason": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+      },
+      {
+        "host": "manifesto-project.wzb.eu",
+        "status": "unavailable",
+        "reason": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+      }
+    ]
+  },
+  "datasets_checked": [
+    {
+      "id": "pop-candidates",
+      "name": "한국 총선 후보자 등록 자료",
+      "release": "15536ca12792c36b72abd40df05085391a550f9b",
+      "url": "https://raw.githubusercontent.com/teampopong/data-for-rnd/15536ca12792c36b72abd40df05085391a550f9b/candidacies.csv",
+      "original": "candidacies.csv",
+      "format": "csv",
+      "bytes": 1621268,
+      "sha256": "977fa5263caa3e2707ae51627ee77f5634a0f472e7e0f6c457b07b3ef5da4e64",
+      "extracted_member": null,
+      "table_sha256": "977fa5263caa3e2707ae51627ee77f5634a0f472e7e0f6c457b07b3ef5da4e64",
+      "rows": 19184,
+      "columns": 8,
+      "keys": [
+        "candidacy_id"
+      ],
+      "key_check": {
+        "missing_rows": 0,
+        "duplicate_rows": 0,
+        "extra_rows": 0
+      },
+      "validation": "checked",
+      "issues": [],
+      "r_import": "passed",
+      "r_log": "logs/import-pop-candidates-a3dc2a44.log",
+      "stata_import": "unavailable"
+    },
+    {
+      "id": "pop-sponsors",
+      "name": "제19대 국회 대표·공동발의 집계",
+      "release": "15536ca12792c36b72abd40df05085391a550f9b",
+      "url": "https://raw.githubusercontent.com/teampopong/data-for-rnd/15536ca12792c36b72abd40df05085391a550f9b/cosponsorship.csv",
+      "original": "cosponsorship.csv",
+      "format": "csv",
+      "bytes": 13539,
+      "sha256": "6fe6923f8a7a10db3265d0b820e03a7d3e34db1366735e427f42e4924317d881",
+      "extracted_member": null,
+      "table_sha256": "6fe6923f8a7a10db3265d0b820e03a7d3e34db1366735e427f42e4924317d881",
+      "rows": 303,
+      "columns": 7,
+      "keys": [
+        "person_id",
+        "assembly_id"
+      ],
+      "key_check": {
+        "missing_rows": 0,
+        "duplicate_rows": 0,
+        "extra_rows": 0
+      },
+      "validation": "blocked",
+      "issues": [
+        "제작자 설명 304행과 파일 실측 303개 관측치의 차이 및 동명이인 집계 범위 검토 필요"
+      ],
+      "r_import": "passed",
+      "r_log": "logs/import-pop-sponsors-f39a97b0.log",
+      "stata_import": "unavailable"
+    },
+    {
+      "id": "pop-pledges",
+      "name": "제19대 총선 후보 공약",
+      "release": "15536ca12792c36b72abd40df05085391a550f9b",
+      "url": "https://raw.githubusercontent.com/teampopong/data-for-rnd/15536ca12792c36b72abd40df05085391a550f9b/pledges.csv",
+      "original": "pledges.csv",
+      "format": "csv",
+      "bytes": 105212,
+      "sha256": "5c1881bb17d9d61b437ecf7b6fb8fd545b1178fc00f1188c047773fb2eca58c2",
+      "extracted_member": null,
+      "table_sha256": "5c1881bb17d9d61b437ecf7b6fb8fd545b1178fc00f1188c047773fb2eca58c2",
+      "rows": 1221,
+      "columns": 4,
+      "keys": [
+        "candidacy_id",
+        "pledge"
+      ],
+      "key_check": {
+        "missing_rows": 0,
+        "duplicate_rows": 0,
+        "extra_rows": 0
+      },
+      "validation": "checked",
+      "issues": [],
+      "r_import": "passed",
+      "r_log": "logs/import-pop-pledges-8b7632c1.log",
+      "stata_import": "unavailable"
+    },
+    {
+      "id": "ert",
+      "name": "체제변동 에피소드",
+      "release": "16.0",
+      "url": "https://raw.githubusercontent.com/vdeminstitute/ERT/7fd51ce856a054582820bb0ac0ccae85371ff9be/inst/ert.csv",
+      "original": "ert.csv",
+      "format": "csv",
+      "bytes": 3167661,
+      "sha256": "26e805df073a26973f5c0fbefdcdd0d20776245d71092a575063e47ffac6db5f",
+      "extracted_member": null,
+      "table_sha256": "26e805df073a26973f5c0fbefdcdd0d20776245d71092a575063e47ffac6db5f",
+      "rows": 19857,
+      "columns": 42,
+      "keys": [
+        "country_id",
+        "year"
+      ],
+      "key_check": {
+        "missing_rows": 0,
+        "duplicate_rows": 0,
+        "extra_rows": 0
+      },
+      "validation": "checked",
+      "issues": [],
+      "r_import": "passed",
+      "r_log": "logs/import-ert-2081751a.log",
+      "stata_import": "unavailable"
+    },
+    {
+      "id": "us-terms",
+      "name": "미국 연방의회 의원 임기 자료",
+      "release": "4c1ff5e3aef1816ae04af63218015066e186c147",
+      "url": "https://raw.githubusercontent.com/fivethirtyeight/data/4c1ff5e3aef1816ae04af63218015066e186c147/congress-age/congress-terms.csv",
+      "original": "congress-terms.csv",
+      "format": "csv",
+      "bytes": 1375566,
+      "sha256": "d038522110dbf1b3011bb70bf0405ef8cdb48d534ec5626c66ebfbe46fc873a1",
+      "extracted_member": null,
+      "table_sha256": "d038522110dbf1b3011bb70bf0405ef8cdb48d534ec5626c66ebfbe46fc873a1",
+      "rows": 18635,
+      "columns": 13,
+      "keys": [
+        "bioguide",
+        "chamber",
+        "congress"
+      ],
+      "key_check": {
+        "missing_rows": 0,
+        "duplicate_rows": 8,
+        "extra_rows": 4
+      },
+      "validation": "blocked",
+      "issues": [
+        "식별키의 누락·결측·중복을 해소해야 합니다."
+      ],
+      "r_import": "passed",
+      "r_log": "logs/import-us-terms-f39c2ded.log",
+      "stata_import": "unavailable"
+    },
+    {
+      "id": "jp-bills",
+      "name": "일본 중의원 의안 심의 기록",
+      "release": "f1d82afc5aa628f8178f366528f24d9317278966",
+      "url": "https://raw.githubusercontent.com/smartnews-smri/house-of-representatives/f1d82afc5aa628f8178f366528f24d9317278966/data/gian.csv",
+      "original": "gian.csv",
+      "format": "csv",
+      "bytes": 11660212,
+      "sha256": "95d8defdc4ca8d15c9cc52bf60d837dcf3379ab363323749c1027612133e6230",
+      "extracted_member": null,
+      "table_sha256": "95d8defdc4ca8d15c9cc52bf60d837dcf3379ab363323749c1027612133e6230",
+      "rows": 11684,
+      "columns": 32,
+      "keys": [
+        "掲載回次",
+        "提出回次",
+        "番号",
+        "キャプション",
+        "議案件名"
+      ],
+      "key_check": {
+        "missing_rows": 1616,
+        "duplicate_rows": 184,
+        "extra_rows": 94
+      },
+      "validation": "blocked",
+      "issues": [
+        "식별키의 누락·결측·중복을 해소해야 합니다."
+      ],
+      "r_import": "passed",
+      "r_log": "logs/import-jp-bills-b6c1c2bf.log",
+      "stata_import": "unavailable"
+    },
+    {
+      "id": "uk-questions",
+      "name": "영국 하원 의원별 대정부 질문",
+      "release": "7b08e428c307cad25f0d049a08b39bf7ba56ff54",
+      "url": "https://raw.githubusercontent.com/houseofcommonslibrary/dashboard_data/7b08e428c307cad25f0d049a08b39bf7ba56ff54/2019-21/questions.zip",
+      "original": "questions.zip",
+      "format": "zip",
+      "bytes": 1680364,
+      "sha256": "3154c4339bbcd2d06f3f62ade438499c607b06fa082c49a972fa9f1be70f008d",
+      "extracted_member": "questions.csv",
+      "table_sha256": "420dba8e2c3c639a2986a0cc688958d001f3d770b37b8a199e46fe64c35786c4",
+      "rows": 83505,
+      "columns": 8,
+      "keys": [
+        "type",
+        "ref",
+        "MNIS_id"
+      ],
+      "key_check": {
+        "missing_rows": 0,
+        "duplicate_rows": 0,
+        "extra_rows": 0
+      },
+      "validation": "checked",
+      "issues": [],
+      "r_import": "passed",
+      "r_log": "logs/import-uk-questions-65183937.log",
+      "stata_import": "unavailable"
+    },
+    {
+      "id": "pew-dec13",
+      "name": "미국 대통령·건강보험법 지지 조사",
+      "release": "d7c0481736d1b8453b0f186f2ebdfd6b01c172f4",
+      "url": "https://raw.githubusercontent.com/pewresearch/pewmethods/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/data/dec13_excerpt.RData",
+      "original": "dec13_excerpt.RData",
+      "format": "rdata",
+      "bytes": 15048,
+      "sha256": "5048e836b7033cca4648c54b058897bc97f0f0d5ca75d8dbe84c055ca8c20a17",
+      "extracted_member": null,
+      "table_sha256": "5048e836b7033cca4648c54b058897bc97f0f0d5ca75d8dbe84c055ca8c20a17",
+      "rows": 2001,
+      "columns": 14,
+      "keys": [
+        "psraid"
+      ],
+      "key_check": {
+        "missing_rows": 0,
+        "duplicate_rows": 0,
+        "extra_rows": 0
+      },
+      "validation": "checked",
+      "issues": [],
+      "r_import": "passed",
+      "r_log": "logs/import-pew-dec13-5cfb9295.log",
+      "stata_import": "unavailable"
+    }
+  ],
+  "waiting": {
+    "kgss": {
+      "status": "waiting",
+      "reason": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "source": "https://kgss.skku.edu/kgss/data.do"
+    },
+    "manifesto": {
+      "status": "waiting",
+      "reason": "MANIFESTO_API_KEY와 확인된 MPDS 버전을 설정하세요.",
+      "source": "https://manifesto-project.wzb.eu/"
+    }
+  },
+  "public_file_tests_counting": "동일한 배포 파일의 반복 다운로드·캐시 재사용·브라우저 시험을 한 파일로 집계. 합성 시험파일 별도.",
+  "quality": {
+    "checked": 5,
+    "blocked": 3
+  },
+  "synthetic_test_suite": [
+    "test_cached_file_integrity_and_version (test_workflow.StudyTest.test_cached_file_integrity_and_version) ... ok",
+    "test_incomplete_comparison_and_individual_join (test_workflow.StudyTest.test_incomplete_comparison_and_individual_join) ... ok",
+    "test_many_to_many_and_match_counts (test_workflow.StudyTest.test_many_to_many_and_match_counts) ... ok",
+    "test_missing_country_and_unknown_variable (test_workflow.StudyTest.test_missing_country_and_unknown_variable) ... ok",
+    "test_native_labels_and_missing_values (test_workflow.StudyTest.test_native_labels_and_missing_values) ... ok",
+    "test_repeated_keys_and_missing_weights (test_workflow.StudyTest.test_repeated_keys_and_missing_weights) ... ok",
+    "test_reviewed_script_is_checked_and_cli_only (test_workflow.StudyTest.test_reviewed_script_is_checked_and_cli_only) ... ok",
+    "test_run_and_verify_preregistered_results (test_workflow.StudyTest.test_run_and_verify_preregistered_results) ... ok",
+    "test_zip_and_html (test_workflow.StudyTest.test_zip_and_html) ... ok",
+    "",
+    "----------------------------------------------------------------------",
+    "Ran 9 tests in 5.490s",
+    "",
+    "OK"
+  ],
+  "browser_tests": {
+    "home": true,
+    "release_country_filter": true,
+    "combined_filters": true,
+    "search": true,
+    "persistent_selection": true,
+    "browser_download_sha256": true,
+    "web_batch_r": true,
+    "upload": true,
+    "spec_export": true,
+    "doctor": true,
+    "mobile_layout": true
+  },
+  "r_to_dta_bridge": "passed",
+  "distribution_tests": {
+    "offline_html_in_browser": true,
+    "offline_spec_download": true,
+    "managed_file_url": "blocked by browser policy; tested the standalone document from its bytes with networking disabled",
+    "source_bundle_file_count": 30,
+    "extracted_cli": true
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "question": "",
+  "objective": null,
+  "population": null,
+  "unit": null,
+  "engine": "r",
+  "seed": 2026,
+  "datasets": [
+    {
+      "id": "pop-candidates",
+      "release": "pop-candidates-release",
+      "version": "15536ca12792c36b72abd40df05085391a550f9b",
+      "countries": [],
+      "period": null
+    },
+    {
+      "id": "pop-sponsors",
+      "release": "pop-sponsors-release",
+      "version": "15536ca12792c36b72abd40df05085391a550f9b",
+      "countries": [],
+      "period": null
+    },
+    {
+      "id": "pop-pledges",
+      "release": "pop-pledges-release",
+      "version": "15536ca12792c36b72abd40df05085391a550f9b",
+      "countries": [],
+      "period": null
+    },
+    {
+      "id": "ert",
+      "release": "ert-release",
+      "version": "16.0",
+      "countries": [],
+      "period": null
+    },
+    {
+      "id": "us-terms",
+      "release": "us-terms-release",
+      "version": "4c1ff5e3aef1816ae04af63218015066e186c147",
+      "countries": [],
+      "period": null
+    },
+    {
+      "id": "jp-bills",
+      "release": "jp-bills-release",
+      "version": "f1d82afc5aa628f8178f366528f24d9317278966",
+      "countries": [],
+      "period": null
+    },
+    {
+      "id": "uk-questions",
+      "release": "uk-questions-release",
+      "version": "7b08e428c307cad25f0d049a08b39bf7ba56ff54",
+      "countries": [],
+      "period": null
+    },
+    {
+      "id": "pew-dec13",
+      "release": "pew-dec13-release",
+      "version": "d7c0481736d1b8453b0f186f2ebdfd6b01c172f4",
+      "countries": [],
+      "period": null
+    },
+    {
+      "id": "kgss",
+      "release": "kgss-release",
+      "version": null,
+      "countries": [],
+      "period": null
+    },
+    {
+      "id": "manifesto",
+      "release": "manifesto-release",
+      "version": null,
+      "countries": [],
+      "period": null
+    }
+  ],
+  "analyses": [],
+  "references": [],
+  "variable_definitions": [],
+  "comparisons": [],
+  "design_review": {},
+  "join_checks": [],
+  "assumptions": [],
+  "sensitivity": []
+}

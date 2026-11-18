@@ -1,0 +1,681 @@
+[
+  {
+    "url": "https://www.poliscidata.com/pages/statisticalDataCollections.php?SUBFIELD=",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.kipa.re.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://sky.kipa.re.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://kgss.skku.edu/kgss/data.do",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://ipus.snu.ac.kr/data-archive",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://info.nec.go.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://data.nec.go.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.nesdc.go.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://open.assembly.go.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://likms.assembly.go.kr/bill/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.law.go.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.kipf.re.kr/panel/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.kli.re.kr/klips/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.kli.re.kr/wps/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.krivet.re.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://da.krivet.re.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.koweps.re.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://syps.si.re.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.openfiscaldata.go.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.lofin365.go.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.alio.go.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.cleaneye.go.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.laiis.go.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://kossda.snu.ac.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.ksdc.re.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://mdis.mods.go.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://kosis.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.data.go.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://csrda.iss.u-tokyo.ac.jp/english/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://jgss.daishodai.ac.jp/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://cgss.ruc.edu.cn/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.cnsda.org/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://opendata.pku.edu.cn/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://srda.sinica.edu.tw/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://teds.nccu.edu.tw/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://tesd.survey.sinica.edu.tw/en",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://asianbarometer.org/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.eassda.org/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://electionstudies.org/data-center/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://cces.gov.harvard.edu/explore",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://gss.norc.org/get-the-data.html",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.britishelectionstudy.com/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://natcen.ac.uk/what-we-do/british-social-attitudes",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.understandingsociety.ac.uk/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://ess.sikt.no/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://ukdataservice.ac.uk/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://cses.org/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.worldvaluessurvey.org/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://issp.org/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.v-dem.net/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.gu.se/en/quality-government",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.idea.int/data-tools",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://data.ipu.org/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://manifesto-project.wzb.eu/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://electiondataarchive.org/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://ucdp.uu.se/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://correlatesofwar.org/data-sets/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.aiddata.org/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.eai.or.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.asaninst.org/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.kwdi.re.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.nypi.re.kr/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.jesproject.org/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://csrda.iss.u-tokyo.ac.jp/english/panel/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www2.ios.sinica.edu.tw/sc/en/home2.php",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://github.com/teampopong/data-for-rnd",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/teampopong/data-for-rnd",
+    "title": "GitHub - teampopong/data-for-rnd: Korean politics data for research and development. · GitHub"
+  },
+  {
+    "url": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#pledgescsv",
+    "title": "data-for-rnd/README.md at 15536ca12792c36b72abd40df05085391a550f9b · teampopong/data-for-rnd · GitHub"
+  },
+  {
+    "url": "https://github.com/vdeminstitute/ERT/tree/7fd51ce856a054582820bb0ac0ccae85371ff9be/inst",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/vdeminstitute/ERT/tree/7fd51ce856a054582820bb0ac0ccae85371ff9be/inst",
+    "title": "ERT/inst at 7fd51ce856a054582820bb0ac0ccae85371ff9be · vdeminstitute/ERT · GitHub"
+  },
+  {
+    "url": "https://github.com/vdeminstitute/ERT",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/vdeminstitute/ERT",
+    "title": "GitHub - vdeminstitute/ERT: Episodes of Regime Transformation (ERT) dataset. · GitHub"
+  },
+  {
+    "url": "https://github.com/vdeminstitute/vdemdata",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/vdeminstitute/vdemdata",
+    "title": "GitHub - vdeminstitute/vdemdata: An R package to load, explore and work with the most recent V-Dem (Varieties of Democracy) dataset. · GitHub"
+  },
+  {
+    "url": "https://github.com/kuriwaki/cces_cumulative",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/kuriwaki/cces_cumulative",
+    "title": "GitHub - kuriwaki/cces_cumulative: Building a cumulative file (2006 - 2025) for the Cooperative Congressional Election Study · GitHub"
+  },
+  {
+    "url": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/II2DB6",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://github.com/ManifestoProject/manifestoR",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/ManifestoProject/manifestoR",
+    "title": "GitHub - ManifestoProject/manifestoR: An R package for accessing the Manifesto Project's Data and Corpus of election programmes · GitHub"
+  },
+  {
+    "url": "https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://cses.org/data-download/cses-module-5-2016-2021/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://electionstudies.org/data-center/anes-time-series-cumulative-data-file/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.britishelectionstudy.com/data-objects/panel-study-data/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://gss.norc.org/us/en/gss/get-the-data.html",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://api.open.fec.gov/developers/",
+    "checked": "2026-11-18",
+    "status": "network_blocked",
+    "detail": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://github.com/fecgov/openFEC",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/fecgov/openFEC",
+    "title": "GitHub - fecgov/openFEC: The first RESTful API for the Federal Election Commission. We're aiming to make campaign finance more accessible for journalists, academics, developers, and other transparency seekers. · GitHub"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/vdeminstitute/ERT/7fd51ce856a054582820bb0ac0ccae85371ff9be/inst/ERT_codebook_v16.pdf",
+    "checked": "2026-11-18",
+    "status": "document_read",
+    "http": 200,
+    "final_url": "https://raw.githubusercontent.com/vdeminstitute/ERT/7fd51ce856a054582820bb0ac0ccae85371ff9be/inst/ERT_codebook_v16.pdf",
+    "title": "ERT v16 코드북 · PDF 본문 추출 확인"
+  },
+  {
+    "url": "https://github.com/fivethirtyeight/data/tree/master/congress-age",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/fivethirtyeight/data/tree/master/congress-age",
+    "title": "data/congress-age at master · fivethirtyeight/data · GitHub"
+  },
+  {
+    "url": "https://github.com/fivethirtyeight/data/blob/4c1ff5e3aef1816ae04af63218015066e186c147/congress-age/README.md",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/fivethirtyeight/data/blob/4c1ff5e3aef1816ae04af63218015066e186c147/congress-age/README.md",
+    "title": "data/congress-age/README.md at 4c1ff5e3aef1816ae04af63218015066e186c147 · fivethirtyeight/data · GitHub"
+  },
+  {
+    "url": "https://github.com/kuriwaki/cces_cumulative/blob/0fd71dbb5523a2795d57c3b2081b818acffd567c/guide/guide_cumulative_2006-2025.qmd",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/kuriwaki/cces_cumulative/blob/0fd71dbb5523a2795d57c3b2081b818acffd567c/guide/guide_cumulative_2006-2025.qmd",
+    "title": "cces_cumulative/guide/guide_cumulative_2006-2025.qmd at 0fd71dbb5523a2795d57c3b2081b818acffd567c · kuriwaki/cces_cumulative · GitHub"
+  },
+  {
+    "url": "https://github.com/ManifestoProject/manifestoR/blob/51f7a59d76134eb17e50a612fd61b1d0759261b6/R/db_api.R",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/ManifestoProject/manifestoR/blob/51f7a59d76134eb17e50a612fd61b1d0759261b6/R/db_api.R",
+    "title": "manifestoR/R/db_api.R at 51f7a59d76134eb17e50a612fd61b1d0759261b6 · ManifestoProject/manifestoR · GitHub"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/teampopong/data-for-rnd/15536ca12792c36b72abd40df05085391a550f9b/candidacies.csv",
+    "checked": "2026-11-18",
+    "status": "data_read",
+    "http": 200,
+    "final_url": "https://raw.githubusercontent.com/teampopong/data-for-rnd/15536ca12792c36b72abd40df05085391a550f9b/candidacies.csv",
+    "title": "공식 배포 CSV · 전체 수신 및 헤더·관측 수 별도 확인"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/teampopong/data-for-rnd/15536ca12792c36b72abd40df05085391a550f9b/cosponsorship.csv",
+    "checked": "2026-11-18",
+    "status": "data_read",
+    "http": 200,
+    "final_url": "https://raw.githubusercontent.com/teampopong/data-for-rnd/15536ca12792c36b72abd40df05085391a550f9b/cosponsorship.csv",
+    "title": "공식 배포 CSV · 전체 수신 및 헤더·관측 수 별도 확인"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/teampopong/data-for-rnd/15536ca12792c36b72abd40df05085391a550f9b/pledges.csv",
+    "checked": "2026-11-18",
+    "status": "data_read",
+    "http": 200,
+    "final_url": "https://raw.githubusercontent.com/teampopong/data-for-rnd/15536ca12792c36b72abd40df05085391a550f9b/pledges.csv",
+    "title": "공식 배포 CSV · 전체 수신 및 헤더·관측 수 별도 확인"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/vdeminstitute/ERT/7fd51ce856a054582820bb0ac0ccae85371ff9be/inst/ert.csv",
+    "checked": "2026-11-18",
+    "status": "data_read",
+    "http": 200,
+    "final_url": "https://raw.githubusercontent.com/vdeminstitute/ERT/7fd51ce856a054582820bb0ac0ccae85371ff9be/inst/ert.csv",
+    "title": "공식 배포 CSV · 전체 수신 및 헤더·관측 수 별도 확인"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/fivethirtyeight/data/4c1ff5e3aef1816ae04af63218015066e186c147/congress-age/congress-terms.csv",
+    "checked": "2026-11-18",
+    "status": "data_read",
+    "http": 200,
+    "final_url": "https://raw.githubusercontent.com/fivethirtyeight/data/4c1ff5e3aef1816ae04af63218015066e186c147/congress-age/congress-terms.csv",
+    "title": "공식 배포 CSV · 전체 수신 및 헤더·관측 수 별도 확인"
+  },
+  {
+    "url": "https://github.com/smartnews-smri/house-of-representatives",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/smartnews-smri/house-of-representatives",
+    "title": "GitHub - smartnews-smri/house-of-representatives: 衆議院の公式ウェブサイトから国会に提出された議案をデータベース化しました。商用・非商用を問わず、自由にデータのダウンロードや検索が可能です。 · GitHub"
+  },
+  {
+    "url": "https://github.com/smartnews-smri/house-of-representatives/tree/f1d82afc5aa628f8178f366528f24d9317278966/data",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/smartnews-smri/house-of-representatives/tree/f1d82afc5aa628f8178f366528f24d9317278966/data",
+    "title": "house-of-representatives/data at f1d82afc5aa628f8178f366528f24d9317278966 · smartnews-smri/house-of-representatives · GitHub"
+  },
+  {
+    "url": "https://github.com/smartnews-smri/house-of-representatives/blob/f1d82afc5aa628f8178f366528f24d9317278966/README.md",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/smartnews-smri/house-of-representatives/blob/f1d82afc5aa628f8178f366528f24d9317278966/README.md",
+    "title": "house-of-representatives/README.md at f1d82afc5aa628f8178f366528f24d9317278966 · smartnews-smri/house-of-representatives · GitHub"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/smartnews-smri/house-of-representatives/f1d82afc5aa628f8178f366528f24d9317278966/data/gian.csv",
+    "checked": "2026-11-18",
+    "status": "data_read",
+    "http": 200,
+    "final_url": "https://raw.githubusercontent.com/smartnews-smri/house-of-representatives/f1d82afc5aa628f8178f366528f24d9317278966/data/gian.csv",
+    "title": "일본 중의원 의안 심의 기록 · 배포파일"
+  },
+  {
+    "url": "https://github.com/houseofcommonslibrary/dashboard_data",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/houseofcommonslibrary/dashboard_data",
+    "title": "GitHub - houseofcommonslibrary/dashboard_data: Data from the MP activity dashboard (by session) · GitHub"
+  },
+  {
+    "url": "https://github.com/houseofcommonslibrary/dashboard_data/tree/7b08e428c307cad25f0d049a08b39bf7ba56ff54/2019-21",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/houseofcommonslibrary/dashboard_data/tree/7b08e428c307cad25f0d049a08b39bf7ba56ff54/2019-21",
+    "title": "dashboard_data/2019-21 at 7b08e428c307cad25f0d049a08b39bf7ba56ff54 · houseofcommonslibrary/dashboard_data · GitHub"
+  },
+  {
+    "url": "https://github.com/houseofcommonslibrary/dashboard_data/blob/7b08e428c307cad25f0d049a08b39bf7ba56ff54/README.md",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/houseofcommonslibrary/dashboard_data/blob/7b08e428c307cad25f0d049a08b39bf7ba56ff54/README.md",
+    "title": "dashboard_data/README.md at 7b08e428c307cad25f0d049a08b39bf7ba56ff54 · houseofcommonslibrary/dashboard_data · GitHub"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/houseofcommonslibrary/dashboard_data/7b08e428c307cad25f0d049a08b39bf7ba56ff54/2019-21/questions.zip",
+    "checked": "2026-11-18",
+    "status": "data_read",
+    "http": 200,
+    "final_url": "https://raw.githubusercontent.com/houseofcommonslibrary/dashboard_data/7b08e428c307cad25f0d049a08b39bf7ba56ff54/2019-21/questions.zip",
+    "title": "영국 하원 의원별 대정부 질문 · 배포파일"
+  },
+  {
+    "url": "https://github.com/pewresearch/pewmethods",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/pewresearch/pewmethods",
+    "title": "GitHub - pewresearch/pewmethods: Pew Research Center Methods team R package of miscellaneous functions · GitHub"
+  },
+  {
+    "url": "https://github.com/pewresearch/pewmethods/tree/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/data",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/pewresearch/pewmethods/tree/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/data",
+    "title": "pewmethods/data at d7c0481736d1b8453b0f186f2ebdfd6b01c172f4 · pewresearch/pewmethods · GitHub"
+  },
+  {
+    "url": "https://github.com/pewresearch/pewmethods/blob/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/man/dec13_excerpt.Rd",
+    "checked": "2026-11-18",
+    "status": "page_read",
+    "http": 200,
+    "final_url": "https://github.com/pewresearch/pewmethods/blob/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/man/dec13_excerpt.Rd",
+    "title": "pewmethods/man/dec13_excerpt.Rd at d7c0481736d1b8453b0f186f2ebdfd6b01c172f4 · pewresearch/pewmethods · GitHub"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/pewresearch/pewmethods/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/data/dec13_excerpt.RData",
+    "checked": "2026-11-18",
+    "status": "data_read",
+    "http": 200,
+    "final_url": "https://raw.githubusercontent.com/pewresearch/pewmethods/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/data/dec13_excerpt.RData",
+    "title": "미국 대통령·건강보험법 지지 조사 · RData 발췌 원파일"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/kuriwaki/cces_cumulative/0fd71dbb5523a2795d57c3b2081b818acffd567c/guide/guide_cumulative_2006-2025.pdf",
+    "checked": "2026-11-18",
+    "status": "unavailable",
+    "http": 404,
+    "detail": "PDF 경로 미발견 · 해당 버전의 QMD 지침으로 대조"
+  }
+]

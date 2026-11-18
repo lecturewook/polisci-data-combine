@@ -1,0 +1,5066 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-11-18",
+  "categories": {
+    "election": "선거·정당·투표",
+    "attitudes": "정치태도·참여·신뢰",
+    "legislature": "의회·입법·제도",
+    "public": "행정·관료제·공공조직",
+    "policy": "정책·지방정치·정치경제",
+    "world": "민주주의·국제관계"
+  },
+  "designs": {
+    "panel": "개인·가구·조직 종단패널",
+    "cross": "반복횡단면",
+    "admin": "기관·지역·국가 종단자료",
+    "series": "집계통계·시계열",
+    "event": "사건자료",
+    "text": "텍스트자료",
+    "mixed": "혼합·기타 설계",
+    "single_cross": "단일 횡단면"
+  },
+  "regions": {
+    "KR": "한국",
+    "JP": "일본",
+    "CN": "중국",
+    "TW": "대만",
+    "EA": "기타 동아시아",
+    "US": "미국",
+    "GB": "영국",
+    "WE": "유럽·기타 서양권",
+    "INT": "국제비교"
+  },
+  "organizations": {
+    "성균관대학교 서베이리서치센터": {
+      "name": "성균관대학교 서베이리서치센터",
+      "source_urls": [
+        "https://kgss.skku.edu/kgss/data.do"
+      ]
+    },
+    "한국행정연구원": {
+      "name": "한국행정연구원",
+      "source_urls": [
+        "https://sky.kipa.re.kr/"
+      ]
+    },
+    "서울대학교 통일평화연구원": {
+      "name": "서울대학교 통일평화연구원",
+      "source_urls": [
+        "https://ipus.snu.ac.kr/data-archive"
+      ]
+    },
+    "중앙선거관리위원회": {
+      "name": "중앙선거관리위원회",
+      "source_urls": [
+        "https://info.nec.go.kr/"
+      ]
+    },
+    "중앙선거여론조사심의위원회": {
+      "name": "중앙선거여론조사심의위원회",
+      "source_urls": [
+        "https://www.nesdc.go.kr/"
+      ]
+    },
+    "대한민국 국회": {
+      "name": "대한민국 국회",
+      "source_urls": [
+        "https://likms.assembly.go.kr/bill/"
+      ]
+    },
+    "법제처": {
+      "name": "법제처",
+      "source_urls": [
+        "https://www.law.go.kr/"
+      ]
+    },
+    "한국조세재정연구원": {
+      "name": "한국조세재정연구원",
+      "source_urls": [
+        "https://www.kipf.re.kr/panel/"
+      ]
+    },
+    "한국보건사회연구원·서울대학교": {
+      "name": "한국보건사회연구원·서울대학교",
+      "source_urls": [
+        "https://www.koweps.re.kr/"
+      ]
+    },
+    "한국노동연구원": {
+      "name": "한국노동연구원",
+      "source_urls": [
+        "https://www.kli.re.kr/klips/",
+        "https://www.kli.re.kr/wps/"
+      ]
+    },
+    "행정안전부": {
+      "name": "행정안전부",
+      "source_urls": [
+        "https://www.lofin365.go.kr/"
+      ]
+    },
+    "공공기관 경영정보 공개시스템": {
+      "name": "공공기관 경영정보 공개시스템",
+      "source_urls": [
+        "https://www.alio.go.kr/"
+      ]
+    },
+    "오사카상업대학 JGSS 연구센터": {
+      "name": "오사카상업대학 JGSS 연구센터",
+      "source_urls": [
+        "https://jgss.daishodai.ac.jp/"
+      ]
+    },
+    "중국인민대학": {
+      "name": "중국인민대학",
+      "source_urls": [
+        "https://cgss.ruc.edu.cn/"
+      ]
+    },
+    "대만 정치대학 선거연구센터": {
+      "name": "대만 정치대학 선거연구센터",
+      "source_urls": [
+        "https://teds.nccu.edu.tw/"
+      ]
+    },
+    "Asian Barometer Survey": {
+      "name": "Asian Barometer Survey",
+      "source_urls": [
+        "https://asianbarometer.org/"
+      ]
+    },
+    "EASS Data Archive": {
+      "name": "EASS Data Archive",
+      "source_urls": [
+        "https://www.eassda.org/"
+      ]
+    },
+    "American National Election Studies": {
+      "name": "American National Election Studies",
+      "source_urls": [
+        "https://electionstudies.org/data-center/anes-time-series-cumulative-data-file/"
+      ]
+    },
+    "NORC at the University of Chicago": {
+      "name": "NORC at the University of Chicago",
+      "source_urls": [
+        "https://gss.norc.org/us/en/gss/get-the-data.html"
+      ]
+    },
+    "British Election Study": {
+      "name": "British Election Study",
+      "source_urls": [
+        "https://www.britishelectionstudy.com/data-objects/panel-study-data/",
+        "https://www.britishelectionstudy.com/"
+      ]
+    },
+    "National Centre for Social Research": {
+      "name": "National Centre for Social Research",
+      "source_urls": [
+        "https://natcen.ac.uk/what-we-do/british-social-attitudes"
+      ]
+    },
+    "University of Essex · ISER": {
+      "name": "University of Essex · ISER",
+      "source_urls": [
+        "https://www.understandingsociety.ac.uk/"
+      ]
+    },
+    "ESS ERIC": {
+      "name": "ESS ERIC",
+      "source_urls": [
+        "https://ess.sikt.no/"
+      ]
+    },
+    "CSES Secretariat": {
+      "name": "CSES Secretariat",
+      "source_urls": [
+        "https://cses.org/data-download/cses-module-5-2016-2021/"
+      ]
+    },
+    "World Values Survey Association": {
+      "name": "World Values Survey Association",
+      "source_urls": [
+        "https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp"
+      ]
+    },
+    "ISSP Research Group": {
+      "name": "ISSP Research Group",
+      "source_urls": [
+        "https://issp.org/"
+      ]
+    },
+    "Uppsala Conflict Data Program": {
+      "name": "Uppsala Conflict Data Program",
+      "source_urls": [
+        "https://ucdp.uu.se/"
+      ]
+    },
+    "팀포퐁": {
+      "name": "팀포퐁",
+      "source_urls": [
+        "https://github.com/teampopong/data-for-rnd"
+      ]
+    },
+    "V-Dem Institute": {
+      "name": "V-Dem Institute",
+      "source_urls": [
+        "https://github.com/vdeminstitute/ERT"
+      ]
+    },
+    "FiveThirtyEight": {
+      "name": "FiveThirtyEight",
+      "source_urls": [
+        "https://github.com/fivethirtyeight/data/tree/master/congress-age"
+      ]
+    },
+    "Cooperative Election Study · Shiro Kuriwaki": {
+      "name": "Cooperative Election Study · Shiro Kuriwaki",
+      "source_urls": [
+        "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/II2DB6"
+      ]
+    },
+    "Manifesto Project": {
+      "name": "Manifesto Project",
+      "source_urls": [
+        "https://manifesto-project.wzb.eu/"
+      ]
+    },
+    "SmartNews Media Research Institute": {
+      "name": "SmartNews Media Research Institute",
+      "source_urls": [
+        "https://github.com/smartnews-smri/house-of-representatives"
+      ]
+    },
+    "House of Commons Library": {
+      "name": "House of Commons Library",
+      "source_urls": [
+        "https://github.com/houseofcommonslibrary/dashboard_data"
+      ]
+    },
+    "Pew Research Center": {
+      "name": "Pew Research Center",
+      "source_urls": [
+        "https://github.com/pewresearch/pewmethods"
+      ]
+    }
+  },
+  "datasets": {
+    "kgss": {
+      "id": "kgss",
+      "name": "한국종합사회조사",
+      "aliases": [
+        "KGSS",
+        "Korean General Social Survey"
+      ],
+      "category": "attitudes",
+      "topics": [
+        "정부신뢰",
+        "재분배",
+        "ISSP",
+        "EASS"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "한국 성인",
+      "summary": "한국 성인의 정부 역할과 제도 신뢰를 차수별로 조사한다. ISSP·EASS 모듈을 이용한 재분배 태도 비교의 출발점이다.",
+      "political_use": "ISSP·EASS 모듈을 이용한 재분배 태도 비교의 출발점이다",
+      "producer": "성균관대학교 서베이리서치센터",
+      "distributor": "성균관대학교 서베이리서치센터",
+      "source_url": "https://kgss.skku.edu/kgss/data.do",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "누적 횡단파일에서 연도를 넘겨 개인을 추적할 수 없다. 같은 모듈·질문·응답척도인지 확인한다.",
+      "default_release": "kgss-release",
+      "comparison_priority": 2
+    },
+    "kipa-integration": {
+      "id": "kipa-integration",
+      "name": "사회통합실태조사",
+      "aliases": [
+        "KIPA"
+      ],
+      "category": "attitudes",
+      "topics": [
+        "사회통합",
+        "정부신뢰",
+        "정치참여"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "한국 거주 조사대상자. 연령 범위는 차수별 확인",
+      "summary": "한국인의 사회·제도 신뢰와 정치참여를 조사한다. 연도별 사회통합 인식과 참여 격차를 비교할 수 있다.",
+      "political_use": "연도별 사회통합 인식과 참여 격차를 비교할 수 있다",
+      "producer": "한국행정연구원",
+      "distributor": "한국행정연구원",
+      "source_url": "https://sky.kipa.re.kr/",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "조사연도에 따라 모집단과 문항이 바뀔 수 있다.",
+      "default_release": "kipa-integration-release"
+    },
+    "kipa-officials": {
+      "id": "kipa-officials",
+      "name": "공직생활실태조사",
+      "aliases": [
+        "KIPA"
+      ],
+      "category": "public",
+      "topics": [
+        "공무원",
+        "공공봉사동기",
+        "공직"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "조사에 포함된 중앙·지방 공무원",
+      "summary": "한국 공무원의 업무환경과 직무태도를 조사한다. 조직관리와 공공봉사동기의 관계를 검토할 수 있다.",
+      "political_use": "조직관리와 공공봉사동기의 관계를 검토할 수 있다",
+      "producer": "한국행정연구원",
+      "distributor": "한국행정연구원",
+      "source_url": "https://sky.kipa.re.kr/",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "조사차수와 기관 표집틀을 확인한다.",
+      "default_release": "kipa-officials-release"
+    },
+    "kipa-citizen": {
+      "id": "kipa-citizen",
+      "name": "행정에 관한 국민 인식조사",
+      "aliases": [],
+      "category": "public",
+      "topics": [
+        "행정서비스",
+        "정부성과",
+        "신뢰"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "국민 표본",
+      "summary": "국민이 평가하는 정부와 행정서비스를 다룬다. 행정성과 평가가 정부에 대한 신뢰와 어떻게 연결되는지 살펴볼 수 있다.",
+      "political_use": "행정성과 평가가 정부에 대한 신뢰와 어떻게 연결되는지 살펴볼 수 있다",
+      "producer": "한국행정연구원",
+      "distributor": "한국행정연구원",
+      "source_url": "https://sky.kipa.re.kr/",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "공무원 대상 조사와 표본 및 질문 표현이 다르다.",
+      "default_release": "kipa-citizen-release"
+    },
+    "kipa-servants": {
+      "id": "kipa-servants",
+      "name": "행정에 관한 공무원 인식조사",
+      "aliases": [],
+      "category": "public",
+      "topics": [
+        "행정개혁",
+        "공무원",
+        "정부성과"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "공무원 표본",
+      "summary": "공무원이 인식하는 행정의 운영과 변화를 조사한다. 공직 내부의 정부개혁 평가를 연구하는 자료다.",
+      "political_use": "공직 내부의 정부개혁 평가를 연구하는 자료다",
+      "producer": "한국행정연구원",
+      "distributor": "한국행정연구원",
+      "source_url": "https://sky.kipa.re.kr/",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "국민 조사에 대응하는 문항은 각 조사표에서 대조한다.",
+      "default_release": "kipa-servants-release"
+    },
+    "ipus": {
+      "id": "ipus",
+      "name": "통일의식조사",
+      "aliases": [
+        "IPUS"
+      ],
+      "category": "world",
+      "topics": [
+        "통일",
+        "대북정책",
+        "외교안보"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "한국인 응답자",
+      "summary": "한국인의 통일 및 대북정책에 대한 인식을 조사한다. 외교안보 태도의 세대 차이와 시기별 변화를 검토할 수 있다.",
+      "political_use": "외교안보 태도의 세대 차이와 시기별 변화를 검토할 수 있다",
+      "producer": "서울대학교 통일평화연구원",
+      "distributor": "서울대학교 통일평화연구원",
+      "source_url": "https://ipus.snu.ac.kr/data-archive",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "보고서·설문지와 개인 응답파일의 접근조건을 각각 확인한다.",
+      "default_release": "ipus-release"
+    },
+    "nec": {
+      "id": "nec",
+      "name": "역대 선거 개표결과",
+      "aliases": [
+        "NEC",
+        "선거통계시스템"
+      ],
+      "category": "election",
+      "topics": [
+        "득표",
+        "선거결과",
+        "선거구"
+      ],
+      "design": "series",
+      "unit": "선거구",
+      "individual_panel": false,
+      "population": "수록 선거·선거구",
+      "summary": "선거별 후보·정당의 득표를 지역 단위로 집계한다. 선거구 경쟁과 지역별 정당 지지의 변화를 분석할 수 있다.",
+      "political_use": "선거구 경쟁과 지역별 정당 지지의 변화를 분석할 수 있다",
+      "producer": "중앙선거관리위원회",
+      "distributor": "중앙선거관리위원회",
+      "source_url": "https://info.nec.go.kr/",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "재획정·분구·합구를 확인하고 후보등록과 투표구별 결과의 행 단위를 구분한다.",
+      "default_release": "nec-release"
+    },
+    "nesdc": {
+      "id": "nesdc",
+      "name": "선거여론조사 결과 등록자료",
+      "aliases": [
+        "NESDC"
+      ],
+      "category": "election",
+      "topics": [
+        "여론조사",
+        "조사방법",
+        "지지율"
+      ],
+      "design": "series",
+      "unit": "조사",
+      "individual_panel": false,
+      "population": "등록 여론조사",
+      "summary": "공표된 선거여론조사의 지지율과 조사설계를 대조하는 자료다. 조사기관·전화방식별 추정 격차를 연구할 수 있다.",
+      "political_use": "조사기관·전화방식별 추정 격차를 연구할 수 있다",
+      "producer": "중앙선거여론조사심의위원회",
+      "distributor": "중앙선거여론조사심의위원회",
+      "source_url": "https://www.nesdc.go.kr/",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "공개 집계표에서 개별 응답을 복원할 수 없다.",
+      "default_release": "nesdc-release"
+    },
+    "assembly": {
+      "id": "assembly",
+      "name": "국회 의안 처리 기록",
+      "aliases": [
+        "열린국회정보",
+        "의안정보시스템"
+      ],
+      "category": "legislature",
+      "topics": [
+        "법안",
+        "위원회",
+        "발의",
+        "표결"
+      ],
+      "design": "event",
+      "unit": "의안",
+      "individual_panel": false,
+      "population": "국회 제출 의안",
+      "summary": "국회에 제출된 의안과 심사·처리 과정을 기록한다. 제안 주체나 위원회에 따른 의안 처리 차이를 연구할 수 있다.",
+      "political_use": "제안 주체나 위원회에 따른 의안 처리 차이를 연구할 수 있다",
+      "producer": "대한민국 국회",
+      "distributor": "대한민국 국회",
+      "source_url": "https://likms.assembly.go.kr/bill/",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "의안·발의자·표결의 단위가 다르다. API별 제공 기간·식별자를 먼저 확인한다.",
+      "default_release": "assembly-release"
+    },
+    "laws": {
+      "id": "laws",
+      "name": "법령 연혁과 시행일",
+      "aliases": [],
+      "category": "legislature",
+      "topics": [
+        "시행일",
+        "법령",
+        "정책도입"
+      ],
+      "design": "text",
+      "unit": "법령",
+      "individual_panel": false,
+      "population": "대한민국 법령",
+      "summary": "법령의 조문과 개정·시행 이력을 제공한다. 정책 도입 및 적용 시점을 법령별로 구성할 수 있다.",
+      "political_use": "정책 도입 및 적용 시점을 법령별로 구성할 수 있다",
+      "producer": "법제처",
+      "distributor": "법제처",
+      "source_url": "https://www.law.go.kr/",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "공포일·시행일·부칙상 적용례를 분리한다.",
+      "default_release": "laws-release"
+    },
+    "nastab": {
+      "id": "nastab",
+      "name": "재정패널조사",
+      "aliases": [
+        "NaSTaB"
+      ],
+      "category": "policy",
+      "topics": [
+        "조세",
+        "정부역할",
+        "재분배"
+      ],
+      "design": "panel",
+      "unit": "가구·개인",
+      "individual_panel": true,
+      "population": "재정패널 가구와 가구원",
+      "summary": "가구의 조세부담과 복지수급을 추적한다. 부가조사의 인식 문항과 결합해 재분배의 정치경제를 연구할 수 있다.",
+      "political_use": "부가조사의 인식 문항과 결합해 재분배의 정치경제를 연구할 수 있다",
+      "producer": "한국조세재정연구원",
+      "distributor": "한국조세재정연구원",
+      "source_url": "https://www.kipf.re.kr/panel/",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "소득 귀속연도와 조사시점을 분리하고 인식 문항의 차수를 확인한다.",
+      "default_release": "nastab-release"
+    },
+    "koweps": {
+      "id": "koweps",
+      "name": "한국복지패널 복지인식 부가조사",
+      "aliases": [
+        "KOWEPS"
+      ],
+      "category": "policy",
+      "topics": [
+        "복지태도",
+        "재분배",
+        "정부책임"
+      ],
+      "design": "panel",
+      "unit": "개인",
+      "individual_panel": true,
+      "population": "해당 부가조사에 응답한 가구원",
+      "summary": "복지패널의 일부 차수에서 정부 책임과 복지에 대한 인식을 조사한다. 가구의 복지 경험과 개인의 정책 선호를 함께 살펴볼 수 있다.",
+      "political_use": "가구의 복지 경험과 개인의 정책 선호를 함께 살펴볼 수 있다",
+      "producer": "한국보건사회연구원·서울대학교",
+      "distributor": "한국보건사회연구원·서울대학교",
+      "source_url": "https://www.koweps.re.kr/",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "부가조사 차수·응답대상·가중치와 가구 분리를 확인한다.",
+      "default_release": "koweps-release"
+    },
+    "klips": {
+      "id": "klips",
+      "name": "한국노동패널조사",
+      "aliases": [
+        "KLIPS"
+      ],
+      "category": "policy",
+      "topics": [
+        "노동정책",
+        "고용충격",
+        "정책평가"
+      ],
+      "design": "panel",
+      "unit": "가구·개인",
+      "individual_panel": true,
+      "population": "표본 가구와 가구원",
+      "summary": "가구원 고용·소득 이력을 추적한다. 고용정책 노출과 노동시장 성과를 정의한 연구에 활용할 수 있다.",
+      "political_use": "고용정책 노출과 노동시장 성과를 정의한 연구에 활용할 수 있다",
+      "producer": "한국노동연구원",
+      "distributor": "한국노동연구원",
+      "source_url": "https://www.kli.re.kr/klips/",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "정치태도 변수를 전제하지 않는다. 표본보충과 조사 시점에 주의한다.",
+      "default_release": "klips-release"
+    },
+    "wps": {
+      "id": "wps",
+      "name": "사업체패널조사",
+      "aliases": [
+        "WPS"
+      ],
+      "category": "policy",
+      "topics": [
+        "노사관계",
+        "노동정책",
+        "노동조합"
+      ],
+      "design": "panel",
+      "unit": "사업체",
+      "individual_panel": false,
+      "population": "표본 사업체",
+      "summary": "사업체별 노사관계와 인력관리를 추적한다. 사업장 수준의 노조 대표성과 노동정책 효과를 연구할 수 있다.",
+      "political_use": "사업장 수준의 노조 대표성과 노동정책 효과를 연구할 수 있다",
+      "producer": "한국노동연구원",
+      "distributor": "한국노동연구원",
+      "source_url": "https://www.kli.re.kr/wps/",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "사업체가 관측단위다. 개인의 정치태도로 해석할 수 없다.",
+      "default_release": "wps-release"
+    },
+    "lofin": {
+      "id": "lofin",
+      "name": "지방재정365 지방자치단체 결산",
+      "aliases": [],
+      "category": "policy",
+      "topics": [
+        "지방재정",
+        "결산",
+        "복지지출"
+      ],
+      "design": "admin",
+      "unit": "지역",
+      "individual_panel": false,
+      "population": "공시 대상 지방자치단체",
+      "summary": "지방자치단체 결산에서 기능별 세출을 확인한다. 지방정부의 복지지출과 재정분권을 지역–연도 단위로 비교할 수 있다.",
+      "political_use": "지방정부의 복지지출과 재정분권을 지역–연도 단위로 비교할 수 있다",
+      "producer": "행정안전부",
+      "distributor": "행정안전부",
+      "source_url": "https://www.lofin365.go.kr/",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "예산·결산, 일반·특별회계, 지역 경계 변경을 구분한다.",
+      "default_release": "lofin-release"
+    },
+    "alio": {
+      "id": "alio",
+      "name": "공공기관 경영공시",
+      "aliases": [
+        "ALIO"
+      ],
+      "category": "public",
+      "topics": [
+        "공공기관",
+        "조직",
+        "경영공시"
+      ],
+      "design": "admin",
+      "unit": "기관",
+      "individual_panel": false,
+      "population": "지정 공공기관",
+      "summary": "공공기관별 인력과 경영정보를 공시한다. 공공조직의 인력구성과 정부 관리방식의 변화를 추적할 수 있다.",
+      "political_use": "공공조직의 인력구성과 정부 관리방식의 변화를 추적할 수 있다",
+      "producer": "공공기관 경영정보 공개시스템",
+      "distributor": "공공기관 경영정보 공개시스템",
+      "source_url": "https://www.alio.go.kr/",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "지정·해제·통합과 공시기준 변경을 검토한다.",
+      "default_release": "alio-release"
+    },
+    "jgss": {
+      "id": "jgss",
+      "name": "일본판 종합사회조사",
+      "aliases": [
+        "JGSS",
+        "Japanese General Social Surveys"
+      ],
+      "category": "attitudes",
+      "topics": [
+        "제도신뢰",
+        "EASS",
+        "정치태도"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "일본 거주 응답자",
+      "summary": "일본인의 사회태도와 공적 제도에 대한 인식을 조사한다. 공통 EASS 문항이 있는 차수에서 동아시아 비교를 검토할 수 있다.",
+      "political_use": "공통 EASS 문항이 있는 차수에서 동아시아 비교를 검토할 수 있다",
+      "producer": "오사카상업대학 JGSS 연구센터",
+      "distributor": "오사카상업대학 JGSS 연구센터",
+      "source_url": "https://jgss.daishodai.ac.jp/",
+      "project_regions": [
+        "JP"
+      ],
+      "scope": "national",
+      "caution": "통합파일·개별 차수의 설계와 이용신청을 확인한다.",
+      "default_release": "jgss-release",
+      "comparison_priority": 2
+    },
+    "cgss": {
+      "id": "cgss",
+      "name": "중국종합사회조사",
+      "aliases": [
+        "CGSS",
+        "Chinese General Social Survey"
+      ],
+      "category": "attitudes",
+      "topics": [
+        "정부평가",
+        "참여",
+        "중국"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "중국 조사대상 주민",
+      "summary": "중국인의 사회·정치태도를 차수별로 조사한다. 조사표에서 정부 평가와 참여 문항이 겹치는 시기를 찾을 수 있다.",
+      "political_use": "조사표에서 정부 평가와 참여 문항이 겹치는 시기를 찾을 수 있다",
+      "producer": "중국인민대학",
+      "distributor": "중국인민대학",
+      "source_url": "https://cgss.ruc.edu.cn/",
+      "project_regions": [
+        "CN"
+      ],
+      "scope": "national",
+      "caution": "표집 지역과 문항이 차수에 따라 달라질 수 있다.",
+      "default_release": "cgss-release"
+    },
+    "teds": {
+      "id": "teds",
+      "name": "대만 선거와 민주화 조사",
+      "aliases": [
+        "TEDS",
+        "Taiwan’s Election and Democratization Study"
+      ],
+      "category": "election",
+      "topics": [
+        "민주화",
+        "투표선택",
+        "정당지지"
+      ],
+      "design": "mixed",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "대만 선거 조사대상자",
+      "summary": "대만 유권자의 투표선택과 정당지지를 조사한다. 선거별 제도 및 정체성과 선택의 관계를 살펴볼 수 있다.",
+      "political_use": "선거별 제도 및 정체성과 선택의 관계를 살펴볼 수 있다",
+      "producer": "대만 정치대학 선거연구센터",
+      "distributor": "대만 정치대학 선거연구센터",
+      "source_url": "https://teds.nccu.edu.tw/",
+      "project_regions": [
+        "TW"
+      ],
+      "scope": "national",
+      "caution": "선거·설계·조사방식을 개별 연구별로 확인한다.",
+      "default_release": "teds-release"
+    },
+    "asianbarometer": {
+      "id": "asianbarometer",
+      "name": "아시안 바로미터",
+      "aliases": [
+        "ABS",
+        "Asian Barometer Survey"
+      ],
+      "category": "attitudes",
+      "topics": [
+        "민주주의지지",
+        "정부신뢰"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "참여 사회의 응답자",
+      "summary": "아시아 여러 사회에서 민주주의와 정부에 대한 시민의 의견을 조사한다. 체제별 민주주의 지지를 비교할 수 있다.",
+      "political_use": "체제별 민주주의 지지를 비교할 수 있다",
+      "producer": "Asian Barometer Survey",
+      "distributor": "Asian Barometer Survey",
+      "source_url": "https://asianbarometer.org/",
+      "project_regions": [
+        "INT"
+      ],
+      "scope": "international",
+      "caution": "동일 웨이브에서도 국가별 실사연도와 표현이 다를 수 있다.",
+      "default_release": "asianbarometer-release"
+    },
+    "eass": {
+      "id": "eass",
+      "name": "동아시아사회조사",
+      "aliases": [
+        "EASS",
+        "East Asian Social Survey"
+      ],
+      "category": "attitudes",
+      "topics": [
+        "동아시아",
+        "공통모듈",
+        "사회태도"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "모듈 참여 사회의 표본",
+      "summary": "동아시아 국가별 조사에 공통 주제 모듈을 싣는다. 제도와 사회태도 관계를 공통문항으로 비교할 수 있다.",
+      "political_use": "제도와 사회태도 관계를 공통문항으로 비교할 수 있다",
+      "producer": "EASS Data Archive",
+      "distributor": "EASS Data Archive",
+      "source_url": "https://www.eassda.org/",
+      "project_regions": [
+        "INT"
+      ],
+      "scope": "international",
+      "caution": "ESS와 별개 조사이며 실제 국가와 실사일은 모듈별로 확인한다.",
+      "default_release": "eass-release",
+      "comparison_priority": 2
+    },
+    "anes": {
+      "id": "anes",
+      "name": "미국선거연구 누적 횡단파일",
+      "aliases": [
+        "ANES",
+        "American National Election Studies"
+      ],
+      "category": "election",
+      "topics": [
+        "투표행동",
+        "정당일체감",
+        "이념"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "수록 선거별 미국 조사대상자",
+      "summary": "미국 유권자의 정당일체감과 투표행동을 선거별로 담는다. 누적파일로 여러 선거의 유권자 구성을 비교할 수 있다.",
+      "political_use": "누적파일로 여러 선거의 유권자 구성을 비교할 수 있다",
+      "producer": "American National Election Studies",
+      "distributor": "American National Election Studies",
+      "source_url": "https://electionstudies.org/data-center/anes-time-series-cumulative-data-file/",
+      "project_regions": [
+        "US"
+      ],
+      "scope": "national",
+      "caution": "선거 전후 재면접과 개별 다년 패널은 누적 횡단파일과 구분한다.",
+      "default_release": "anes-release"
+    },
+    "gss": {
+      "id": "gss",
+      "name": "미국 종합사회조사 누적 횡단파일",
+      "aliases": [
+        "GSS",
+        "General Social Survey"
+      ],
+      "category": "attitudes",
+      "topics": [
+        "정부역할",
+        "ISSP",
+        "신뢰"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "미국 성인 조사표본",
+      "summary": "미국 성인의 제도 신뢰와 정부 역할에 대한 태도를 조사한다. 재분배와 시민권 관련 문항의 장기 변화를 연구할 수 있다.",
+      "political_use": "재분배와 시민권 관련 문항의 장기 변화를 연구할 수 있다",
+      "producer": "NORC at the University of Chicago",
+      "distributor": "NORC at the University of Chicago",
+      "source_url": "https://gss.norc.org/us/en/gss/get-the-data.html",
+      "project_regions": [
+        "US"
+      ],
+      "scope": "national",
+      "caution": "분할표본과 별도 패널 파일에 주의한다.",
+      "default_release": "gss-release",
+      "comparison_priority": 2
+    },
+    "bes-panel": {
+      "id": "bes-panel",
+      "name": "영국선거연구 인터넷 패널",
+      "aliases": [
+        "BES",
+        "British Election Study Internet Panel"
+      ],
+      "category": "election",
+      "topics": [
+        "투표",
+        "재면접",
+        "정당지지"
+      ],
+      "design": "panel",
+      "unit": "개인",
+      "individual_panel": true,
+      "population": "인터넷 패널 참여자",
+      "summary": "재접촉한 영국 선거 조사 응답자의 정당 선호 변화를 추적한다. 선거운동 전후에 선택을 바꾼 집단을 연구할 수 있다.",
+      "political_use": "선거운동 전후에 선택을 바꾼 집단을 연구할 수 있다",
+      "producer": "British Election Study",
+      "distributor": "British Election Study",
+      "source_url": "https://www.britishelectionstudy.com/data-objects/panel-study-data/",
+      "project_regions": [
+        "GB"
+      ],
+      "scope": "national",
+      "caution": "웨이브별 이탈과 Great Britain·북아일랜드 수록 범위를 확인한다.",
+      "default_release": "bes-panel-release"
+    },
+    "bes-face": {
+      "id": "bes-face",
+      "name": "영국선거연구 대면 조사",
+      "aliases": [
+        "BES Face-to-face"
+      ],
+      "category": "election",
+      "topics": [
+        "선거",
+        "유권자",
+        "대면"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "대면조사 표집틀 내 유권자",
+      "summary": "영국 총선 시기의 유권자를 대면 조사한다. 선거 간 투표행동을 모집단 수준에서 비교할 수 있다.",
+      "political_use": "선거 간 투표행동을 모집단 수준에서 비교할 수 있다",
+      "producer": "British Election Study",
+      "distributor": "British Election Study",
+      "source_url": "https://www.britishelectionstudy.com/",
+      "project_regions": [
+        "GB"
+      ],
+      "scope": "national",
+      "caution": "인터넷 패널과 모드·표본추출 방식·가중치가 다르다.",
+      "default_release": "bes-face-release"
+    },
+    "bsa": {
+      "id": "bsa",
+      "name": "영국 사회태도조사",
+      "aliases": [
+        "BSA",
+        "British Social Attitudes"
+      ],
+      "category": "attitudes",
+      "topics": [
+        "복지선호",
+        "정부",
+        "불평등"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "영국 조사대상 성인",
+      "summary": "복지·불평등과 정부에 대한 시민의 의견을 조사한다. 연도별 복지정책 선호의 변화를 검토할 수 있다.",
+      "political_use": "연도별 복지정책 선호의 변화를 검토할 수 있다",
+      "producer": "National Centre for Social Research",
+      "distributor": "National Centre for Social Research",
+      "source_url": "https://natcen.ac.uk/what-we-do/british-social-attitudes",
+      "project_regions": [
+        "GB"
+      ],
+      "scope": "national",
+      "caution": "영토 범위와 사회태도 모듈 및 응답방식을 연도별 확인한다.",
+      "default_release": "bsa-release"
+    },
+    "ukhls": {
+      "id": "ukhls",
+      "name": "Understanding Society",
+      "aliases": [
+        "UKHLS",
+        "영국 가구종단조사"
+      ],
+      "category": "policy",
+      "topics": [
+        "경제적충격",
+        "시민참여",
+        "가구패널"
+      ],
+      "design": "panel",
+      "unit": "가구·개인",
+      "individual_panel": true,
+      "population": "표본 가구 및 가구원",
+      "summary": "영국 가구와 가구원의 생활 변화를 추적한다. 정치·시민참여 모듈이 있는 차수에서 경제적 충격과 참여의 관계를 검토할 수 있다.",
+      "political_use": "정치·시민참여 모듈이 있는 차수에서 경제적 충격과 참여의 관계를 검토할 수 있다",
+      "producer": "University of Essex · ISER",
+      "distributor": "University of Essex · ISER",
+      "source_url": "https://www.understandingsociety.ac.uk/",
+      "project_regions": [
+        "GB"
+      ],
+      "scope": "national",
+      "caution": "보충표본과 모듈, 종단가중치, UK Data Service 이용등급을 확인한다.",
+      "default_release": "ukhls-release"
+    },
+    "ess": {
+      "id": "ess",
+      "name": "유럽사회조사",
+      "aliases": [
+        "ESS",
+        "European Social Survey"
+      ],
+      "category": "attitudes",
+      "topics": [
+        "신뢰",
+        "이민",
+        "민주주의",
+        "유럽"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "라운드별 참여국 거주자",
+      "summary": "유럽 여러 국가에서 정치참여와 제도 신뢰를 조사한다. 동일 라운드 공통문항으로 국가별 분포를 비교할 수 있다.",
+      "political_use": "동일 라운드 공통문항으로 국가별 분포를 비교할 수 있다",
+      "producer": "ESS ERIC",
+      "distributor": "ESS ERIC",
+      "source_url": "https://ess.sikt.no/",
+      "project_regions": [
+        "INT",
+        "WE"
+      ],
+      "scope": "international",
+      "caution": "라운드별 국가와 실사시점·설계를 확인한다. EASS와 직접 통합할 수 없다.",
+      "default_release": "ess-release"
+    },
+    "cses": {
+      "id": "cses",
+      "name": "선거제도비교연구",
+      "aliases": [
+        "CSES",
+        "Comparative Study of Electoral Systems"
+      ],
+      "category": "election",
+      "topics": [
+        "국제비교",
+        "대표성",
+        "투표"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "참여 선거연구의 응답자",
+      "summary": "참여국 선거조사에 공통 모듈을 포함한다. 유권자의 대표성 평가와 투표행동을 선거제도별로 비교할 수 있다.",
+      "political_use": "유권자의 대표성 평가와 투표행동을 선거제도별로 비교할 수 있다",
+      "producer": "CSES Secretariat",
+      "distributor": "CSES Secretariat",
+      "source_url": "https://cses.org/data-download/cses-module-5-2016-2021/",
+      "project_regions": [
+        "INT"
+      ],
+      "scope": "international",
+      "caution": "배포판의 election study 목록에서 양쪽 선거를 확인한다.",
+      "default_release": "cses-release",
+      "comparison_priority": 1
+    },
+    "wvs": {
+      "id": "wvs",
+      "name": "세계가치관조사",
+      "aliases": [
+        "WVS",
+        "World Values Survey"
+      ],
+      "category": "attitudes",
+      "topics": [
+        "국제비교",
+        "정부신뢰",
+        "민주주의"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "참여 사회의 주민 표본",
+      "summary": "참여 사회에서 민주주의 가치와 정부신뢰를 조사한다. 같은 웨이브 안에서 정치적 가치의 차이를 검토할 수 있다.",
+      "political_use": "같은 웨이브 안에서 정치적 가치의 차이를 검토할 수 있다",
+      "producer": "World Values Survey Association",
+      "distributor": "World Values Survey Association",
+      "source_url": "https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp",
+      "project_regions": [
+        "INT"
+      ],
+      "scope": "international",
+      "caution": "국가별 조사언어·실사기간·표본 범위와 공통문항을 확인한다.",
+      "default_release": "wvs-release",
+      "comparison_priority": 1
+    },
+    "issp": {
+      "id": "issp",
+      "name": "국제사회조사프로그램",
+      "aliases": [
+        "ISSP",
+        "International Social Survey Programme"
+      ],
+      "category": "attitudes",
+      "topics": [
+        "정부역할",
+        "시민권",
+        "재분배",
+        "공통모듈"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "각 모듈의 참가국 표본",
+      "summary": "각국 사회조사에 정부 역할·시민권 등 공통 주제 모듈을 싣는다. 같은 모듈의 정책 선호를 비교할 수 있다.",
+      "political_use": "같은 모듈의 정책 선호를 비교할 수 있다",
+      "producer": "ISSP Research Group",
+      "distributor": "ISSP Research Group",
+      "source_url": "https://issp.org/",
+      "project_regions": [
+        "INT"
+      ],
+      "scope": "international",
+      "caution": "차수·국가·변수 대응은 해당 GESIS 배포판에서 확인한다.",
+      "default_release": "issp-release",
+      "comparison_priority": 1
+    },
+    "ucdp": {
+      "id": "ucdp",
+      "name": "UCDP 지리참조 사건 자료",
+      "aliases": [
+        "GED",
+        "Uppsala Conflict Data Program"
+      ],
+      "category": "world",
+      "topics": [
+        "분쟁",
+        "사건",
+        "국제관계"
+      ],
+      "design": "event",
+      "unit": "사건",
+      "individual_panel": false,
+      "population": "정의에 해당하는 조직적 폭력 사건",
+      "summary": "조직적 폭력 사건을 시점·위치별로 기록한다. 국가별 분쟁 발생과 지속을 사건 단위로 연구할 수 있다.",
+      "political_use": "국가별 분쟁 발생과 지속을 사건 단위로 연구할 수 있다",
+      "producer": "Uppsala Conflict Data Program",
+      "distributor": "Uppsala Conflict Data Program",
+      "source_url": "https://ucdp.uu.se/",
+      "project_regions": [
+        "INT"
+      ],
+      "scope": "international",
+      "caution": "사건 포함기준과 날짜·위치의 정밀도를 릴리스별 확인한다.",
+      "default_release": "ucdp-release"
+    },
+    "pop-candidates": {
+      "id": "pop-candidates",
+      "name": "한국 총선 후보자 등록 자료",
+      "aliases": [
+        "팀포퐁",
+        "PoPong"
+      ],
+      "category": "election",
+      "topics": [
+        "선거",
+        "당선",
+        "대표성"
+      ],
+      "design": "event",
+      "unit": "후보등록",
+      "individual_panel": false,
+      "population": "제1~19대 국회의원 선거 후보등록 건",
+      "summary": "제1~19대 총선의 후보등록·정당·당선 여부를 담은 선관위 자료의 재가공본이다. 정당별 후보 진입과 당선 패턴을 연구할 수 있다.",
+      "political_use": "정당별 후보 진입과 당선 패턴을 연구할 수 있다",
+      "producer": "팀포퐁",
+      "distributor": "팀포퐁",
+      "source_url": "https://github.com/teampopong/data-for-rnd",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "2013년 4월 재보선 포함. 동명 정당과 선거구 변경에 주의한다.",
+      "default_release": "pop-candidates-release",
+      "original_source": "중앙선거관리위원회"
+    },
+    "pop-sponsors": {
+      "id": "pop-sponsors",
+      "name": "제19대 국회 대표·공동발의 집계",
+      "aliases": [
+        "팀포퐁",
+        "PoPong"
+      ],
+      "category": "legislature",
+      "topics": [
+        "공동발의",
+        "의회",
+        "법안"
+      ],
+      "design": "series",
+      "unit": "의원",
+      "individual_panel": false,
+      "population": "집계시점까지의 제19대 의원",
+      "summary": "제19대 국회의 의원별 대표발의와 공동발의 횟수를 집계했다. 정당과 의원별 입법활동 편차를 비교할 수 있다.",
+      "political_use": "정당과 의원별 입법활동 편차를 비교할 수 있다",
+      "producer": "팀포퐁",
+      "distributor": "팀포퐁",
+      "source_url": "https://github.com/teampopong/data-for-rnd",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "동명이인 집계 오류 가능성이 있다. 배포 문서의 304행과 실측 303개 관측치의 차이는 미해결이다.",
+      "default_release": "pop-sponsors-release",
+      "original_source": "국회 의안정보시스템"
+    },
+    "pop-pledges": {
+      "id": "pop-pledges",
+      "name": "제19대 총선 후보 공약",
+      "aliases": [
+        "팀포퐁",
+        "PoPong"
+      ],
+      "category": "election",
+      "topics": [
+        "공약",
+        "정책의제",
+        "후보"
+      ],
+      "design": "text",
+      "unit": "공약",
+      "individual_panel": false,
+      "population": "수록된 제19대 선거 후보 공약",
+      "summary": "후보자가 내건 공약을 문장 단위로 정리했다. 정당별 정책 의제와 지역 대표성의 관계를 연구할 수 있다.",
+      "political_use": "정당별 정책 의제와 지역 대표성의 관계를 연구할 수 있다",
+      "producer": "팀포퐁",
+      "distributor": "팀포퐁",
+      "source_url": "https://github.com/teampopong/data-for-rnd",
+      "project_regions": [
+        "KR"
+      ],
+      "scope": "national",
+      "caution": "개별 후보의 전체 공약 수와 표본 수록 공약 수를 구분한다.",
+      "default_release": "pop-pledges-release",
+      "original_source": "중앙선거관리위원회"
+    },
+    "ert": {
+      "id": "ert",
+      "name": "체제변동 에피소드",
+      "aliases": [
+        "ERT",
+        "Episodes of Regime Transformation",
+        "V-Dem"
+      ],
+      "category": "world",
+      "topics": [
+        "민주주의",
+        "권위주의",
+        "국제비교"
+      ],
+      "design": "admin",
+      "unit": "국가–연도",
+      "individual_panel": false,
+      "population": "ERT 국가–연도 관측치",
+      "summary": "국가별 선거민주주의 지수와 민주화·권위주의화 국면을 연도별로 기록한다. 같은 측정 기준으로 동아시아와 서양의 체제변화를 비교할 수 있다.",
+      "political_use": "같은 측정 기준으로 동아시아와 서양의 체제변화를 비교할 수 있다",
+      "producer": "V-Dem Institute",
+      "distributor": "V-Dem Institute",
+      "source_url": "https://github.com/vdeminstitute/ERT",
+      "project_regions": [
+        "INT"
+      ],
+      "scope": "international",
+      "caution": "전문가 평가와 사건 분류의 불확실성을 고려한다. 국경·체제 변화 시 국가코드를 확인한다.",
+      "default_release": "ert-release",
+      "comparison_priority": 1
+    },
+    "us-terms": {
+      "id": "us-terms",
+      "name": "미국 연방의회 의원 임기 자료",
+      "aliases": [
+        "Congress Age",
+        "FiveThirtyEight"
+      ],
+      "category": "legislature",
+      "topics": [
+        "대표성",
+        "연령",
+        "의회"
+      ],
+      "design": "admin",
+      "unit": "의원–회기",
+      "individual_panel": false,
+      "population": "1947년 1월~2014년 2월 사이 수록된 미국 연방의원",
+      "summary": "상·하원 의원의 나이와 정당·회기를 기록한 역사 자료다. 세대별 정치적 대표성의 변화를 분석할 수 있다.",
+      "political_use": "세대별 정치적 대표성의 변화를 분석할 수 있다",
+      "producer": "FiveThirtyEight",
+      "distributor": "FiveThirtyEight",
+      "source_url": "https://github.com/fivethirtyeight/data/tree/master/congress-age",
+      "project_regions": [
+        "US"
+      ],
+      "scope": "national",
+      "caution": "2014년 이후 의원은 미수록이다. 의원·원·회기 복합키의 중복 원인을 확인해야 한다.",
+      "default_release": "us-terms-release"
+    },
+    "ces": {
+      "id": "ces",
+      "name": "미국 공동선거연구 누적 공통문항",
+      "aliases": [
+        "CES",
+        "CCES",
+        "Cooperative Election Study"
+      ],
+      "category": "election",
+      "topics": [
+        "정당일체감",
+        "투표",
+        "미국"
+      ],
+      "design": "cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "각 연도 미국 조사 응답자",
+      "summary": "미국 선거조사의 공통문항을 연도별로 쌓은 자료다. 정당일체감과 참여의 변화를 추적할 수 있다.",
+      "political_use": "정당일체감과 참여의 변화를 추적할 수 있다",
+      "producer": "Cooperative Election Study · Shiro Kuriwaki",
+      "distributor": "Cooperative Election Study · Shiro Kuriwaki",
+      "source_url": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/II2DB6",
+      "project_regions": [
+        "US"
+      ],
+      "scope": "national",
+      "caution": "팀 문항은 별도 파일이다. 선거 전후 재면접과 연도 간 독립 표본을 구분한다.",
+      "default_release": "ces-release"
+    },
+    "manifesto": {
+      "id": "manifesto",
+      "name": "정당 공약 비교자료",
+      "aliases": [
+        "MARPOR",
+        "Manifesto Project Database"
+      ],
+      "category": "election",
+      "topics": [
+        "공약",
+        "이념",
+        "정책의제"
+      ],
+      "design": "text",
+      "unit": "정당–선거",
+      "individual_panel": false,
+      "population": "수록 정당·선거 공약",
+      "summary": "선거 공약을 정책 범주로 코딩한 정당별 자료다. 선거 사이에 정책 강조점이 어떻게 달라지는지 살펴볼 수 있다.",
+      "political_use": "선거 사이에 정책 강조점이 어떻게 달라지는지 살펴볼 수 있다",
+      "producer": "Manifesto Project",
+      "distributor": "Manifesto Project",
+      "source_url": "https://manifesto-project.wzb.eu/",
+      "project_regions": [
+        "INT"
+      ],
+      "scope": "international",
+      "caution": "코딩 지침·선거일·배포 버전을 맞춘 뒤 정당 간 비교를 진행한다.",
+      "default_release": "manifesto-release"
+    },
+    "jp-bills": {
+      "id": "jp-bills",
+      "name": "일본 중의원 의안 심의 기록",
+      "aliases": [
+        "국회의안 데이터베이스",
+        "国会議案データベース"
+      ],
+      "category": "legislature",
+      "topics": [
+        "중의원",
+        "법안",
+        "심의"
+      ],
+      "design": "event",
+      "unit": "회차별 게재 의안",
+      "individual_panel": false,
+      "population": "중의원에 게재된 의안",
+      "summary": "일본 중의원의 제출·심의·처리 기록을 의안이 게재된 회차별로 정리했다. 발의 주체와 심의 경과를 비교할 수 있다.",
+      "political_use": "발의 주체와 심의 경과를 비교할 수 있다.",
+      "producer": "SmartNews Media Research Institute",
+      "distributor": "SmartNews Media Research Institute",
+      "source_url": "https://github.com/smartnews-smri/house-of-representatives",
+      "project_regions": [
+        "JP"
+      ],
+      "scope": "national",
+      "caution": "제142~222회 수록. 동일 의안이 여러 회차에 등장한다. 항목에 따라 번호가 비어 있어 후보키의 중복·결측을 검토해야 한다.",
+      "default_release": "jp-bills-release",
+      "original_source": "일본 중의원 의안정보"
+    },
+    "uk-questions": {
+      "id": "uk-questions",
+      "name": "영국 하원 의원별 대정부 질문",
+      "aliases": [
+        "Parliamentary Questions",
+        "Commons Library"
+      ],
+      "category": "legislature",
+      "topics": [
+        "의회",
+        "대정부질문",
+        "행정부 감시"
+      ],
+      "design": "event",
+      "unit": "의원–질문",
+      "individual_panel": false,
+      "population": "2019–21 회기 하원 질문 활동",
+      "summary": "영국 하원 의원이 부처에 제기한 질문을 의원·질문 단위로 기록한다. 의원별 의제와 행정부 감시 활동을 연구할 수 있다.",
+      "political_use": "의원별 의제와 행정부 감시 활동을 연구할 수 있다.",
+      "producer": "House of Commons Library",
+      "distributor": "House of Commons Library",
+      "source_url": "https://github.com/houseofcommonslibrary/dashboard_data",
+      "project_regions": [
+        "GB"
+      ],
+      "scope": "national",
+      "caution": "제작자가 기록 오류가 있는 일부 질문을 제외했다. 같은 질문에 여러 의원이 등장할 수 있다.",
+      "default_release": "uk-questions-release",
+      "original_source": "UK Parliament Parliamentary Search"
+    },
+    "pew-dec13": {
+      "id": "pew-dec13",
+      "name": "미국 대통령·건강보험법 지지 조사",
+      "aliases": [
+        "Pew Research Center December 2013 Political Survey Excerpt",
+        "Pew"
+      ],
+      "category": "attitudes",
+      "topics": [
+        "정당일체감",
+        "대통령 지지",
+        "정책선호",
+        "건강보험"
+      ],
+      "design": "single_cross",
+      "unit": "개인",
+      "individual_panel": false,
+      "population": "2013년 12월 미국 정치조사 응답자",
+      "summary": "미국 응답자의 대통령 직무수행 평가, 건강보험법 찬반, 정당일체감을 담은 단일 횡단조사 발췌본이다. 같은 응답자의 정당지지와 정책선호를 비교할 수 있다.",
+      "political_use": "대통령 평가와 건강보험법 찬반의 정당별 격차를 검토한다.",
+      "producer": "Pew Research Center",
+      "distributor": "Pew Research Center",
+      "source_url": "https://github.com/pewresearch/pewmethods/tree/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/data",
+      "project_regions": [
+        "US"
+      ],
+      "scope": "national",
+      "caution": "발췌본에는 조사 변수 14개가 있다. 전화 표집틀별 가중치와 전체 가중치의 적용대상을 구분한다.",
+      "default_release": "pew-dec13-release"
+    }
+  },
+  "releases": {
+    "kgss-release": {
+      "id": "kgss-release",
+      "dataset": "kgss",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://kgss.skku.edu/kgss/data.do"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "kipa-integration-release": {
+      "id": "kipa-integration-release",
+      "dataset": "kipa-integration",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://sky.kipa.re.kr/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "kipa-officials-release": {
+      "id": "kipa-officials-release",
+      "dataset": "kipa-officials",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://sky.kipa.re.kr/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "kipa-citizen-release": {
+      "id": "kipa-citizen-release",
+      "dataset": "kipa-citizen",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://sky.kipa.re.kr/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "kipa-servants-release": {
+      "id": "kipa-servants-release",
+      "dataset": "kipa-servants",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://sky.kipa.re.kr/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "ipus-release": {
+      "id": "ipus-release",
+      "dataset": "ipus",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://ipus.snu.ac.kr/data-archive"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "nec-release": {
+      "id": "nec-release",
+      "dataset": "nec",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://info.nec.go.kr/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "nesdc-release": {
+      "id": "nesdc-release",
+      "dataset": "nesdc",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://www.nesdc.go.kr/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "assembly-release": {
+      "id": "assembly-release",
+      "dataset": "assembly",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://likms.assembly.go.kr/bill/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "laws-release": {
+      "id": "laws-release",
+      "dataset": "laws",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://www.law.go.kr/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "nastab-release": {
+      "id": "nastab-release",
+      "dataset": "nastab",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://www.kipf.re.kr/panel/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "koweps-release": {
+      "id": "koweps-release",
+      "dataset": "koweps",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://www.koweps.re.kr/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "klips-release": {
+      "id": "klips-release",
+      "dataset": "klips",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://www.kli.re.kr/klips/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "wps-release": {
+      "id": "wps-release",
+      "dataset": "wps",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://www.kli.re.kr/wps/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "lofin-release": {
+      "id": "lofin-release",
+      "dataset": "lofin",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://www.lofin365.go.kr/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "alio-release": {
+      "id": "alio-release",
+      "dataset": "alio",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://www.alio.go.kr/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "jgss-release": {
+      "id": "jgss-release",
+      "dataset": "jgss",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "JP"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "application",
+      "authentication": null,
+      "access_note": "연구자 등록·신청 경로에서 배포판의 자격·이용등급을 확인한다. 현재 승인 상태 미확인.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://jgss.daishodai.ac.jp/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "cgss-release": {
+      "id": "cgss-release",
+      "dataset": "cgss",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "CN"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://cgss.ruc.edu.cn/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "teds-release": {
+      "id": "teds-release",
+      "dataset": "teds",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "TW"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://teds.nccu.edu.tw/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "asianbarometer-release": {
+      "id": "asianbarometer-release",
+      "dataset": "asianbarometer",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "INT"
+      ],
+      "geography_basis": "다국가 프로젝트. 배포판 국가표 확인 필요",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://asianbarometer.org/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "eass-release": {
+      "id": "eass-release",
+      "dataset": "eass",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "INT"
+      ],
+      "geography_basis": "다국가 프로젝트. 배포판 국가표 확인 필요",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://www.eassda.org/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "anes-release": {
+      "id": "anes-release",
+      "dataset": "anes",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "US"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://electionstudies.org/data-center/anes-time-series-cumulative-data-file/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "gss-release": {
+      "id": "gss-release",
+      "dataset": "gss",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "US"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://gss.norc.org/us/en/gss/get-the-data.html"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "bes-panel-release": {
+      "id": "bes-panel-release",
+      "dataset": "bes-panel",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "GB"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://www.britishelectionstudy.com/data-objects/panel-study-data/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "bes-face-release": {
+      "id": "bes-face-release",
+      "dataset": "bes-face",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "GB"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://www.britishelectionstudy.com/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "bsa-release": {
+      "id": "bsa-release",
+      "dataset": "bsa",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "GB"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://natcen.ac.uk/what-we-do/british-social-attitudes"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "ukhls-release": {
+      "id": "ukhls-release",
+      "dataset": "ukhls",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "GB"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "application",
+      "authentication": null,
+      "access_note": "연구자 등록·신청 경로에서 배포판의 자격·이용등급을 확인한다. 현재 승인 상태 미확인.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://www.understandingsociety.ac.uk/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "ess-release": {
+      "id": "ess-release",
+      "dataset": "ess",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "INT"
+      ],
+      "geography_basis": "다국가 프로젝트. 배포판 국가표 확인 필요",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://ess.sikt.no/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "cses-release": {
+      "id": "cses-release",
+      "dataset": "cses",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "INT"
+      ],
+      "geography_basis": "다국가 프로젝트. 배포판 국가표 확인 필요",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://cses.org/data-download/cses-module-5-2016-2021/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "wvs-release": {
+      "id": "wvs-release",
+      "dataset": "wvs",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "INT"
+      ],
+      "geography_basis": "다국가 프로젝트. 배포판 국가표 확인 필요",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "issp-release": {
+      "id": "issp-release",
+      "dataset": "issp",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "INT"
+      ],
+      "geography_basis": "다국가 프로젝트. 배포판 국가표 확인 필요",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://issp.org/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "ucdp-release": {
+      "id": "ucdp-release",
+      "dataset": "ucdp",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "INT"
+      ],
+      "geography_basis": "다국가 프로젝트. 배포판 국가표 확인 필요",
+      "files": [],
+      "formats": [],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "review",
+      "authentication": null,
+      "access_note": "해당 배포판의 신청·로그인·약관을 배포처에서 확인한 뒤 파일을 등록한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [],
+      "evidence": [
+        "https://ucdp.uu.se/"
+      ],
+      "verification": "release_unconfirmed",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run"
+    },
+    "pop-candidates-release": {
+      "id": "pop-candidates-release",
+      "dataset": "pop-candidates",
+      "version": "15536ca12792c36b72abd40df05085391a550f9b",
+      "release_date": "2013-04-24",
+      "waves": "제1~19대",
+      "years": [
+        1948,
+        2013
+      ],
+      "countries": {
+        "KR": [
+          1948,
+          2013
+        ]
+      },
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [
+        "pop-candidates-csv"
+      ],
+      "formats": [
+        "csv"
+      ],
+      "languages": [
+        "ko"
+      ],
+      "encoding": "UTF-8",
+      "keys": [
+        "candidacy_id"
+      ],
+      "time_key": "assembly_id",
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "direct",
+      "authentication": null,
+      "access_note": "제작자가 배포하는 고정 버전 CSV를 받는다.",
+      "terms": "CC BY 3.0 · 팀포퐁 저작자 표시",
+      "citation": "박은정·강철 (2013), 대한민국 정치의 모든 것. 자료 제작자 팀포퐁과 버전 병기.",
+      "documentation": [
+        {
+          "title": "변수 설명·수집일·주의사항",
+          "url": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#candidaciescsv",
+          "kind": "guide"
+        }
+      ],
+      "evidence": [
+        "https://github.com/teampopong/data-for-rnd"
+      ],
+      "verification": "file_and_dictionary",
+      "checked": "2026-11-18",
+      "download_stage": 5,
+      "analysis_status": "not_run"
+    },
+    "pop-sponsors-release": {
+      "id": "pop-sponsors-release",
+      "dataset": "pop-sponsors",
+      "version": "15536ca12792c36b72abd40df05085391a550f9b",
+      "release_date": "2013-07-29",
+      "waves": "제19대",
+      "years": [
+        2012,
+        2013
+      ],
+      "countries": {
+        "KR": [
+          2012,
+          2013
+        ]
+      },
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [
+        "pop-sponsors-csv"
+      ],
+      "formats": [
+        "csv"
+      ],
+      "languages": [
+        "ko"
+      ],
+      "encoding": "UTF-8",
+      "keys": [
+        "person_id",
+        "assembly_id"
+      ],
+      "time_key": "assembly_id",
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "direct",
+      "authentication": null,
+      "access_note": "제작자가 배포하는 고정 버전 CSV를 받는다.",
+      "terms": "CC BY 3.0 · 팀포퐁 저작자 표시",
+      "citation": "박은정·강철 (2013), 대한민국 정치의 모든 것. 자료 제작자 팀포퐁과 버전 병기.",
+      "documentation": [
+        {
+          "title": "변수 설명·수집일·주의사항",
+          "url": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#cosponsorshipcsv",
+          "kind": "guide"
+        }
+      ],
+      "evidence": [
+        "https://github.com/teampopong/data-for-rnd"
+      ],
+      "verification": "file_and_dictionary",
+      "checked": "2026-11-18",
+      "download_stage": 5,
+      "analysis_status": "not_run",
+      "blocking_notes": [
+        "제작자 설명 304행과 파일 실측 303개 관측치의 차이 및 동명이인 집계 범위 검토 필요"
+      ]
+    },
+    "pop-pledges-release": {
+      "id": "pop-pledges-release",
+      "dataset": "pop-pledges",
+      "version": "15536ca12792c36b72abd40df05085391a550f9b",
+      "release_date": "2013-04-24",
+      "waves": "제19대",
+      "years": [
+        2012,
+        2013
+      ],
+      "countries": {
+        "KR": [
+          2012,
+          2013
+        ]
+      },
+      "regions": [
+        "KR"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [
+        "pop-pledges-csv"
+      ],
+      "formats": [
+        "csv"
+      ],
+      "languages": [
+        "ko"
+      ],
+      "encoding": "UTF-8",
+      "keys": [
+        "candidacy_id",
+        "pledge"
+      ],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "direct",
+      "authentication": null,
+      "access_note": "제작자가 배포하는 고정 버전 CSV를 받는다.",
+      "terms": "CC BY 3.0 · 팀포퐁 저작자 표시",
+      "citation": "박은정·강철 (2013), 대한민국 정치의 모든 것. 자료 제작자 팀포퐁과 버전 병기.",
+      "documentation": [
+        {
+          "title": "변수 설명·수집일·주의사항",
+          "url": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#pledgescsv",
+          "kind": "guide"
+        }
+      ],
+      "evidence": [
+        "https://github.com/teampopong/data-for-rnd"
+      ],
+      "verification": "file_and_dictionary",
+      "checked": "2026-11-18",
+      "download_stage": 5,
+      "analysis_status": "not_run"
+    },
+    "ert-release": {
+      "id": "ert-release",
+      "dataset": "ert",
+      "version": "16.0",
+      "release_date": null,
+      "waves": "v16 · 2026년 3월 코드북",
+      "years": [
+        1900,
+        2025
+      ],
+      "countries": {
+        "AFG": [
+          1900,
+          2025
+        ],
+        "AGO": [
+          1900,
+          2025
+        ],
+        "ALB": [
+          1912,
+          2025
+        ],
+        "ARE": [
+          1971,
+          2025
+        ],
+        "ARG": [
+          1900,
+          2025
+        ],
+        "ARM": [
+          1990,
+          2025
+        ],
+        "AUS": [
+          1900,
+          2025
+        ],
+        "AUT": [
+          1900,
+          2025
+        ],
+        "AZE": [
+          1990,
+          2025
+        ],
+        "BDI": [
+          1916,
+          2025
+        ],
+        "BEL": [
+          1900,
+          2025
+        ],
+        "BEN": [
+          1900,
+          2025
+        ],
+        "BFA": [
+          1919,
+          2025
+        ],
+        "BGD": [
+          1971,
+          2025
+        ],
+        "BGR": [
+          1900,
+          2025
+        ],
+        "BHR": [
+          1900,
+          2025
+        ],
+        "BIH": [
+          1992,
+          2025
+        ],
+        "BLR": [
+          1990,
+          2025
+        ],
+        "BOL": [
+          1900,
+          2025
+        ],
+        "BRA": [
+          1900,
+          2025
+        ],
+        "BRB": [
+          1900,
+          2025
+        ],
+        "BTN": [
+          1900,
+          2025
+        ],
+        "BWA": [
+          1900,
+          2025
+        ],
+        "CAF": [
+          1920,
+          2025
+        ],
+        "CAN": [
+          1900,
+          2025
+        ],
+        "CHE": [
+          1900,
+          2025
+        ],
+        "CHL": [
+          1900,
+          2025
+        ],
+        "CHN": [
+          1900,
+          2025
+        ],
+        "CIV": [
+          1900,
+          2025
+        ],
+        "CMR": [
+          1961,
+          2025
+        ],
+        "COD": [
+          1900,
+          2025
+        ],
+        "COG": [
+          1903,
+          2025
+        ],
+        "COL": [
+          1900,
+          2025
+        ],
+        "COM": [
+          1900,
+          2025
+        ],
+        "CPV": [
+          1900,
+          2025
+        ],
+        "CRI": [
+          1900,
+          2025
+        ],
+        "CUB": [
+          1900,
+          2025
+        ],
+        "CYP": [
+          1900,
+          2025
+        ],
+        "CZE": [
+          1918,
+          2025
+        ],
+        "DDR": [
+          1949,
+          1990
+        ],
+        "DEU": [
+          1900,
+          2025
+        ],
+        "DJI": [
+          1900,
+          2025
+        ],
+        "DNK": [
+          1900,
+          2025
+        ],
+        "DOM": [
+          1900,
+          2025
+        ],
+        "DZA": [
+          1900,
+          2025
+        ],
+        "ECU": [
+          1900,
+          2025
+        ],
+        "EGY": [
+          1900,
+          2025
+        ],
+        "ERI": [
+          1900,
+          2025
+        ],
+        "ESP": [
+          1900,
+          2025
+        ],
+        "EST": [
+          1918,
+          2025
+        ],
+        "ETH": [
+          1900,
+          2025
+        ],
+        "FIN": [
+          1900,
+          2025
+        ],
+        "FJI": [
+          1900,
+          2025
+        ],
+        "FRA": [
+          1900,
+          2025
+        ],
+        "GAB": [
+          1910,
+          2025
+        ],
+        "GBR": [
+          1900,
+          2025
+        ],
+        "GEO": [
+          1990,
+          2025
+        ],
+        "GHA": [
+          1902,
+          2025
+        ],
+        "GIN": [
+          1900,
+          2025
+        ],
+        "GMB": [
+          1900,
+          2025
+        ],
+        "GNB": [
+          1900,
+          2025
+        ],
+        "GNQ": [
+          1900,
+          2025
+        ],
+        "GRC": [
+          1900,
+          2025
+        ],
+        "GTM": [
+          1900,
+          2025
+        ],
+        "GUY": [
+          1900,
+          2025
+        ],
+        "HKG": [
+          1900,
+          2025
+        ],
+        "HND": [
+          1900,
+          2025
+        ],
+        "HRV": [
+          1941,
+          2025
+        ],
+        "HTI": [
+          1900,
+          2025
+        ],
+        "HUN": [
+          1900,
+          2025
+        ],
+        "IDN": [
+          1900,
+          2025
+        ],
+        "IND": [
+          1900,
+          2025
+        ],
+        "IRL": [
+          1919,
+          2025
+        ],
+        "IRN": [
+          1900,
+          2025
+        ],
+        "IRQ": [
+          1920,
+          2025
+        ],
+        "ISL": [
+          1900,
+          2025
+        ],
+        "ISR": [
+          1948,
+          2025
+        ],
+        "ITA": [
+          1900,
+          2025
+        ],
+        "JAM": [
+          1900,
+          2025
+        ],
+        "JOR": [
+          1922,
+          2025
+        ],
+        "JPN": [
+          1900,
+          2025
+        ],
+        "KAZ": [
+          1990,
+          2025
+        ],
+        "KEN": [
+          1900,
+          2025
+        ],
+        "KGZ": [
+          1990,
+          2025
+        ],
+        "KHM": [
+          1900,
+          2025
+        ],
+        "KOR": [
+          1900,
+          2025
+        ],
+        "KWT": [
+          1900,
+          2025
+        ],
+        "LAO": [
+          1900,
+          2025
+        ],
+        "LBN": [
+          1918,
+          2025
+        ],
+        "LBR": [
+          1900,
+          2025
+        ],
+        "LBY": [
+          1911,
+          2025
+        ],
+        "LKA": [
+          1900,
+          2025
+        ],
+        "LSO": [
+          1900,
+          2025
+        ],
+        "LTU": [
+          1918,
+          2025
+        ],
+        "LUX": [
+          1900,
+          2025
+        ],
+        "LVA": [
+          1920,
+          2025
+        ],
+        "MAR": [
+          1900,
+          2025
+        ],
+        "MDA": [
+          1990,
+          2025
+        ],
+        "MDG": [
+          1900,
+          2025
+        ],
+        "MDV": [
+          1900,
+          2025
+        ],
+        "MEX": [
+          1900,
+          2025
+        ],
+        "MKD": [
+          1991,
+          2025
+        ],
+        "MLI": [
+          1900,
+          2025
+        ],
+        "MLT": [
+          1900,
+          2025
+        ],
+        "MMR": [
+          1900,
+          2025
+        ],
+        "MNE": [
+          1900,
+          2025
+        ],
+        "MNG": [
+          1911,
+          2025
+        ],
+        "MOZ": [
+          1900,
+          2025
+        ],
+        "MRT": [
+          1904,
+          2025
+        ],
+        "MUS": [
+          1900,
+          2025
+        ],
+        "MWI": [
+          1900,
+          2025
+        ],
+        "MYS": [
+          1900,
+          2025
+        ],
+        "NAM": [
+          1900,
+          2025
+        ],
+        "NER": [
+          1922,
+          2025
+        ],
+        "NGA": [
+          1914,
+          2025
+        ],
+        "NIC": [
+          1900,
+          2025
+        ],
+        "NLD": [
+          1900,
+          2025
+        ],
+        "NOR": [
+          1900,
+          2025
+        ],
+        "NPL": [
+          1900,
+          2025
+        ],
+        "NZL": [
+          1900,
+          2025
+        ],
+        "OMN": [
+          1900,
+          2025
+        ],
+        "PAK": [
+          1947,
+          2025
+        ],
+        "PAN": [
+          1903,
+          2025
+        ],
+        "PER": [
+          1900,
+          2025
+        ],
+        "PHL": [
+          1900,
+          2025
+        ],
+        "PNG": [
+          1900,
+          2025
+        ],
+        "POL": [
+          1918,
+          2025
+        ],
+        "PRK": [
+          1945,
+          2025
+        ],
+        "PRT": [
+          1900,
+          2025
+        ],
+        "PRY": [
+          1900,
+          2025
+        ],
+        "PSB": [
+          1918,
+          1948
+        ],
+        "PSE": [
+          1948,
+          2025
+        ],
+        "PSG": [
+          1948,
+          2025
+        ],
+        "QAT": [
+          1900,
+          2025
+        ],
+        "ROU": [
+          1900,
+          2025
+        ],
+        "RUS": [
+          1900,
+          2025
+        ],
+        "RWA": [
+          1916,
+          2025
+        ],
+        "SAU": [
+          1900,
+          2025
+        ],
+        "SDN": [
+          1900,
+          2025
+        ],
+        "SEN": [
+          1904,
+          2025
+        ],
+        "SGP": [
+          1900,
+          2025
+        ],
+        "SLB": [
+          1900,
+          2025
+        ],
+        "SLE": [
+          1900,
+          2025
+        ],
+        "SLV": [
+          1900,
+          2025
+        ],
+        "SML": [
+          1900,
+          2025
+        ],
+        "SOM": [
+          1900,
+          2025
+        ],
+        "SRB": [
+          1900,
+          2025
+        ],
+        "SSD": [
+          2011,
+          2025
+        ],
+        "STP": [
+          1900,
+          2025
+        ],
+        "SUR": [
+          1900,
+          2025
+        ],
+        "SVK": [
+          1939,
+          2025
+        ],
+        "SVN": [
+          1989,
+          2025
+        ],
+        "SWE": [
+          1900,
+          2025
+        ],
+        "SWZ": [
+          1900,
+          2025
+        ],
+        "SYC": [
+          1903,
+          2025
+        ],
+        "SYR": [
+          1918,
+          2025
+        ],
+        "TCD": [
+          1920,
+          2025
+        ],
+        "TGO": [
+          1916,
+          2025
+        ],
+        "THA": [
+          1900,
+          2025
+        ],
+        "TJK": [
+          1990,
+          2025
+        ],
+        "TKM": [
+          1990,
+          2025
+        ],
+        "TLS": [
+          1900,
+          2025
+        ],
+        "TTO": [
+          1900,
+          2025
+        ],
+        "TUN": [
+          1900,
+          2025
+        ],
+        "TUR": [
+          1900,
+          2025
+        ],
+        "TWN": [
+          1900,
+          2025
+        ],
+        "TZA": [
+          1914,
+          2025
+        ],
+        "UGA": [
+          1900,
+          2025
+        ],
+        "UKR": [
+          1990,
+          2025
+        ],
+        "URY": [
+          1900,
+          2025
+        ],
+        "USA": [
+          1900,
+          2025
+        ],
+        "UZB": [
+          1900,
+          2025
+        ],
+        "VDR": [
+          1900,
+          1975
+        ],
+        "VEN": [
+          1900,
+          2025
+        ],
+        "VNM": [
+          1945,
+          2025
+        ],
+        "VUT": [
+          1900,
+          2025
+        ],
+        "XKX": [
+          1999,
+          2025
+        ],
+        "YEM": [
+          1918,
+          2025
+        ],
+        "YMD": [
+          1900,
+          1990
+        ],
+        "ZAF": [
+          1900,
+          2025
+        ],
+        "ZMB": [
+          1911,
+          2025
+        ],
+        "ZWE": [
+          1900,
+          2025
+        ],
+        "ZZB": [
+          1900,
+          2025
+        ]
+      },
+      "regions": [
+        "KR",
+        "JP",
+        "CN",
+        "TW",
+        "EA",
+        "US",
+        "GB",
+        "WE",
+        "INT"
+      ],
+      "geography_basis": "배포 CSV의 country_text_id·year로 실측. 코드는 V-Dem 기준.",
+      "files": [
+        "ert-csv"
+      ],
+      "formats": [
+        "csv"
+      ],
+      "languages": [
+        "en"
+      ],
+      "encoding": "UTF-8",
+      "keys": [
+        "country_id",
+        "year"
+      ],
+      "time_key": "year",
+      "country_key": "country_text_id",
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "direct",
+      "authentication": null,
+      "access_note": "제작자가 배포하는 고정 버전 CSV를 받는다.",
+      "terms": null,
+      "citation": "Maerz et al., Episodes of Regime Transformation, v16. V-Dem v16 기반.",
+      "documentation": [
+        {
+          "title": "ERT v16 코드북",
+          "url": "https://raw.githubusercontent.com/vdeminstitute/ERT/7fd51ce856a054582820bb0ac0ccae85371ff9be/inst/ERT_codebook_v16.pdf",
+          "kind": "codebook"
+        }
+      ],
+      "evidence": [
+        "https://github.com/vdeminstitute/ERT"
+      ],
+      "verification": "file_and_dictionary",
+      "checked": "2026-11-18",
+      "download_stage": 5,
+      "analysis_status": "not_run"
+    },
+    "us-terms-release": {
+      "id": "us-terms-release",
+      "dataset": "us-terms",
+      "version": "4c1ff5e3aef1816ae04af63218015066e186c147",
+      "release_date": null,
+      "waves": null,
+      "years": [
+        1947,
+        2014
+      ],
+      "countries": {
+        "US": [
+          1947,
+          2014
+        ]
+      },
+      "regions": [
+        "US"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [
+        "us-terms-csv"
+      ],
+      "formats": [
+        "csv"
+      ],
+      "languages": [
+        "en"
+      ],
+      "encoding": "UTF-8",
+      "keys": [
+        "bioguide",
+        "chamber",
+        "congress"
+      ],
+      "time_key": "congress",
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "direct",
+      "authentication": null,
+      "access_note": "제작자가 배포하는 고정 버전 CSV를 받는다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [
+        {
+          "title": "자료 범위·원출처",
+          "url": "https://github.com/fivethirtyeight/data/blob/4c1ff5e3aef1816ae04af63218015066e186c147/congress-age/README.md",
+          "kind": "guide"
+        }
+      ],
+      "evidence": [
+        "https://github.com/fivethirtyeight/data/tree/master/congress-age"
+      ],
+      "verification": "file_and_dictionary",
+      "checked": "2026-11-18",
+      "download_stage": 5,
+      "analysis_status": "not_run"
+    },
+    "ces-release": {
+      "id": "ces-release",
+      "dataset": "ces",
+      "version": "2006–2025 누적 지침 · 배포판 DOI 버전 확인 필요",
+      "release_date": null,
+      "waves": null,
+      "years": [
+        2006,
+        2025
+      ],
+      "countries": {
+        "US": [
+          2006,
+          2025
+        ]
+      },
+      "regions": [
+        "US"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [],
+      "formats": [
+        "dta",
+        "rds",
+        "feather"
+      ],
+      "languages": [],
+      "encoding": null,
+      "keys": [
+        "year",
+        "case_id"
+      ],
+      "time_key": "year",
+      "country_key": null,
+      "weight": "weight · 연도별 선거 전 표본. 선거 후 문항은 weight_post 검토.",
+      "strata": null,
+      "cluster": null,
+      "mode": "온라인",
+      "access": "review",
+      "authentication": null,
+      "access_note": "연구자 저장소에서 DTA·RDS·Feather 배포 경로 확인. Dataverse의 파일 버전과 이용약관 확인 후 등록.",
+      "terms": null,
+      "citation": null,
+      "documentation": [
+        {
+          "title": "누적자료 이용 지침 원문",
+          "url": "https://github.com/kuriwaki/cces_cumulative/blob/0fd71dbb5523a2795d57c3b2081b818acffd567c/guide/guide_cumulative_2006-2025.qmd",
+          "kind": "guide"
+        }
+      ],
+      "evidence": [
+        "https://github.com/kuriwaki/cces_cumulative",
+        "https://github.com/kuriwaki/cces_cumulative/blob/0fd71dbb5523a2795d57c3b2081b818acffd567c/guide/guide_cumulative_2006-2025.qmd"
+      ],
+      "verification": "provider_documentation",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run",
+      "document_history": [
+        {
+          "checked": "2026-11-18",
+          "url": "https://raw.githubusercontent.com/kuriwaki/cces_cumulative/0fd71dbb5523a2795d57c3b2081b818acffd567c/guide/guide_cumulative_2006-2025.pdf",
+          "status": "http_404",
+          "replacement": "https://github.com/kuriwaki/cces_cumulative/blob/0fd71dbb5523a2795d57c3b2081b818acffd567c/guide/guide_cumulative_2006-2025.qmd",
+          "reason": "제작자 README가 가리킨 해당 판본 PDF를 받을 수 없어 동일 커밋의 공식 QMD 지침 본문을 확인했다."
+        }
+      ]
+    },
+    "manifesto-release": {
+      "id": "manifesto-release",
+      "dataset": "manifesto",
+      "version": null,
+      "release_date": null,
+      "waves": null,
+      "years": null,
+      "countries": {},
+      "regions": [
+        "INT"
+      ],
+      "geography_basis": "다국가 프로젝트. 배포판 국가표 확인 필요",
+      "files": [],
+      "formats": [
+        "dta"
+      ],
+      "languages": [],
+      "encoding": null,
+      "keys": [],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "api",
+      "authentication": "MANIFESTO_API_KEY",
+      "access_note": "기관 키와 확인한 MPDS 버전을 지정한다. 공식 POST API의 DTA 본문을 디코딩해 원본을 보관한다.",
+      "terms": null,
+      "citation": null,
+      "documentation": [
+        {
+          "title": "공식 API 클라이언트",
+          "url": "https://github.com/ManifestoProject/manifestoR/blob/51f7a59d76134eb17e50a612fd61b1d0759261b6/R/db_api.R",
+          "kind": "guide"
+        }
+      ],
+      "evidence": [
+        "https://github.com/ManifestoProject/manifestoR",
+        "https://github.com/ManifestoProject/manifestoR/blob/51f7a59d76134eb17e50a612fd61b1d0759261b6/R/db_api.R"
+      ],
+      "verification": "provider_documentation",
+      "checked": "2026-11-18",
+      "download_stage": 0,
+      "analysis_status": "not_run",
+      "api": {
+        "url": "https://manifesto-project.wzb.eu/tools/api_get_core.json",
+        "method": "POST",
+        "version_parameter": "key",
+        "kind": "dta",
+        "reference": "https://github.com/ManifestoProject/manifestoR/blob/51f7a59d76134eb17e50a612fd61b1d0759261b6/R/manifesto.R"
+      }
+    },
+    "jp-bills-release": {
+      "id": "jp-bills-release",
+      "dataset": "jp-bills",
+      "version": "f1d82afc5aa628f8178f366528f24d9317278966",
+      "release_date": null,
+      "waves": "제142~222회 게재",
+      "years": null,
+      "countries": {
+        "JP": null
+      },
+      "regions": [
+        "JP"
+      ],
+      "geography_basis": "제작자 설명 및 고정 배포파일 점검",
+      "files": [
+        "jp-bills-file"
+      ],
+      "formats": [
+        "csv"
+      ],
+      "languages": [
+        "ja"
+      ],
+      "encoding": "UTF-8",
+      "keys": [
+        "掲載回次",
+        "提出回次",
+        "番号",
+        "キャプション",
+        "議案件名"
+      ],
+      "time_key": "掲載回次",
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "direct",
+      "authentication": null,
+      "access_note": "제작자 배포 저장소의 고정 버전 파일을 받는다.",
+      "terms": "MIT · SmartNews Media Research Institute 표기",
+      "citation": "SmartNews Media Research Institute · 일본 중의원 의안 심의 기록 · f1d82afc5aa6",
+      "documentation": [
+        {
+          "title": "제작자 데이터 지침",
+          "url": "https://github.com/smartnews-smri/house-of-representatives/blob/f1d82afc5aa628f8178f366528f24d9317278966/README.md",
+          "kind": "guide"
+        }
+      ],
+      "evidence": [
+        "https://github.com/smartnews-smri/house-of-representatives",
+        "https://github.com/smartnews-smri/house-of-representatives/tree/f1d82afc5aa628f8178f366528f24d9317278966/data",
+        "https://github.com/smartnews-smri/house-of-representatives/blob/f1d82afc5aa628f8178f366528f24d9317278966/README.md"
+      ],
+      "verification": "file_and_dictionary",
+      "checked": "2026-11-18",
+      "download_stage": 5,
+      "analysis_status": "not_run"
+    },
+    "uk-questions-release": {
+      "id": "uk-questions-release",
+      "dataset": "uk-questions",
+      "version": "7b08e428c307cad25f0d049a08b39bf7ba56ff54",
+      "release_date": null,
+      "waves": "2019–21 회기",
+      "years": [
+        2019,
+        2021
+      ],
+      "countries": {
+        "GB": [
+          2019,
+          2021
+        ]
+      },
+      "regions": [
+        "GB"
+      ],
+      "geography_basis": "제작자 설명 및 고정 배포파일 점검",
+      "files": [
+        "uk-questions-file"
+      ],
+      "formats": [
+        "zip",
+        "csv"
+      ],
+      "languages": [
+        "en"
+      ],
+      "encoding": "UTF-8",
+      "keys": [
+        "type",
+        "ref",
+        "MNIS_id"
+      ],
+      "time_key": null,
+      "country_key": null,
+      "weight": null,
+      "strata": null,
+      "cluster": null,
+      "mode": null,
+      "access": "direct",
+      "authentication": null,
+      "access_note": "제작자 배포 저장소의 고정 버전 파일을 받는다.",
+      "terms": null,
+      "citation": "House of Commons Library · 영국 하원 의원별 대정부 질문 · 7b08e428c307",
+      "documentation": [
+        {
+          "title": "제작자 데이터 지침",
+          "url": "https://github.com/houseofcommonslibrary/dashboard_data/blob/7b08e428c307cad25f0d049a08b39bf7ba56ff54/README.md",
+          "kind": "guide"
+        }
+      ],
+      "evidence": [
+        "https://github.com/houseofcommonslibrary/dashboard_data",
+        "https://github.com/houseofcommonslibrary/dashboard_data/tree/7b08e428c307cad25f0d049a08b39bf7ba56ff54/2019-21",
+        "https://github.com/houseofcommonslibrary/dashboard_data/blob/7b08e428c307cad25f0d049a08b39bf7ba56ff54/README.md"
+      ],
+      "verification": "file_and_dictionary",
+      "checked": "2026-11-18",
+      "download_stage": 5,
+      "analysis_status": "not_run"
+    },
+    "pew-dec13-release": {
+      "id": "pew-dec13-release",
+      "dataset": "pew-dec13",
+      "version": "d7c0481736d1b8453b0f186f2ebdfd6b01c172f4",
+      "release_date": null,
+      "waves": "2013년 12월 · 단일 횡단면",
+      "years": [
+        2013,
+        2013
+      ],
+      "countries": {
+        "US": [
+          2013,
+          2013
+        ]
+      },
+      "regions": [
+        "US"
+      ],
+      "geography_basis": "단일 국가 조사대상. 배포판 수록기간 별도 확인",
+      "files": [
+        "pew-dec13-rdata"
+      ],
+      "formats": [
+        "rdata"
+      ],
+      "languages": [
+        "en"
+      ],
+      "encoding": null,
+      "keys": [
+        "psraid"
+      ],
+      "time_key": null,
+      "country_key": null,
+      "weight": "weight · 전체 조사, llweight · 유선 표본, cellweight · 휴대전화 표본",
+      "strata": null,
+      "cluster": null,
+      "mode": "유선·휴대전화 RDD 표본",
+      "access": "direct",
+      "authentication": null,
+      "access_note": "조사기관이 pewmethods 패키지에 배포한 연구용 발췌 원파일을 받는다.",
+      "terms": null,
+      "citation": "Pew Research Center, December 2013 Political Survey Excerpt · pewmethods",
+      "documentation": [
+        {
+          "title": "조사 발췌본 변수 지침",
+          "kind": "codebook",
+          "url": "https://github.com/pewresearch/pewmethods/blob/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/man/dec13_excerpt.Rd"
+        }
+      ],
+      "evidence": [
+        "https://github.com/pewresearch/pewmethods/blob/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/man/dec13_excerpt.Rd",
+        "https://github.com/pewresearch/pewmethods/tree/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/data"
+      ],
+      "verification": "file_and_dictionary",
+      "checked": "2026-11-18",
+      "download_stage": 5,
+      "analysis_status": "not_run"
+    }
+  },
+  "files": {
+    "pop-candidates-csv": {
+      "name": "candidacies.csv",
+      "url": "https://raw.githubusercontent.com/teampopong/data-for-rnd/15536ca12792c36b72abd40df05085391a550f9b/candidacies.csv",
+      "sha256": "977fa5263caa3e2707ae51627ee77f5634a0f472e7e0f6c457b07b3ef5da4e64",
+      "bytes": 1621268,
+      "rows": 19184,
+      "mime": "text/plain",
+      "id": "pop-candidates-csv",
+      "release": "pop-candidates-release",
+      "format": "csv",
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "header": [
+        "candidacy_id",
+        "person_id",
+        "name",
+        "birthday",
+        "party",
+        "assembly_id",
+        "is_elected",
+        "district"
+      ],
+      "download_stage": 5,
+      "checked": "2026-11-18",
+      "missing_tokens": [
+        ""
+      ]
+    },
+    "pop-sponsors-csv": {
+      "name": "cosponsorship.csv",
+      "url": "https://raw.githubusercontent.com/teampopong/data-for-rnd/15536ca12792c36b72abd40df05085391a550f9b/cosponsorship.csv",
+      "sha256": "6fe6923f8a7a10db3265d0b820e03a7d3e34db1366735e427f42e4924317d881",
+      "bytes": 13539,
+      "rows": 303,
+      "mime": "text/plain",
+      "id": "pop-sponsors-csv",
+      "release": "pop-sponsors-release",
+      "format": "csv",
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "header": [
+        "person_id",
+        "name",
+        "gender",
+        "party",
+        "assembly_id",
+        "sponsorship",
+        "cosponsorship"
+      ],
+      "download_stage": 5,
+      "checked": "2026-11-18",
+      "missing_tokens": [
+        ""
+      ]
+    },
+    "pop-pledges-csv": {
+      "name": "pledges.csv",
+      "url": "https://raw.githubusercontent.com/teampopong/data-for-rnd/15536ca12792c36b72abd40df05085391a550f9b/pledges.csv",
+      "sha256": "5c1881bb17d9d61b437ecf7b6fb8fd545b1178fc00f1188c047773fb2eca58c2",
+      "bytes": 105212,
+      "rows": 1221,
+      "mime": "text/plain",
+      "id": "pop-pledges-csv",
+      "release": "pop-pledges-release",
+      "format": "csv",
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "header": [
+        "person_id",
+        "candidacy_id",
+        "name",
+        "pledge"
+      ],
+      "download_stage": 5,
+      "checked": "2026-11-18",
+      "missing_tokens": [
+        ""
+      ]
+    },
+    "ert-csv": {
+      "name": "ert.csv",
+      "url": "https://raw.githubusercontent.com/vdeminstitute/ERT/7fd51ce856a054582820bb0ac0ccae85371ff9be/inst/ert.csv",
+      "sha256": "26e805df073a26973f5c0fbefdcdd0d20776245d71092a575063e47ffac6db5f",
+      "bytes": 3167661,
+      "rows": 19857,
+      "mime": "text/plain",
+      "id": "ert-csv",
+      "release": "ert-release",
+      "format": "csv",
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "header": [
+        "source_row",
+        "country_id",
+        "country_text_id",
+        "country_name",
+        "year",
+        "v2x_regime",
+        "v2x_polyarchy",
+        "v2x_polyarchy_codelow",
+        "v2x_polyarchy_codehigh",
+        "reg_start_year",
+        "reg_end_year",
+        "reg_id",
+        "reg_type",
+        "reg_trans",
+        "dem_founding_elec",
+        "aut_founding_elec",
+        "row_regch_event",
+        "row_regch_censored",
+        "dem_ep",
+        "dem_ep_id",
+        "dem_ep_start_year",
+        "dem_ep_end_year",
+        "dem_pre_ep_year",
+        "dem_ep_termination",
+        "dem_ep_prch",
+        "dem_ep_ptr",
+        "dem_ep_subdep",
+        "dem_ep_outcome",
+        "dem_ep_outcome_agg",
+        "dem_ep_censored",
+        "aut_ep",
+        "aut_ep_id",
+        "aut_ep_start_year",
+        "aut_ep_end_year",
+        "aut_pre_ep_year",
+        "aut_ep_termination",
+        "aut_ep_prch",
+        "aut_ep_pbr",
+        "aut_ep_subreg",
+        "aut_ep_outcome",
+        "aut_ep_outcome_agg",
+        "aut_ep_censored"
+      ],
+      "download_stage": 5,
+      "checked": "2026-11-18",
+      "missing_tokens": [
+        "",
+        "NA"
+      ]
+    },
+    "us-terms-csv": {
+      "name": "congress-terms.csv",
+      "url": "https://raw.githubusercontent.com/fivethirtyeight/data/4c1ff5e3aef1816ae04af63218015066e186c147/congress-age/congress-terms.csv",
+      "sha256": "d038522110dbf1b3011bb70bf0405ef8cdb48d534ec5626c66ebfbe46fc873a1",
+      "bytes": 1375566,
+      "rows": 18635,
+      "mime": "text/plain",
+      "id": "us-terms-csv",
+      "release": "us-terms-release",
+      "format": "csv",
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "header": [
+        "congress",
+        "chamber",
+        "bioguide",
+        "firstname",
+        "middlename",
+        "lastname",
+        "suffix",
+        "birthday",
+        "state",
+        "party",
+        "incumbent",
+        "termstart",
+        "age"
+      ],
+      "download_stage": 5,
+      "checked": "2026-11-18",
+      "missing_tokens": [
+        ""
+      ]
+    },
+    "jp-bills-file": {
+      "id": "jp-bills-file",
+      "release": "jp-bills-release",
+      "name": "gian.csv",
+      "format": "csv",
+      "url": "https://raw.githubusercontent.com/smartnews-smri/house-of-representatives/f1d82afc5aa628f8178f366528f24d9317278966/data/gian.csv",
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "sha256": "95d8defdc4ca8d15c9cc52bf60d837dcf3379ab363323749c1027612133e6230",
+      "bytes": 11660212,
+      "rows": 11684,
+      "header": [
+        "掲載回次",
+        "キャプション",
+        "種類",
+        "提出回次",
+        "番号",
+        "議案件名",
+        "審議状況",
+        "経過情報",
+        "経過情報URL",
+        "本文情報",
+        "本文情報URL",
+        "議案種類",
+        "議案提出者",
+        "議案提出会派",
+        "衆議院予備審査議案受理年月日",
+        "衆議院予備付託年月日／衆議院予備付託委員会",
+        "衆議院議案受理年月日",
+        "衆議院付託年月日／衆議院付託委員会",
+        "衆議院審査終了年月日／衆議院審査結果",
+        "衆議院審議終了年月日／衆議院審議結果",
+        "衆議院審議時会派態度",
+        "衆議院審議時賛成会派",
+        "衆議院審議時反対会派",
+        "参議院予備審査議案受理年月日",
+        "参議院予備付託年月日／参議院予備付託委員会",
+        "参議院議案受理年月日",
+        "参議院付託年月日／参議院付託委員会",
+        "参議院審査終了年月日／参議院審査結果",
+        "参議院審議終了年月日／参議院審議結果",
+        "公布年月日／法律番号",
+        "議案提出者一覧",
+        "議案提出の賛成者"
+      ],
+      "missing_tokens": [
+        ""
+      ],
+      "checked": "2026-11-18",
+      "download_stage": 5,
+      "member": null,
+      "mime": "application/octet-stream"
+    },
+    "uk-questions-file": {
+      "id": "uk-questions-file",
+      "release": "uk-questions-release",
+      "name": "questions.zip",
+      "format": "zip",
+      "url": "https://raw.githubusercontent.com/houseofcommonslibrary/dashboard_data/7b08e428c307cad25f0d049a08b39bf7ba56ff54/2019-21/questions.zip",
+      "encoding": "UTF-8",
+      "delimiter": ",",
+      "sha256": "3154c4339bbcd2d06f3f62ade438499c607b06fa082c49a972fa9f1be70f008d",
+      "bytes": 1680364,
+      "rows": 83505,
+      "header": [
+        "type",
+        "ref",
+        "title",
+        "department",
+        "asking_member",
+        "MNIS_id",
+        "gender",
+        "constituency"
+      ],
+      "missing_tokens": [
+        ""
+      ],
+      "checked": "2026-11-18",
+      "download_stage": 5,
+      "member": "questions.csv",
+      "mime": "application/zip"
+    },
+    "pew-dec13-rdata": {
+      "id": "pew-dec13-rdata",
+      "release": "pew-dec13-release",
+      "name": "dec13_excerpt.RData",
+      "format": "rdata",
+      "object": "dec13_excerpt",
+      "encoding": null,
+      "delimiter": null,
+      "url": "https://raw.githubusercontent.com/pewresearch/pewmethods/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/data/dec13_excerpt.RData",
+      "bytes": 15048,
+      "sha256": "5048e836b7033cca4648c54b058897bc97f0f0d5ca75d8dbe84c055ca8c20a17",
+      "header": [
+        "psraid",
+        "cregion",
+        "q1",
+        "q2",
+        "q45",
+        "sex",
+        "recage",
+        "receduc",
+        "racethn2",
+        "party",
+        "partyln",
+        "weight",
+        "llweight",
+        "cellweight"
+      ],
+      "rows": 2001,
+      "checked": "2026-11-18",
+      "missing_tokens": [
+        ""
+      ],
+      "download_stage": 5,
+      "mime": "application/octet-stream"
+    }
+  },
+  "variables": [
+    {
+      "dataset": "pop-candidates",
+      "release": "pop-candidates-release",
+      "name": "candidacy_id",
+      "concept": "후보등록 고유번호",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "제1~19대 국회의원 선거 후보등록 건",
+      "wave": "제1~19대",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#candidaciescsv",
+      "location": "README · candidacies.csv"
+    },
+    {
+      "dataset": "pop-candidates",
+      "release": "pop-candidates-release",
+      "name": "person_id",
+      "concept": "제작자 인물번호",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "제1~19대 국회의원 선거 후보등록 건",
+      "wave": "제1~19대",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#candidaciescsv",
+      "location": "README · candidacies.csv"
+    },
+    {
+      "dataset": "pop-candidates",
+      "release": "pop-candidates-release",
+      "name": "assembly_id",
+      "concept": "선거 대수",
+      "type": "numeric",
+      "original_question": null,
+      "categories": null,
+      "population": "제1~19대 국회의원 선거 후보등록 건",
+      "wave": "제1~19대",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#candidaciescsv",
+      "location": "README · candidacies.csv"
+    },
+    {
+      "dataset": "pop-candidates",
+      "release": "pop-candidates-release",
+      "name": "party",
+      "concept": "출마 정당",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "제1~19대 국회의원 선거 후보등록 건",
+      "wave": "제1~19대",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#candidaciescsv",
+      "location": "README · candidacies.csv"
+    },
+    {
+      "dataset": "pop-candidates",
+      "release": "pop-candidates-release",
+      "name": "is_elected",
+      "concept": "당선 여부",
+      "type": "string",
+      "original_question": null,
+      "categories": "t / f",
+      "population": "제1~19대 국회의원 선거 후보등록 건",
+      "wave": "제1~19대",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#candidaciescsv",
+      "location": "README · candidacies.csv"
+    },
+    {
+      "dataset": "pop-candidates",
+      "release": "pop-candidates-release",
+      "name": "district",
+      "concept": "출마 당시 선거구",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "제1~19대 국회의원 선거 후보등록 건",
+      "wave": "제1~19대",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#candidaciescsv",
+      "location": "README · candidacies.csv"
+    },
+    {
+      "dataset": "pop-sponsors",
+      "release": "pop-sponsors-release",
+      "name": "person_id",
+      "concept": "제작자 인물번호",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "집계시점까지의 제19대 의원",
+      "wave": "제19대",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#cosponsorshipcsv",
+      "location": "README · cosponsorship.csv"
+    },
+    {
+      "dataset": "pop-sponsors",
+      "release": "pop-sponsors-release",
+      "name": "assembly_id",
+      "concept": "국회 대수",
+      "type": "numeric",
+      "original_question": null,
+      "categories": null,
+      "population": "집계시점까지의 제19대 의원",
+      "wave": "제19대",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#cosponsorshipcsv",
+      "location": "README · cosponsorship.csv"
+    },
+    {
+      "dataset": "pop-sponsors",
+      "release": "pop-sponsors-release",
+      "name": "sponsorship",
+      "concept": "대표발의 횟수",
+      "type": "numeric",
+      "original_question": null,
+      "categories": null,
+      "population": "집계시점까지의 제19대 의원",
+      "wave": "제19대",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#cosponsorshipcsv",
+      "location": "README · cosponsorship.csv"
+    },
+    {
+      "dataset": "pop-sponsors",
+      "release": "pop-sponsors-release",
+      "name": "cosponsorship",
+      "concept": "찬성·공동발의 횟수",
+      "type": "numeric",
+      "original_question": null,
+      "categories": null,
+      "population": "집계시점까지의 제19대 의원",
+      "wave": "제19대",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#cosponsorshipcsv",
+      "location": "README · cosponsorship.csv"
+    },
+    {
+      "dataset": "pop-sponsors",
+      "release": "pop-sponsors-release",
+      "name": "party",
+      "concept": "출마 정당",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "집계시점까지의 제19대 의원",
+      "wave": "제19대",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#cosponsorshipcsv",
+      "location": "README · cosponsorship.csv"
+    },
+    {
+      "dataset": "pop-pledges",
+      "release": "pop-pledges-release",
+      "name": "candidacy_id",
+      "concept": "후보등록 고유번호",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "수록된 제19대 선거 후보 공약",
+      "wave": "제19대",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#pledgescsv",
+      "location": "README · pledges.csv"
+    },
+    {
+      "dataset": "pop-pledges",
+      "release": "pop-pledges-release",
+      "name": "pledge",
+      "concept": "공약 원문",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "수록된 제19대 선거 후보 공약",
+      "wave": "제19대",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/teampopong/data-for-rnd/blob/15536ca12792c36b72abd40df05085391a550f9b/README.md#pledgescsv",
+      "location": "README · pledges.csv"
+    },
+    {
+      "dataset": "us-terms",
+      "release": "us-terms-release",
+      "name": "congress",
+      "concept": "연방의회 회기",
+      "type": "numeric",
+      "original_question": null,
+      "categories": null,
+      "population": "1947년 1월~2014년 2월 사이 수록된 미국 연방의원",
+      "wave": "4c1ff5e3aef1816ae04af63218015066e186c147",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/fivethirtyeight/data/blob/4c1ff5e3aef1816ae04af63218015066e186c147/congress-age/README.md",
+      "location": "README · congress-terms.csv"
+    },
+    {
+      "dataset": "us-terms",
+      "release": "us-terms-release",
+      "name": "chamber",
+      "concept": "상·하원",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "1947년 1월~2014년 2월 사이 수록된 미국 연방의원",
+      "wave": "4c1ff5e3aef1816ae04af63218015066e186c147",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/fivethirtyeight/data/blob/4c1ff5e3aef1816ae04af63218015066e186c147/congress-age/README.md",
+      "location": "README · congress-terms.csv"
+    },
+    {
+      "dataset": "us-terms",
+      "release": "us-terms-release",
+      "name": "bioguide",
+      "concept": "의원 식별자",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "1947년 1월~2014년 2월 사이 수록된 미국 연방의원",
+      "wave": "4c1ff5e3aef1816ae04af63218015066e186c147",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/fivethirtyeight/data/blob/4c1ff5e3aef1816ae04af63218015066e186c147/congress-age/README.md",
+      "location": "README · congress-terms.csv"
+    },
+    {
+      "dataset": "us-terms",
+      "release": "us-terms-release",
+      "name": "age",
+      "concept": "의원 연령",
+      "type": "numeric",
+      "original_question": null,
+      "categories": null,
+      "population": "1947년 1월~2014년 2월 사이 수록된 미국 연방의원",
+      "wave": "4c1ff5e3aef1816ae04af63218015066e186c147",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/fivethirtyeight/data/blob/4c1ff5e3aef1816ae04af63218015066e186c147/congress-age/README.md",
+      "location": "README · congress-terms.csv"
+    },
+    {
+      "dataset": "ert",
+      "release": "ert-release",
+      "name": "country_text_id",
+      "concept": "V-Dem 국가문자코드",
+      "type": "string",
+      "original_question": "What is the V-Dem country text identifier for this case?",
+      "categories": null,
+      "population": "ERT 국가–연도 관측치",
+      "wave": "v16 · 2026년 3월 코드북",
+      "missing": "NA",
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://raw.githubusercontent.com/vdeminstitute/ERT/7fd51ce856a054582820bb0ac0ccae85371ff9be/inst/ERT_codebook_v16.pdf",
+      "location": "ERT v16, p. 7"
+    },
+    {
+      "dataset": "ert",
+      "release": "ert-release",
+      "name": "country_id",
+      "concept": "V-Dem 국가 식별자",
+      "type": "string",
+      "original_question": "What is the V-Dem unique country identifier for this case?",
+      "categories": null,
+      "population": "ERT 국가–연도 관측치",
+      "wave": "v16 · 2026년 3월 코드북",
+      "missing": "NA",
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://raw.githubusercontent.com/vdeminstitute/ERT/7fd51ce856a054582820bb0ac0ccae85371ff9be/inst/ERT_codebook_v16.pdf",
+      "location": "ERT v16, p. 7"
+    },
+    {
+      "dataset": "ert",
+      "release": "ert-release",
+      "name": "year",
+      "concept": "관측 연도",
+      "type": "numeric",
+      "original_question": "What is the year of this observation?",
+      "categories": "1900–2025",
+      "population": "ERT 국가–연도 관측치",
+      "wave": "v16 · 2026년 3월 코드북",
+      "missing": "NA",
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://raw.githubusercontent.com/vdeminstitute/ERT/7fd51ce856a054582820bb0ac0ccae85371ff9be/inst/ERT_codebook_v16.pdf",
+      "location": "ERT v16, p. 7"
+    },
+    {
+      "dataset": "ert",
+      "release": "ert-release",
+      "name": "v2x_regime",
+      "concept": "정치체제 유형",
+      "type": "numeric",
+      "original_question": "What is the regime value for this country-year according to the Regimes of the World?",
+      "categories": "0 폐쇄독재 / 1 선거독재 / 2 선거민주주의 / 3 자유민주주의",
+      "population": "ERT 국가–연도 관측치",
+      "wave": "v16 · 2026년 3월 코드북",
+      "missing": "NA",
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://raw.githubusercontent.com/vdeminstitute/ERT/7fd51ce856a054582820bb0ac0ccae85371ff9be/inst/ERT_codebook_v16.pdf",
+      "location": "ERT v16, p. 7"
+    },
+    {
+      "dataset": "ert",
+      "release": "ert-release",
+      "name": "v2x_polyarchy",
+      "concept": "선거민주주의 지수",
+      "type": "numeric",
+      "original_question": "What is the country’s current score on the V-Dem electoral democracy index (EDI)?",
+      "categories": "0–1",
+      "population": "ERT 국가–연도 관측치",
+      "wave": "v16 · 2026년 3월 코드북",
+      "missing": "NA",
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://raw.githubusercontent.com/vdeminstitute/ERT/7fd51ce856a054582820bb0ac0ccae85371ff9be/inst/ERT_codebook_v16.pdf",
+      "location": "ERT v16, p. 8"
+    },
+    {
+      "dataset": "ert",
+      "release": "ert-release",
+      "name": "dem_ep",
+      "concept": "민주화 국면",
+      "type": "numeric",
+      "original_question": "Was there an ongoing democratization episode during the country-year?",
+      "categories": "0 / 1",
+      "population": "ERT 국가–연도 관측치",
+      "wave": "v16 · 2026년 3월 코드북",
+      "missing": "NA",
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://raw.githubusercontent.com/vdeminstitute/ERT/7fd51ce856a054582820bb0ac0ccae85371ff9be/inst/ERT_codebook_v16.pdf",
+      "location": "ERT v16, p. 13"
+    },
+    {
+      "dataset": "ces",
+      "release": "ces-release",
+      "name": "case_id",
+      "concept": "연도 내 응답자 번호",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "각 연도 미국 조사 응답자",
+      "wave": "2006–2025 누적 지침 · 배포판 DOI 버전 확인 필요",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/kuriwaki/cces_cumulative/blob/0fd71dbb5523a2795d57c3b2081b818acffd567c/guide/guide_cumulative_2006-2025.qmd",
+      "location": "guide · 변수명 검색"
+    },
+    {
+      "dataset": "ces",
+      "release": "ces-release",
+      "name": "year",
+      "concept": "조사연도",
+      "type": "numeric",
+      "original_question": null,
+      "categories": null,
+      "population": "각 연도 미국 조사 응답자",
+      "wave": "2006–2025 누적 지침 · 배포판 DOI 버전 확인 필요",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/kuriwaki/cces_cumulative/blob/0fd71dbb5523a2795d57c3b2081b818acffd567c/guide/guide_cumulative_2006-2025.qmd",
+      "location": "guide · 변수명 검색"
+    },
+    {
+      "dataset": "ces",
+      "release": "ces-release",
+      "name": "weight",
+      "concept": "연도별 선거 전 가중치",
+      "type": "numeric",
+      "original_question": null,
+      "categories": null,
+      "population": "각 연도 미국 조사 응답자",
+      "wave": "2006–2025 누적 지침 · 배포판 DOI 버전 확인 필요",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/kuriwaki/cces_cumulative/blob/0fd71dbb5523a2795d57c3b2081b818acffd567c/guide/guide_cumulative_2006-2025.qmd",
+      "location": "guide · 변수명 검색"
+    },
+    {
+      "dataset": "ces",
+      "release": "ces-release",
+      "name": "pid3",
+      "concept": "정당일체감",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "각 연도 미국 조사 응답자",
+      "wave": "2006–2025 누적 지침 · 배포판 DOI 버전 확인 필요",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/kuriwaki/cces_cumulative/blob/0fd71dbb5523a2795d57c3b2081b818acffd567c/guide/guide_cumulative_2006-2025.qmd",
+      "location": "guide · 변수명 검색"
+    },
+    {
+      "dataset": "jp-bills",
+      "release": "jp-bills-release",
+      "name": "掲載回次",
+      "concept": "의안 게재 회차",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "중의원에 게재된 의안",
+      "wave": "제142~222회 게재",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/smartnews-smri/house-of-representatives/blob/f1d82afc5aa628f8178f366528f24d9317278966/README.md",
+      "location": "README · 데이터 구조 및 고정 배포파일 헤더"
+    },
+    {
+      "dataset": "jp-bills",
+      "release": "jp-bills-release",
+      "name": "審議状況",
+      "concept": "심의 상태",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "중의원에 게재된 의안",
+      "wave": "제142~222회 게재",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/smartnews-smri/house-of-representatives/blob/f1d82afc5aa628f8178f366528f24d9317278966/README.md",
+      "location": "README · 데이터 구조 및 고정 배포파일 헤더"
+    },
+    {
+      "dataset": "uk-questions",
+      "release": "uk-questions-release",
+      "name": "MNIS_id",
+      "concept": "의원 식별자",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "2019–21 회기 하원 질문 활동",
+      "wave": "2019–21 회기",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/houseofcommonslibrary/dashboard_data/blob/7b08e428c307cad25f0d049a08b39bf7ba56ff54/README.md",
+      "location": "README · 데이터 구조 및 고정 배포파일 헤더"
+    },
+    {
+      "dataset": "uk-questions",
+      "release": "uk-questions-release",
+      "name": "department",
+      "concept": "질문 대상 부처",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "2019–21 회기 하원 질문 활동",
+      "wave": "2019–21 회기",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/houseofcommonslibrary/dashboard_data/blob/7b08e428c307cad25f0d049a08b39bf7ba56ff54/README.md",
+      "location": "README · 데이터 구조 및 고정 배포파일 헤더"
+    },
+    {
+      "dataset": "uk-questions",
+      "release": "uk-questions-release",
+      "name": "ref",
+      "concept": "질문 참조번호",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "2019–21 회기 하원 질문 활동",
+      "wave": "2019–21 회기",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/houseofcommonslibrary/dashboard_data/blob/7b08e428c307cad25f0d049a08b39bf7ba56ff54/README.md",
+      "location": "README · 데이터 구조 및 고정 배포파일 헤더"
+    },
+    {
+      "dataset": "pew-dec13",
+      "release": "pew-dec13-release",
+      "name": "psraid",
+      "concept": "응답자 ID",
+      "type": "string",
+      "original_question": null,
+      "categories": null,
+      "population": "2013년 12월 미국 정치조사 응답자",
+      "wave": "2013년 12월",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/pewresearch/pewmethods/blob/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/man/dec13_excerpt.Rd",
+      "location": "dec13_excerpt.Rd 및 RData 객체의 psraid 변수 label·levels"
+    },
+    {
+      "dataset": "pew-dec13",
+      "release": "pew-dec13-release",
+      "name": "q1",
+      "concept": "대통령 직무수행 지지",
+      "type": "category",
+      "original_question": "Do you approve or disapprove of the way Barack Obama is handling his job as President?",
+      "categories": [
+        "Approve",
+        "Disapprove",
+        "Don't know/Refused (VOL.)"
+      ],
+      "population": "2013년 12월 미국 정치조사 응답자",
+      "wave": "2013년 12월",
+      "missing": "무응답 및 자발적 모름의 처리 기준을 추정대상에 맞춰 명시",
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/pewresearch/pewmethods/blob/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/man/dec13_excerpt.Rd",
+      "location": "dec13_excerpt.Rd 및 RData 객체의 q1 변수 label·levels"
+    },
+    {
+      "dataset": "pew-dec13",
+      "release": "pew-dec13-release",
+      "name": "q45",
+      "concept": "건강보험법 지지",
+      "type": "category",
+      "original_question": "Do you approve or disapprove of the health care law passed by Barack Obama and Congress in 2010?",
+      "categories": [
+        "Approve",
+        "Disapprove",
+        "Don't know/Refused (VOL.)"
+      ],
+      "population": "2013년 12월 미국 정치조사 응답자",
+      "wave": "2013년 12월",
+      "missing": "무응답 및 자발적 모름의 처리 기준을 추정대상에 맞춰 명시",
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/pewresearch/pewmethods/blob/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/man/dec13_excerpt.Rd",
+      "location": "dec13_excerpt.Rd 및 RData 객체의 q45 변수 label·levels"
+    },
+    {
+      "dataset": "pew-dec13",
+      "release": "pew-dec13-release",
+      "name": "party",
+      "concept": "정당일체감",
+      "type": "category",
+      "original_question": "In politics TODAY, do you consider yourself a Republican, Democrat, or independent?",
+      "categories": [
+        "Republican",
+        "Democrat",
+        "Independent",
+        "No preference (VOL.)",
+        "Other party (VOL.)",
+        "Don't know/Refused (VOL.)"
+      ],
+      "population": "2013년 12월 미국 정치조사 응답자",
+      "wave": "2013년 12월",
+      "missing": "무응답 및 자발적 모름의 처리 기준을 추정대상에 맞춰 명시",
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/pewresearch/pewmethods/blob/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/man/dec13_excerpt.Rd",
+      "location": "dec13_excerpt.Rd 및 RData 객체의 party 변수 label·levels"
+    },
+    {
+      "dataset": "pew-dec13",
+      "release": "pew-dec13-release",
+      "name": "weight",
+      "concept": "전체 조사 가중치",
+      "type": "numeric",
+      "original_question": null,
+      "categories": null,
+      "population": "2013년 12월 미국 정치조사 응답자",
+      "wave": "2013년 12월",
+      "missing": null,
+      "reverse": false,
+      "derivation": null,
+      "evidence": "https://github.com/pewresearch/pewmethods/blob/d7c0481736d1b8453b0f186f2ebdfd6b01c172f4/man/dec13_excerpt.Rd",
+      "location": "dec13_excerpt.Rd 및 RData 객체의 weight 변수 label·levels"
+    }
+  ],
+  "portals": [
+    {
+      "name": "KOSSDA",
+      "url": "https://kossda.snu.ac.kr/"
+    },
+    {
+      "name": "KSDC",
+      "url": "https://www.ksdc.re.kr/"
+    },
+    {
+      "name": "MDIS",
+      "url": "https://mdis.mods.go.kr/"
+    },
+    {
+      "name": "KOSIS",
+      "url": "https://kosis.kr/"
+    },
+    {
+      "name": "공공데이터포털",
+      "url": "https://www.data.go.kr/"
+    },
+    {
+      "name": "SSJDA",
+      "url": "https://csrda.iss.u-tokyo.ac.jp/english/"
+    },
+    {
+      "name": "CNSDA",
+      "url": "https://www.cnsda.org/"
+    },
+    {
+      "name": "PKU Open Data",
+      "url": "https://opendata.pku.edu.cn/"
+    },
+    {
+      "name": "SRDA",
+      "url": "https://srda.sinica.edu.tw/"
+    },
+    {
+      "name": "UK Data Service",
+      "url": "https://ukdataservice.ac.uk/"
+    }
+  ],
+  "screening": [
+    {
+      "name": "nastab·koweps",
+      "status": "정치·정책태도 패널",
+      "reason": "복지·조세 인식의 실제 부가문항과 응답 차수 확인 후 선택.",
+      "url": "https://www.koweps.re.kr/"
+    },
+    {
+      "name": "KLIPS·WPS",
+      "status": "정책평가 패널",
+      "reason": "고용정책·노사관계 연구에서 노출시점과 사업체·개인 단위를 구분.",
+      "url": "https://www.kli.re.kr/wps/"
+    },
+    {
+      "name": "KEEP·KEEPⅡ",
+      "status": "연구별 배경자료",
+      "reason": "교육·고용정책의 처치와 결과가 정해질 때 선별. 기본·유료 부가자료 조건 미확인.",
+      "url": "https://da.krivet.re.kr/"
+    },
+    {
+      "name": "HCCP·HCCPⅡ",
+      "status": "연구별 배경자료",
+      "reason": "사업장 훈련정책 평가를 위해 조사차수와 유료 부가자료 여부 확인.",
+      "url": "https://da.krivet.re.kr/"
+    },
+    {
+      "name": "서울청년패널",
+      "status": "문항·접근 확인 대기",
+      "reason": "청년정책·사회참여 조사표와 공개·별도 신청 차수를 확인해야 함.",
+      "url": "https://syps.si.re.kr/"
+    },
+    {
+      "name": "여성·청소년 패널",
+      "status": "정치학 관련성 미확인",
+      "reason": "차별·시민참여 문항의 변수명과 코드북이 확인되면 개별 부가조사만 선별.",
+      "url": "https://www.kwdi.re.kr/"
+    },
+    {
+      "name": "EAI·아산정책연구원",
+      "status": "접근 확인 대기",
+      "reason": "여론 보고서와 개인 응답파일을 구분해 후속 확인.",
+      "url": "https://www.eai.or.kr/"
+    },
+    {
+      "name": "JES·JLPS / TSCS·TESD",
+      "status": "배포판 확인 대기",
+      "reason": "선거·시민참여 모듈과 표본을 연구별로 대조.",
+      "url": "https://srda.sinica.edu.tw/"
+    },
+    {
+      "name": "열린재정",
+      "status": "개별 배포판 선별 대기",
+      "reason": "사업·회계·연도별 지출을 확인한 뒤 정부 예산 배분 연구에 선별.",
+      "url": "https://www.openfiscaldata.go.kr/"
+    },
+    {
+      "name": "클린아이",
+      "status": "개별 배포판 선별 대기",
+      "reason": "지방공기업 지정·합병과 경영공시 기준 변경 검토.",
+      "url": "https://www.cleaneye.go.kr/"
+    },
+    {
+      "name": "내고장알리미",
+      "status": "개별 배포판 선별 대기",
+      "reason": "정책성과 지표의 정의와 지자체 경계가 확인될 때 선별.",
+      "url": "https://www.laiis.go.kr/"
+    },
+    {
+      "name": "QoG",
+      "status": "개별 배포판 선별 대기",
+      "reason": "원생산자의 지표와 국가·연도별 결측 및 통합판 버전을 대조.",
+      "url": "https://www.gu.se/en/quality-government"
+    },
+    {
+      "name": "International IDEA · 투표율",
+      "status": "개별 배포판 선별 대기",
+      "reason": "등록 유권자와 투표연령인구 분모 및 선거 종류 확인.",
+      "url": "https://www.idea.int/data-tools"
+    },
+    {
+      "name": "IPU Parline",
+      "status": "개별 배포판 선별 대기",
+      "reason": "의회 구성·의석 기준일과 단원제·양원제 분모 확인.",
+      "url": "https://data.ipu.org/"
+    },
+    {
+      "name": "CLEA",
+      "status": "개별 배포판 선별 대기",
+      "reason": "선거구별 후보·정당 득표의 국가별 수록 선거와 경계 변화 확인.",
+      "url": "https://electiondataarchive.org/"
+    },
+    {
+      "name": "Correlates of War",
+      "status": "개별 배포판 선별 대기",
+      "reason": "전쟁·동맹 등 개별 제품을 국가체계 코드와 함께 선별.",
+      "url": "https://correlatesofwar.org/data-sets/"
+    },
+    {
+      "name": "AidData",
+      "status": "개별 배포판 선별 대기",
+      "reason": "프로젝트 단위 원조 약정·집행 구분과 지리코딩 검토.",
+      "url": "https://www.aiddata.org/"
+    },
+    {
+      "name": "V-Dem 전체 국가–연도 파일",
+      "status": "개별 배포판 선별 대기",
+      "reason": "vdemdata에서 v16 배포 설명 확인. 체제변동 연구는 검증된 ERT 파일을 우선 제공.",
+      "url": "https://github.com/vdeminstitute/vdemdata"
+    }
+  ],
+  "featured": [
+    "pop-candidates",
+    "kgss",
+    "ert",
+    "kipa-officials",
+    "koweps",
+    "uk-questions",
+    "pew-dec13"
+  ],
+  "stage_labels": [
+    "배포판 확인 대기",
+    "공식 파일 링크 발견",
+    "응답·형식 확인",
+    "전체 파일 수신",
+    "데이터 읽기 확인",
+    "변수·관측 범위 확인"
+  ]
+}

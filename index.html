@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#103c37" />
+    <title>PoliHub · 정치학 비교연구 데이터 허브</title>
+    <link rel="stylesheet" href="web/style.css" />
+    <script defer src="web/app.js"></script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="wrap bar">
+        <a class="brand" href="#explore" aria-label="PoliHub 홈"
+          ><span class="brandmark" aria-hidden="true"
+            ><i></i><i></i><i></i></span
+          >PoliHub</a
+        >
+        <nav aria-label="주 메뉴">
+          <a href="#explore" data-nav="explore">자료 탐색</a
+          ><a href="#work" data-nav="work">연구 작업공간</a
+          ><a href="#guide" data-nav="guide">이용 안내</a>
+        </nav>
+        <button id="tray" class="tray">
+          <span data-icon="folder"></span><span>선택한 자료</span
+          ><b id="selected-count">0</b>
+        </button>
+      </div>
+    </header>
+    <main class="wrap" id="main" tabindex="-1">
+      <p class="loading">카탈로그를 불러오는 중입니다.</p>
+    </main>
+    <footer class="wrap">
+      <span class="foot-brand">PoliHub</span
+      ><span>정치학 비교연구 데이터 허브</span
+      ><a href="catalog/catalog.json" id="catalog-download" download
+        >카탈로그 JSON ↓</a
+      >
+    </footer>
+    <dialog id="modal"><div id="modal-body"></div></dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
