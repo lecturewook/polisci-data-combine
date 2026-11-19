@@ -576,5 +576,24 @@
       "analysis of testimonies from",
       "testimony analysis"
     ]
+  },
+  {
+    "id": "surveydata",
+    "label": "표본조사 자료 분석",
+    "parent": null,
+    "aliases": [
+      "nationally representative survey",
+      "nationally representative surveys"
+    ]
+  },
+  {
+    "id": "mediation",
+    "label": "매개효과 분석 (Mediation analysis)",
+    "parent": "estimation",
+    "aliases": [
+      "mediation analysis",
+      "mediation model",
+      "매개효과 분석"
+    ]
   }
 ]

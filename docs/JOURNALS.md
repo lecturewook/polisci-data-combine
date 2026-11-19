@@ -10,7 +10,7 @@
 
 한국 학술지 3종은 한국연구재단 KCI의 발행연도별 집계와도 대조한다. KCI의 공개 검색 첫 화면에 연결된 논문은 국·영문 RIS의 저널 ISSN과 개별 논문 ID를 확인해 누적하고, 다음 실행에서 이미 대조한 ID를 재사용한다. 검색 첫 화면에서 대조한 수와 전체 연도별 보고 수를 따로 표시한다. 조회에 실패하면 근거와 마지막 확인일이 있는 기존 수치를 유지한다. KCI의 연간 발행 수와 PoliHub에서 선출판일을 반영한 수집기간 내 발행 수는 경계 연도와 발행 기준이 다를 수 있다. 『한국인구학』 17개 호와 『한국정치학회보』 1개 호는 KCI 권호별 게재 수와 같은 권·호로 연결한 색인 수를 함께 표시한다. 그중 『한국인구학』 49권 3호와 『한국정치학회보』 60권 3호는 KCI 권호별 목록과 논문 서지를 개별 확인해 한글·영문 표제, 저자 키워드와 초록 근거를 연결했다. [한국인구학 49권 3호](https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000201374) · [한국정치학회보 60권 3호](https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000383&volIsseId=VOL000200889)
 
-*Korea Observer*는 ISSN으로 조회한 Crossref 목록에서 권호의 일부 게재본이 빠져, 같은 출처의 발행기관 DOI 접두사 `10.29152`도 마지막 커서까지 조회한다. 접두사가 맞고 Crossref 정식 저널명이 정확히 일치할 때만 채택하며, 다른 저널 ISSN이 기재된 결과는 제외한다. 두 조회의 보고·수신·일치 수와 ISSN 목록에 없던 DOI 수를 표시한다. 『한국정치학회보』의 한글·영문 표제가 따로 수집된 경우에는 권호·페이지·저자와 DOI를 대조한 기록을 보존한다. [Crossref 접두사](https://api.crossref.org/prefixes/10.29152/works) · [국·영문 동일 게재본 대조 기록](../catalog/journal-identities.json)
+*Korea Observer*는 ISSN으로 조회한 Crossref 목록에서 권호의 일부 게재본이 빠져, 같은 출처의 발행기관 DOI 접두사 `10.29152`도 마지막 커서까지 조회한다. 접두사와 저널명을 함께 대조할 때 정식 명칭과 DOI 등록명 *Korea Observer - Institute of Korean Studies*를 모두 인정한다. 다른 저널 ISSN이 기재된 결과는 제외한다. 두 조회의 보고·수신·일치 수와 ISSN 목록에 없던 DOI 수를 표시한다. 『한국정치학회보』의 한글·영문 표제가 따로 수집된 경우에는 권호·페이지·저자와 DOI를 대조한 기록을 보존한다. [Crossref 접두사](https://api.crossref.org/prefixes/10.29152/works) · [저자의 ORCID에 등재된 저널명·DOI](https://orcid.org/0000-0002-8198-8596) · [국·영문 동일 게재본 대조 기록](../catalog/journal-identities.json)
 
 ## 수집 범위와 날짜
 

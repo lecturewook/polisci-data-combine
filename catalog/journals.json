@@ -915,11 +915,21 @@
             "2025": 26,
             "2026": 18
           }
-        }
+        },
+        "issue_tables": [
+          {
+            "year": 2026,
+            "volume": "57",
+            "issue": "3",
+            "count": 6,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000783&volIsseId=VOL000200372"
+          }
+        ]
       },
       "crossref_supplement": {
         "prefix": "10.29152",
-        "container_title": "Korea Observer",
+        "container_title": "Korea Observer - Institute of Korean Studies",
+        "title_evidence": "https://orcid.org/0000-0002-8198-8596",
         "source": "https://api.crossref.org/prefixes/10.29152"
       }
     },

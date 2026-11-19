@@ -1203,5 +1203,91 @@
         "url": "https://academic.oup.com/jrs/article-abstract/38/4/894/8129817"
       }
     ]
+  },
+  {
+    "journal": "kobs",
+    "title": "Generational Divergence, Structural Cleavages, and Contingent Optimism in South Korean Unification Attitudes",
+    "authors": [
+      "Seungwoo Han"
+    ],
+    "doi": "10.29152/koiks.2026.57.3.475",
+    "issue_date": "2026-09",
+    "volume": "57",
+    "issue": "3",
+    "pages": "475–508",
+    "kind": "research-article",
+    "url": "https://scholar.kyobobook.co.kr/article/detail/4010072976260",
+    "sources": [
+      "한국학술연구원 · 교보문고 스콜라",
+      "KCI · 공개 서지"
+    ],
+    "has_abstract": true,
+    "abstract_proof": {
+      "source": "공식 배포처",
+      "url": "https://scholar.kyobobook.co.kr/article/detail/4010072976260",
+      "location": "한국학술연구원 배포 논문 초록",
+      "checked": "2026-11-20"
+    },
+    "methods": [
+      {
+        "method": "surveydata",
+        "term": "nationally representative data from the Unification Perception Survey",
+        "level": "stated",
+        "role": "데이터 구축·측정",
+        "location": "학지사·교보문고 스콜라 초록",
+        "evidence": "저자는 2013~2024년 통일의식조사를 사용해 세대별 통일 기대를 비교했다고 초록에 명시했다.",
+        "url": "https://scholar.kyobobook.co.kr/article/detail/4010072976260"
+      }
+    ],
+    "other_authors": [
+      "한승우"
+    ],
+    "keywords": [
+      "Korean unification",
+      "generational attitudes",
+      "structural cleavages",
+      "period effects",
+      "public opinion"
+    ],
+    "toc_url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000783&volIsseId=VOL000200372",
+    "source_ids": [
+      "KCI:ART003381041"
+    ]
+  },
+  {
+    "journal": "kobs",
+    "title": "From Media Use to Government Trust during Crisis: The Mediating Role of Social Cohesion following the Itaewon Disaster",
+    "authors": [
+      "Jieun Choi",
+      "Yungwook Kim"
+    ],
+    "doi": "10.29152/koiks.2026.57.2.177",
+    "issue_date": "2026-06",
+    "volume": "57",
+    "issue": "2",
+    "pages": "177–200",
+    "kind": "research-article",
+    "url": "https://scholar.kyobobook.co.kr/article/detail/4010072072975",
+    "sources": [
+      "한국학술연구원 · 교보문고 스콜라"
+    ],
+    "has_abstract": true,
+    "abstract_proof": {
+      "source": "공식 배포처",
+      "url": "https://scholar.kyobobook.co.kr/article/detail/4010072072975",
+      "location": "한국학술연구원 배포 논문 초록",
+      "checked": "2026-11-20"
+    },
+    "methods": [
+      {
+        "method": "mediation",
+        "term": "Hayes’ PROCESS Macro (Model 4)",
+        "level": "stated",
+        "role": "주 추정",
+        "location": "학지사·교보문고 스콜라 초록",
+        "evidence": "저자는 한국 성인 801명의 조사 응답을 사용해 매체 이용과 정부 신뢰의 관계에서 사회적 결속의 매개효과를 추정했다고 밝혔다.",
+        "url": "https://scholar.kyobobook.co.kr/article/detail/4010072072975"
+      }
+    ]
   }
 ]

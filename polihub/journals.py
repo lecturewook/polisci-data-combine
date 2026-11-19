@@ -214,6 +214,7 @@ def refresh(
                     d for years in keys_by_year.values() for d in years["Crossref"]
                 }
                 matched = set()
+                unmatched_titles = set()
 
                 def receive_prefix(raw):
                     if prefix_journal(raw, j):
@@ -221,11 +222,19 @@ def refresh(
                         a["sources"].append(CROSSREF_PREFIX)
                         put(a, "Crossref")
                         matched.add(a["doi"])
+                    else:
+                        unmatched_titles.update(raw.get("container-title") or ["(저널명 누락)"])
 
                 route = walk(j, start, day, CROSSREF_PREFIX, receive_prefix, get, size)
-                route.update(matched=len(matched), outside_issn=len(matched - by_issn))
+                route.update(
+                    matched=len(matched),
+                    outside_issn=len(matched - by_issn),
+                    unmatched_titles=sorted(unmatched_titles)[:12],
+                )
+                if route["received"] and by_issn and not matched:
+                    route["errors"].append("동일 발행기관에서 등록한 저널명·ISSN과 일치하는 DOI 없음")
                 journal_stat[CROSSREF_PREFIX] = route
-                prefix_complete = route["complete"] and not route["skipped"]
+                prefix_complete = route["complete"] and not route["errors"]
             kci_audit = None
             if j.get("kci"):
                 from .journal_kci import compare_kci, record_kci

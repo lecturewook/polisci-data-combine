@@ -350,9 +350,10 @@ CROSSREF_PREFIX = "Crossref · 발행기관 DOI 접두사"
 def prefix_journal(item, journal):
     spec = journal["crossref_supplement"]
     titles = {normalized(v) for v in item.get("container-title", [])}
+    verified = {normalized(journal["name"]), normalized(spec["container_title"])}
     return (
         doi(item.get("DOI")).startswith(spec["prefix"] + "/")
-        and normalized(spec["container_title"]) in titles
+        and bool(verified & titles)
         and (not item.get("ISSN") or bool(set(item["ISSN"]) & issns(journal)))
     )
 

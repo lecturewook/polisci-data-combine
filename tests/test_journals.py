@@ -188,9 +188,10 @@ class JournalTest(unittest.TestCase):
 
         j = dict(
             self.j,
+            name="Test Journal",
             crossref_supplement={
                 "prefix": "10.1234",
-                "container_title": "Test Journal",
+                "container_title": "Test Journal - Its Publisher",
             },
         )
         extra = dict(
@@ -203,27 +204,37 @@ class JournalTest(unittest.TestCase):
             extra, DOI="10.1234/other", **{"container-title": ["Other Journal"]}
         )
         conflicting = dict(extra, DOI="10.1234/conflict", ISSN=["1226-2986"])
+        registered = dict(
+            extra,
+            DOI="10.1234/attributed",
+            **{"container-title": ["Test Journal - Its Publisher"]},
+        )
 
         def get(url):
             if "/prefixes/10.1234/works" not in url:
                 return self.get(url)
             args = parse_qs(urlsplit(url).query)
             self.assertNotIn("issn:", args["filter"][0])
-            page = [extra, foreign] if args["cursor"] == ["*"] else [conflicting]
+            pages = {
+                "*": ([extra, foreign], "next"),
+                "next": ([conflicting, registered], "end"),
+                "end": ([], None),
+            }
+            page, after = pages[args["cursor"][0]]
             return {
                 "message": {
-                    "total-results": 3,
+                    "total-results": 4,
                     "items": page,
-                    "next-cursor": "after-two",
+                    "next-cursor": after,
                 }
             }
 
         self.run_day(get=get, registry=[j])
         state = read_index(self.path)
-        self.assertEqual(4, len(state["articles"]))
+        self.assertEqual(5, len(state["articles"]))
         stats = state["coverage"][j["id"]]["sources"][CROSSREF_PREFIX]
         self.assertEqual(
-            (True, 3, 3, 1, 1),
+            (True, 4, 4, 2, 2),
             (
                 stats["complete"],
                 stats["reported"],
@@ -233,6 +244,8 @@ class JournalTest(unittest.TestCase):
             ),
         )
         self.assertIn("10.1234/identified", state["articles"])
+        self.assertIn("10.1234/attributed", state["articles"])
+        self.assertIn("Other Journal", stats["unmatched_titles"])
         self.assertEqual(0, self.run_day(get=get, registry=[j])["added"])
 
     def test_cursor_last_page_and_exact_multiple(self):
