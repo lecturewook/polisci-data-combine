@@ -13,10 +13,12 @@ from polihub.journal_records import (
     ArticleIndex,
     Methods,
     doi,
+    counted,
+    notice_type,
     methods_by_level,
     publication,
 )
-from polihub.journal_sources import record_cr, walk
+from polihub.journal_sources import link_dataverse, openalex_years, record_cr, walk
 from polihub.journals import (
     CATALOG,
     initial_start,
@@ -256,6 +258,102 @@ class JournalTest(unittest.TestCase):
         self.assertEqual(publication(a), "2023-12")
         self.assertEqual(a["keywords"], [])
         self.assertEqual(a["resources"][0]["url"], "https://doi.org/10.9999/resources")
+
+    def test_verified_alias_retains_original_and_counts_one(self):
+        idx = ArticleIndex({})
+        a = dict(
+            journal="apsr", doi="10.1234/x", title="Published version", published="2022"
+        )
+        idx.put(a, "2026-11-20")
+        idx.put({**a, "doi": "10.2139/ssrn.123456", "published": "2019"}, "2026-11-19")
+        links = [
+            dict(
+                record="10.2139/ssrn.123456",
+                doi="10.1234/x",
+                relation="사전공개본",
+                evidence="https://doi.org/10.2139/ssrn.123456",
+            )
+        ]
+        self.assertEqual(2, len(idx.link_reviewed(links)))
+        self.assertFalse(idx.link_reviewed(links))
+        self.assertEqual(2, len(idx.rows))
+        self.assertEqual(1, sum(counted(v) for v in idx.rows.values()))
+        self.assertEqual("2022", publication(a))
+        self.assertEqual("2026-11-19", a["first_seen"])
+        self.assertEqual("사전공개본", a["resources"][0]["kind"])
+
+    def test_supplement_outside_window_becomes_eligible_later(self):
+        d = "10.1234/future"
+        record = dict(journal="apsr", doi=d, published="2026", sources=["권호 서지"])
+
+        def get(url):
+            if url.endswith("/works/" + d):
+                return {
+                    "message": {
+                        **self.item(1),
+                        "DOI": d,
+                        "published": {"date-parts": [[2026, 12, 1]]},
+                    }
+                }
+            return self.get(url)
+
+        with redirect_stdout(io.StringIO()):
+            res = refresh(
+                self.path,
+                day=date(2026, 11, 19),
+                registry=[self.j],
+                get=get,
+                reviews=[],
+                supplements=[record],
+                size=2,
+            )
+        self.assertEqual((3, 1), (res["total"], res["outside"]))
+        self.assertIn(d, read_index(self.path)["articles"])
+        res = self.run_day(date(2026, 12, 1), get=get)
+        self.assertEqual((4, 1, 0), (res["total"], res["added"], res["outside"]))
+
+    def test_year_audit_and_notices(self):
+        counts = openalex_years(
+            self.j,
+            date(2021, 11, 19),
+            date(2026, 11, 19),
+            lambda u: {"meta": {"count": 3}, "group_by": [{"key": "2025", "count": 3}]},
+        )
+        self.assertEqual(counts["counts"], {"2025": 3})
+        self.assertEqual(
+            notice_type("A Democracy. By J. Smith. Cambridge, 2021. 210p."), "서평"
+        )
+        self.assertFalse(notice_type("A systematic review of democracy and conflict"))
+        self.assertEqual(notice_type("Democracy – ADDENDUM"), "정정·추가·철회")
+        self.assertEqual(
+            doi("https://doi.org/10.1234/X?utm_source=journal#page"), "10.1234/x"
+        )
+
+    def test_dataverse_only_links_known_papers(self):
+        idx = ArticleIndex({})
+        known = dict(
+            journal="apsr",
+            doi="10.1234/paper",
+            title="A publication about voting",
+            authors=["Min Kim"],
+        )
+        idx.put(known, "2026-11-19")
+        record = dict(
+            journal=self.j["name"],
+            doi="10.7910/DVN/SAMPLE",
+            title="Replication Data for: A publication about voting",
+            related_publication_citation="",
+            authors="Kim, Min",
+            description="We conduct a survey experiment.",
+            published_at="2025-08-03",
+        )
+        rows = [record, {**record, "title": "An unrelated work"}]
+        changes, n = link_dataverse(idx, [self.j], self.tax, rows, "2026-11-20")
+        self.assertEqual((1, 1), (len(changes), n))
+        self.assertEqual(1, len(idx.rows))
+        self.assertEqual("2025-08-03", known["resources"][0]["registered"])
+        self.assertFalse(publication(known))
+        self.assertFalse(link_dataverse(idx, [self.j], self.tax, rows, "2026-12-01")[0])
 
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@ import html
 import re
 import unicodedata
 from datetime import date
-from urllib.parse import unquote
+from urllib.parse import unquote, urlsplit
 
 
 def clean(value):
@@ -20,6 +20,9 @@ def normalized(value):
 
 
 def doi(value):
+    value = str(value or "").strip()
+    if re.match(r"^https?://(?:dx\.)?doi\.org/", value, re.I):
+        value = urlsplit(value).path.lstrip("/")
     value = re.sub(
         r"^(?:https?://(?:dx\.)?doi\.org/|doi:\s*)",
         "",
@@ -51,6 +54,8 @@ def bounds(value):
 
 
 def publication(a):
+    if a.get("verified_publication"):
+        return a["verified_publication"]
     # Specific online/issue dates take precedence over less precise versions of the same date.
     values = [
         v
@@ -72,18 +77,52 @@ NONRESEARCH = re.compile(
 )
 
 
-def pub_type(title, source_type="journal-article"):
+def notice_type(title, source_type=""):
+    title = title or ""
+    source_type = source_type or ""
+    if (
+        re.search(r"book.review", source_type, re.I)
+        or re.match(r"^book reviews?\b", title, re.I)
+        or (
+            re.search(r"[.!?]\s+(?:By|Edited by)\s+\w", title)
+            and re.search(r"\b(?:19|20)\d\d\b", title)
+            and re.search(r"\b\d+\s*(?:pp?\.|pages\b)|\bISBN\b|[£$€]\d", title, re.I)
+        )
+    ):
+        return "서평"
+    if (
+        re.search(
+            r"erratum|corrigendum|correction|retraction|addendum", source_type, re.I
+        )
+        or re.match(
+            r"^(?:corrigendum|erratum|retraction|addendum)\b|^correction\s*(?:to\b|notice\b|[:–—])",
+            title,
+            re.I,
+        )
+        or re.search(
+            r"\s[-–—]\s(?:corrigendum|erratum|correction|addendum|retraction)$",
+            title,
+            re.I,
+        )
+    ):
+        return "정정·추가·철회"
     if NONRESEARCH.search(title) or re.search(
-        r"\s[-–—]\s(?:corrigendum|erratum|correction)$", title, re.I
+        r"editorial|paratext|front.matter|back.matter", source_type, re.I
     ):
-        return "notice"
-    if re.search(
-        r"book.review|editorial|erratum|correction|retraction|paratext|front.matter|back.matter",
-        source_type,
-        re.I,
-    ):
-        return "notice"
-    return source_type or "journal-article"
+        return "편집자료"
+    return ""
+
+
+def pub_type(title, source_type="journal-article"):
+    return (
+        "notice"
+        if notice_type(title, source_type)
+        else source_type or "journal-article"
+    )
+
+
+def counted(a):
+    return not (a.get("linked_to") or a.get("outside_window"))
 
 
 LEVELS = {"clue": 1, "stated": 2, "direct": 3}
@@ -262,8 +301,15 @@ class ArticleIndex:
                 before = len(bucket)
                 if k == "resources":
                     for item in v:
+                        resource_doi = doi(item["url"])
                         exists = next(
-                            (x for x in bucket if x["url"] == item["url"]), None
+                            (
+                                x
+                                for x in bucket
+                                if x["url"] == item["url"]
+                                or (resource_doi and doi(x["url"]) == resource_doi)
+                            ),
+                            None,
                         )
                         if exists is None:
                             bucket.append(item)
@@ -289,10 +335,50 @@ class ArticleIndex:
             self.index(key, old)
         return ("updated" if changed else "duplicate"), key
 
+    def link_reviewed(self, links):
+        changed = set()
+        for link in links:
+            key = link["record"]
+            target = self.dois.get(link["doi"])
+            if key not in self.rows or not target or key == target:
+                continue
+            old, article = self.rows[key], self.rows[target]
+            if article["journal"] != old["journal"]:
+                raise ValueError("검토된 연결의 저널 불일치")
+            if not old.get("linked_to"):
+                old["linked_to"] = target
+                changed.add(key)
+            data = dict(journal=article["journal"], doi=article["doi"])
+            if link["relation"] == "목차 표기":
+                for field in (
+                    "toc_url",
+                    "sources",
+                    "resources",
+                    "methods",
+                    "keywords",
+                    "has_abstract",
+                ):
+                    if old.get(field):
+                        data[field] = old[field]
+            else:
+                data["resources"] = [
+                    dict(
+                        kind="사전공개본",
+                        url=link["evidence"],
+                        source="정식 게재본과 저자·표제 대조",
+                    )
+                ]
+            outcome, _ = self.put(data, min(old["first_seen"], article["first_seen"]))
+            earliest = min(old["first_seen"], article["first_seen"])
+            if outcome == "updated" or article["first_seen"] != earliest:
+                article["first_seen"] = earliest
+                changed.add(target)
+        return changed
+
 
 def methods_by_level(article, taxonomy):
     groups = {}
-    if article.get("kind") == "notice":
+    if article.get("kind") == "notice" or not counted(article):
         return groups
     for e in article.get("methods", []):
         for key in taxonomy.path(e["method"]):

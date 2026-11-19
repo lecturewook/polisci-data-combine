@@ -1,9 +1,13 @@
 """Crossref 발행목록과 OpenAlex 독립 대조. 응답 원문 및 유료 콘텐츠는 보관하지 않는다."""
 
 import hashlib
+import csv
+import io
 import json
 import os
+import re
 import time
+from collections import defaultdict
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from http.client import HTTPException
@@ -11,21 +15,23 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlsplit
 from urllib.request import Request, urlopen
 
-from .journal_records import clean, doi, parts, pub_type
+from .journal_records import clean, counted, doi, normalized, parts, pub_type
 
 
-def fetch(url):
+def fetch(url, reader=json.load):
     for attempt in range(4):
         try:
             req = Request(
                 url,
                 headers={
                     "User-Agent": "PoliHub/5 (https://github.com/lecturewook/polisci-data-combine)",
-                    "Accept": "application/json",
+                    "Accept": "application/json"
+                    if reader is json.load
+                    else "text/csv,*/*",
                 },
             )
             with urlopen(req, timeout=55) as response:
-                return json.load(response)
+                return reader(response)
         except HTTPError as e:
             if e.code not in (408, 429, 500, 502, 503, 504) or attempt == 3:
                 raise ValueError(f"HTTP {e.code}") from None
@@ -53,8 +59,147 @@ def fetch(url):
         time.sleep(seconds)
 
 
+DATAVERSE_TABLE = "https://raw.githubusercontent.com/jsakowuah/polisci-replication/main/data/raw/dataverse_datasets.csv"
+
+
+def dataverse_table():
+    def read_rows(response):
+        data = response.read()
+        rows = csv.DictReader(io.StringIO(data.decode("utf-8-sig"), newline=""))
+        required = {
+            "journal",
+            "doi",
+            "title",
+            "authors",
+            "related_publication_citation",
+            "description",
+            "published_at",
+        }
+        if not required.issubset(rows.fieldnames or []):
+            raise ValueError("Dataverse 서지 표 형식 변경")
+        return list(rows), hashlib.sha256(data).hexdigest()
+
+    return fetch(DATAVERSE_TABLE, read_rows)
+
+
+def link_dataverse(index, registry, methods, rows, day):
+    journals = {
+        normalized(re.sub(r"^the ", "", j["name"], flags=re.I)): j["id"]
+        for j in registry
+    }
+    titles = defaultdict(set)
+    for key, a in index.rows.items():
+        if a.get("doi") and a.get("title") and counted(a):
+            titles[a["journal"], normalized(a["title"])].add(key)
+    changes, packages = set(), set()
+    for r in rows:
+        jid = journals.get(normalized(re.sub(r"^the ", "", r["journal"], flags=re.I)))
+        package = doi(r["doi"])
+        if not jid or not package.startswith("10.7910/dvn/"):
+            continue
+        citation = clean(r["related_publication_citation"])
+        cited = {
+            index.dois[d]
+            for raw in re.findall(r"10\.\d{4,9}/[^\s<>\"”,]+", citation, re.I)
+            if (d := doi(raw.rstrip(".,;"))) in index.dois
+        }
+        title = re.sub(
+            r"^(?:replication|reproduction)(?: (?:data|files?|archive|package|materials?|code|dataset)){0,3}(?: (?:for|of|to))?\s*[:–—-]?\s*",
+            "",
+            clean(r["title"]),
+            flags=re.I,
+        )
+        t = normalized(title)
+        candidates = cited or titles.get((jid, t), set())
+        if len(candidates) != 1:
+            continue
+        key = next(iter(candidates))
+        article = index.rows[key]
+        if article["journal"] != jid or not counted(article):
+            continue
+        names = {normalized(n) for n in article.get("authors", [])}
+        surnames = [
+            normalized(n.split(",")[0]) for n in r["authors"].split(";") if "," in n
+        ]
+        if not cited and not (
+            t in normalized(citation)
+            or any(len(s) >= 2 and any(n.endswith(s) for n in names) for s in surnames)
+        ):
+            continue
+        url = "https://doi.org/" + package
+        evidence = methods.classify("", clean(r["description"]), url)
+        for entry in evidence:
+            entry["location"] = "공식 재현자료 설명"
+        extra = dict(
+            journal=jid,
+            doi=article["doi"],
+            methods=evidence,
+            resources=[
+                dict(
+                    kind="재현 패키지",
+                    url=url,
+                    registered=r["published_at"][:10]
+                    if re.match(r"\d{4}-\d{2}-\d{2}", r["published_at"])
+                    else "",
+                    source="Harvard Dataverse",
+                )
+            ],
+        )
+        outcome, _ = index.put(extra, day)
+        if outcome == "updated":
+            changes.add(key)
+        packages.add(package)
+    return changes, len(packages)
+
+
 def issns(j):
     return {v for v in (j["print_issn"], j["online_issn"]) if v}
+
+
+def openalex_filter(j, start, end):
+    return (
+        "primary_location.source.issn:"
+        + "|".join(sorted(issns(j)))
+        + f",from_publication_date:{start},to_publication_date:{end}"
+    )
+
+
+def openalex_years(j, start, end, get):
+    auth = (
+        {"api_key": os.environ["OPENALEX_API_KEY"]}
+        if os.getenv("OPENALEX_API_KEY")
+        else {}
+    )
+    query = urlencode(
+        {
+            "filter": openalex_filter(j, start, end),
+            "group_by": "publication_year",
+            **auth,
+        }
+    )
+    errors = []
+    try:
+        body = get("https://api.openalex.org/works?" + query)
+        counts = {str(row["key"]): row["count"] for row in body["group_by"]}
+        if sum(counts.values()) != body["meta"]["count"]:
+            raise ValueError("연도별 합과 OpenAlex 보고 건수 불일치")
+        return dict(scope="선택 기간 · 모든 발행 유형", counts=counts, errors=[])
+    except (KeyError, ValueError, TypeError, OSError, HTTPException) as e:
+        errors.append(str(e)[:140])
+    try:
+        identifier = j["print_issn"] or j["online_issn"]
+        url = "https://api.openalex.org/sources/issn:" + identifier
+        body = get(url + ("?" + urlencode(auth) if auth else ""))
+        if not issns(j).intersection(body.get("issn") or []):
+            raise ValueError("OpenAlex 출처 ISSN 미확인")
+        counts = {
+            str(row["year"]): row["works_count"] for row in body["counts_by_year"]
+        }
+        return dict(
+            scope="전체 달력연도 · 모든 발행 유형", counts=counts, errors=errors
+        )
+    except (KeyError, ValueError, TypeError, OSError, HTTPException) as e:
+        return dict(scope="미확인", counts={}, errors=[*errors, str(e)[:140]])
 
 
 def record_cr(item, j, methods):
@@ -140,7 +285,7 @@ def record_oa(item, j, methods):
     url = at.get("landing_page_url") or ("https://doi.org/" + d if d else item["id"])
     b = item.get("biblio") or {}
     kind = item.get("type") or "article"
-    if kind in {
+    if d.startswith(("10.2139/ssrn.", "10.21428/cb6ab371.")) or kind in {
         "dataset",
         "software",
         "preprint",
@@ -200,9 +345,7 @@ def walk(j, start, end, provider, receive, get=fetch, size=None):
         else:
             base = "https://api.openalex.org/works"
             params = {
-                "filter": "primary_location.source.issn:"
-                + "|".join(sorted(issns(j)))
-                + f",from_publication_date:{start},to_publication_date:{end}",
+                "filter": openalex_filter(j, start, end),
                 "per_page": limit,
                 "select": OA_FIELDS,
             }

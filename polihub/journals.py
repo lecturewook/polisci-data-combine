@@ -11,8 +11,24 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from .core import ROOT, locked, read
-from .journal_records import ArticleIndex, Methods, in_window, publication
-from .journal_sources import fetch, record_cr, record_oa, walk
+from .journal_records import (
+    ArticleIndex,
+    Methods,
+    counted,
+    in_window,
+    notice_type,
+    publication,
+)
+from .journal_sources import (
+    DATAVERSE_TABLE,
+    dataverse_table,
+    fetch,
+    link_dataverse,
+    openalex_years,
+    record_cr,
+    record_oa,
+    walk,
+)
 
 CATALOG = ROOT / "catalog"
 INDEX = CATALOG / "journal-index.json.gz"
@@ -27,7 +43,10 @@ def read_index(path):
         or not state["runs"]
     ):
         raise ValueError("누적 색인 형식 오류")
-    if len(state["articles"]) != state["runs"][-1]["total"]:
+    if (
+        sum(counted(a) for a in state["articles"].values())
+        != state["runs"][-1]["total"]
+    ):
         raise ValueError("누적 색인 합계 불일치")
     return state
 
@@ -84,6 +103,8 @@ def refresh(
     get=fetch,
     supplements=None,
     reviews=None,
+    identities=None,
+    package_table=None,
     size=None,
 ):
     day = day or datetime.now(ZoneInfo("Asia/Seoul")).date()
@@ -95,6 +116,9 @@ def refresh(
     taxonomy = taxonomy or Methods(read(CATALOG / "methods.json"))
     validate_config(registry)
     reviews = read(CATALOG / "reviewed-papers.json", []) if reviews is None else reviews
+    identities = (
+        read(CATALOG / "journal-identities.json") if identities is None else identities
+    )
     by_journal = defaultdict(list)
     for a in [*(supplements or []), *reviews]:
         by_journal[a["journal"]].append(a)
@@ -116,6 +140,7 @@ def refresh(
             raise ValueError("기존 색인보다 이른 수집일")
         index = ArticleIndex(state["articles"])
         previous = set(index.rows)
+        prior_counted = {k for k, a in index.rows.items() if counted(a)}
         changed = set()
         duplicates = 0
         start = date.fromisoformat(state["start"])
@@ -153,17 +178,67 @@ def refresh(
 
                 journal_stat[source] = walk(j, start, day, source, consume, get, size)
             cr, oa = journal_stat["Crossref"], journal_stat["OpenAlex"]
+            changes = index.link_reviewed(
+                [
+                    link
+                    for link in identities
+                    if index.rows.get(link["record"], {}).get("journal") == jid
+                ]
+            )
+            changed.update(changes & previous)
+            verified, lookup_errors = [], []
+            journal_rows = [
+                (k, a) for k, a in index.rows.items() if a["journal"] == jid
+            ]
+            # Supplementary records with no matching primary-list entry can fall on the other side of either date boundary.
+            if cr["complete"]:
+                for key, a in journal_rows:
+                    if (
+                        a.get("linked_to")
+                        or not a.get("doi")
+                        or "Crossref" in a.get("sources", [])
+                    ):
+                        continue
+                    try:
+                        raw = get("https://api.crossref.org/works/" + a["doi"])[
+                            "message"
+                        ]
+                        detail = record_cr(raw, j, taxonomy)
+                        if detail["doi"] != a["doi"] or not publication(detail):
+                            raise ValueError("DOI·발행일 미확인")
+                        detail["verified_publication"] = publication(detail)
+                        outcome, _ = index.put(detail, str(day))
+                        if outcome == "updated" and key in previous:
+                            changed.add(key)
+                        verified.append(a["doi"])
+                    except (ValueError, KeyError, TypeError, OSError) as e:
+                        lookup_errors.append({"doi": a["doi"], "error": str(e)[:140]})
+            year_audit = (
+                openalex_years(j, start, day, get) if not oa["complete"] else {}
+            )
             totals = Counter()
-            all_ids = defaultdict(set)
             evidence = Counter()
-            for a in index.rows.values():
-                if a["journal"] == jid:
-                    y = publication(a)[:4]
-                    totals[y] += 1
-                    if a.get("doi"):
-                        all_ids[y].add(a["doi"])
-                    if a.get("has_abstract"):
-                        evidence[y] += 1
+            for key, a in journal_rows:
+                if a.get("verified_publication"):
+                    outside = not in_window(a, start, day)
+                    if outside != bool(a.get("outside_window")):
+                        a["outside_window"] = outside
+                        if key in previous:
+                            changed.add(key)
+                if not counted(a):
+                    continue
+                subtype = notice_type(a.get("title"), a.get("source_type"))
+                if subtype and (
+                    a.get("kind") != "notice" or a.get("notice_type") != subtype
+                ):
+                    a["kind"] = "notice"
+                    a["notice_type"] = subtype
+                    if key in previous:
+                        changed.add(key)
+                y = publication(a)[:4]
+                totals[y] += 1
+                if a.get("has_abstract"):
+                    evidence[y] += 1
             years = {}
             for y in map(str, range(start.year, day.year + 1)):
                 cross = keys_by_year[y]["Crossref"]
@@ -181,7 +256,7 @@ def refresh(
             supplemental = [
                 a
                 for a in index.rows.values()
-                if a["journal"] == jid and a.get("toc_url")
+                if a["journal"] == jid and a.get("toc_url") and counted(a)
             ]
             toc = Counter(
                 (a.get("issue_date") or a.get("published", ""))[:4]
@@ -199,6 +274,8 @@ def refresh(
             state["coverage"][jid] = dict(
                 status=status,
                 sources=journal_stat,
+                openalex_years=year_audit,
+                doi_checks=dict(verified=verified, errors=lookup_errors),
                 years=years,
                 total=sum(totals.values()),
                 last_success=str(day)
@@ -211,17 +288,37 @@ def refresh(
                 f"{jid:6} {status:7} Crossref {cr['received']}/{cr['reported']} · OpenAlex {oa['received']}/{oa['reported']} · 누적 {sum(totals.values())}",
                 flush=True,
             )
+        packages = {}
+        if package_table:
+            try:
+                data, digest = package_table()
+                changes, matches = link_dataverse(
+                    index, registry, taxonomy, data, str(day)
+                )
+                changed.update(changes & previous)
+                packages = dict(
+                    source=DATAVERSE_TABLE,
+                    sha256=digest,
+                    received=len(data),
+                    matched=matches,
+                )
+            except (ValueError, OSError) as e:
+                packages = dict(source=DATAVERSE_TABLE, error=str(e)[:140])
         for a in index.rows.values():
             pub = publication(a)
             a["date_precision"] = {4: "year", 7: "month", 10: "day"}.get(
                 len(pub), "unknown"
             )
+        active = {k for k, a in index.rows.items() if counted(a)}
         run = dict(
             date=str(day),
-            added=len(set(index.rows) - previous),
-            updated=len(changed),
+            added=len(active - prior_counted),
+            updated=len(changed & active & prior_counted),
             duplicates=duplicates,
-            total=len(index.rows),
+            total=len(active),
+            linked=sum(bool(a.get("linked_to")) for a in index.rows.values()),
+            outside=sum(bool(a.get("outside_window")) for a in index.rows.values()),
+            package_audit=packages,
             failed=[j for j, c in state["coverage"].items() if c["status"] == "failed"],
             partial=[
                 j for j, c in state["coverage"].items() if c["status"] == "partial"
@@ -251,7 +348,10 @@ def main():
     )
     p.add_argument("--supplement", type=Path, help="출처가 있는 서지 보완 JSON")
     args = p.parse_args()
-    run = refresh(supplements=read(args.supplement) if args.supplement else [])
+    run = refresh(
+        supplements=read(args.supplement) if args.supplement else [],
+        package_table=dataverse_table,
+    )
     print(json.dumps(run, ensure_ascii=False))
     return 2 if run["primary_incomplete"] else 0
 

@@ -6,6 +6,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from polihub.journals import INDEX, read_index
+from polihub.journal_records import counted
 
 state = read_index(INDEX)
 run = state["runs"][-1]
@@ -21,6 +22,19 @@ print(
 )
 if run["primary_incomplete"]:
     print("\nCrossref 미완료 저널 " + ", ".join(run["primary_incomplete"]))
+rows = [a for a in state["articles"].values() if counted(a)]
+eligible = sum(a.get("kind") != "notice" for a in rows)
+print(f"\n방법론 집계 대상 {eligible:,}편 · 서평·정정 등 {len(rows) - eligible:,}건")
+print(
+    f"\n같은 논문으로 연결한 원기록 {run.get('linked', 0)}건 · 기간 밖 원기록 {run.get('outside', 0)}건"
+)
+audit = run.get("package_audit", {})
+if audit.get("matched"):
+    print(
+        f"\nHarvard Dataverse 서지에서 이번에 대조한 재현 패키지 {audit['matched']:,}건"
+    )
+if audit.get("error"):
+    print("\nHarvard Dataverse 서지 확인 실패 · " + audit["error"])
 print(
     "\n출판사 목차 대조 범위와 저널·연도별 분모는 HTML의 저널별 확보 현황에서 확인할 수 있습니다."
 )

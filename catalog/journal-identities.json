@@ -1,0 +1,92 @@
+[
+  {
+    "record": "bib:410907932c71884cbf19c722b225",
+    "doi": "10.5129/001041522x16337326788795",
+    "relation": "목차 표기",
+    "evidence": "https://jcp.gc.cuny.edu/2022/07/02/volume-54-number-4-july-2022/"
+  },
+  {
+    "record": "bib:108e67451e1344fe3c681b26c78b",
+    "doi": "10.5129/001041523x16776927248933",
+    "relation": "목차 표기",
+    "evidence": "https://jcp.gc.cuny.edu/2023/07/21/volume-55-number-4-july-2023/"
+  },
+  {
+    "record": "bib:f40f693d2a64388ba7d7abc6c986",
+    "doi": "10.5129/001041523x16630894935073",
+    "relation": "목차 표기",
+    "evidence": "https://jcp.gc.cuny.edu/2022/01/09/volume-55-number-2-january-2023/"
+  },
+  {
+    "record": "bib:662d65205662aa985bf64f97547b",
+    "doi": "10.5129/001041523x16645669431526",
+    "relation": "목차 표기",
+    "evidence": "https://jcp.gc.cuny.edu/2022/01/09/volume-55-number-2-january-2023/"
+  },
+  {
+    "record": "bib:871b1283944f91711f008c990558",
+    "doi": "10.5129/001041523x16645492774955",
+    "relation": "목차 표기",
+    "evidence": "https://jcp.gc.cuny.edu/2022/01/09/volume-55-number-2-january-2023/"
+  },
+  {
+    "record": "bib:1718ce31f7d64311bfafdcaba3be",
+    "doi": "10.5129/001041523x16645676522699",
+    "relation": "목차 표기",
+    "evidence": "https://jcp.gc.cuny.edu/2022/01/09/volume-55-number-2-january-2023/"
+  },
+  {
+    "record": "bib:e0fde5bc4b12b68015ffb8890d99",
+    "doi": "10.5129/001041523x16648946835112",
+    "relation": "목차 표기",
+    "evidence": "https://jcp.gc.cuny.edu/2022/01/09/volume-55-number-2-january-2023/"
+  },
+  {
+    "record": "bib:294830a89980221615a6091c404d",
+    "doi": "10.5129/001041523x16648954606739",
+    "relation": "목차 표기",
+    "evidence": "https://jcp.gc.cuny.edu/2022/01/09/volume-55-number-2-january-2023/"
+  },
+  {
+    "record": "bib:ef56ce7c06914d5ebf8204ef8517",
+    "doi": "10.5129/001041524x17201960503775",
+    "relation": "목차 표기",
+    "evidence": "https://jcp.gc.cuny.edu/2024/10/24/volume-57-number-1-october-2024/"
+  },
+  {
+    "record": "bib:2b5546ee079944bc99c33cca6b2e",
+    "doi": "10.5129/001041525x17560617497388",
+    "relation": "목차 표기",
+    "evidence": "https://jcp.gc.cuny.edu/2025/12/13/volume-58-number-2-january-2026/"
+  },
+  {
+    "record": "bib:354caaaed1d98d9f124f68db0788",
+    "doi": "10.5129/001041525x17607275497485",
+    "relation": "목차 표기",
+    "evidence": "https://jcp.gc.cuny.edu/2026/03/20/volume-58-number-3-april-2026/"
+  },
+  {
+    "record": "10.21428/cb6ab371.bf143cc4",
+    "doi": "10.1017/s1537592721004114",
+    "relation": "사전공개본",
+    "evidence": "https://doi.org/10.21428/cb6ab371.bf143cc4"
+  },
+  {
+    "record": "10.21428/cb6ab371.86ff4366",
+    "doi": "10.1111/pops.12886",
+    "relation": "사전공개본",
+    "evidence": "https://doi.org/10.21428/cb6ab371.86ff4366"
+  },
+  {
+    "record": "10.2139/ssrn.4278147",
+    "doi": "10.1111/psj.12487",
+    "relation": "사전공개본",
+    "evidence": "https://doi.org/10.2139/ssrn.4278147"
+  },
+  {
+    "record": "10.2139/ssrn.4318561",
+    "doi": "10.1093/jopart/muac043",
+    "relation": "사전공개본",
+    "evidence": "https://doi.org/10.2139/ssrn.4318561"
+  }
+]

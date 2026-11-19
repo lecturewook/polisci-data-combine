@@ -30,6 +30,7 @@ const jnorm = (v) =>
     .normalize("NFKC")
     .toLowerCase();
 const jpdate = (a) => {
+  if (a.verified_publication) return a.verified_publication;
   const values = [a.online, a.issue_date, a.published].filter(Boolean);
   return (
     values
@@ -93,7 +94,14 @@ async function loadJournal() {
     for (let m = node; m; m = methods.get(m.parent)) path.unshift(m.id);
     paths.set(node.id, path);
   }
+  const archived = new Map();
   const rows = Object.entries(state.articles)
+    .filter(([key, a]) => {
+      if (!a.linked_to && !a.outside_window) return true;
+      if (!archived.has(a.journal)) archived.set(a.journal, []);
+      archived.get(a.journal).push([key, a]);
+      return false;
+    })
     .map(([key, a]) => {
       const levels = new Map();
       for (const e of a.methods || []) {
@@ -145,6 +153,7 @@ async function loadJournal() {
     sources,
     state,
     rows,
+    archived,
     byKey: new Map(rows.map((r) => [r.key, r])),
   };
 }
@@ -191,6 +200,10 @@ async function journalPage() {
       esc(s.as_of) +
       " (한국 시간) · 누적 발행 기록 " +
       num(run.total) +
+      "건 · 방법 집계 대상 " +
+      num(d.rows.filter((r) => eligible(r.a)).length) +
+      "편 · 서평·정정 등 " +
+      num(d.rows.filter((r) => !eligible(r.a)).length) +
       "건</p><p>Crossref 수집 완료 " +
       complete +
       " / " +
@@ -485,7 +498,11 @@ function renderJournalResults() {
           "</tr>",
       )
       .join("") +
-    "</tbody></table></div></details>";
+    "</tbody></table></div><p>최근 점검에서 같은 논문으로 연결한 원기록 " +
+    num(run.linked || 0) +
+    "건 · 발행일이 수집 구간 밖으로 확인된 원기록 " +
+    num(run.outside || 0) +
+    "건</p></details>";
 }
 function renderDirectory() {
   const d = journalData,
@@ -521,6 +538,24 @@ function renderDirectory() {
           "</li>",
       )
       .join("");
+    const audit = c.openalex_years || {};
+    const sourceOnly = [
+      ...new Set(Object.values(c.years).flatMap((y) => y.examples || [])),
+    ];
+    const archived = (d.archived.get(j.id) || [])
+      .map(
+        ([key, a]) =>
+          "<li>" +
+          esc(a.title || a.doi || key) +
+          " · " +
+          (a.linked_to
+            ? jbutton("paper", a.linked_to, "연결한 정식 게재본")
+            : jdate(jpdate(a)) +
+              " · " +
+              jurl("https://doi.org/" + a.doi, "수집 구간 밖 · 서지 확인")) +
+          "</li>",
+      )
+      .join("");
     groups.get(j.field).push(
       "<details><summary>" +
         esc(j.name) +
@@ -547,7 +582,7 @@ function renderDirectory() {
         "</p><ul>" +
         stats +
         "</ul>" +
-        '<div class="table-wrap"><table class="data-table"><thead><tr><th>연도</th><th>누적</th><th>초록</th><th>Crossref DOI</th><th>OpenAlex DOI</th><th>공통 DOI</th><th>OpenAlex에만</th><th>목차 연결</th></tr></thead><tbody>' +
+        '<div class="table-wrap"><table class="data-table"><thead><tr><th>연도</th><th>누적</th><th>초록</th><th>Crossref DOI</th><th>OpenAlex DOI</th><th>공통 DOI</th><th>OpenAlex에만</th><th>목차 연결</th><th>OpenAlex 연도별 집계</th></tr></thead><tbody>' +
         Object.entries(c.years)
           .map(
             ([y, t]) =>
@@ -561,6 +596,8 @@ function renderDirectory() {
                 t.both,
                 t.only_openalex,
                 c.publisher_toc.counts[y] || 0,
+                audit.counts?.[y] ??
+                  (audit.scope?.startsWith("선택 기간") ? 0 : "미확인"),
               ]
                 .map(
                   (v, i) =>
@@ -583,7 +620,23 @@ function renderDirectory() {
           )
           .join("") +
         "</tbody></table></div>" +
-        '<p class="muted">한 출처에서만 발견한 DOI는 대조 후보입니다. 출판사 누락 규모는 미확인입니다.</p>' +
+        '<p class="muted">OpenAlex 연도별 집계 범위 · ' +
+        esc(audit.scope || "별도 조회 없음") +
+        (audit.errors?.length ? " · " + esc(audit.errors.join(" / ")) : "") +
+        " · 한 출처에서만 수신한 DOI는 대조 후보입니다. 출판사 누락 규모는 미확인입니다.</p>" +
+        (sourceOnly.length
+          ? "<p>OpenAlex 차집합 표본 · " +
+            sourceOnly
+              .slice(0, 5)
+              .map((doi) => jurl("https://doi.org/" + doi, doi))
+              .join(" · ") +
+            "</p>"
+          : "") +
+        (archived
+          ? "<details><summary>같은 논문으로 연결했거나 기간 밖으로 확인한 기록</summary><ul>" +
+            archived +
+            "</ul></details>"
+          : "") +
         jbutton("journal", j.id, "이 저널의 발행 목록") +
         "</details>",
     );
@@ -622,7 +675,7 @@ function journalPaper(key) {
       "발행 유형",
       esc(
         a.kind === "notice"
-          ? "비연구물 · 방법 집계 제외"
+          ? (a.notice_type || "비연구물") + " · 방법 집계 제외"
           : a.kind === "journal-article"
             ? "저널 발행물 · 세부 유형 미확인"
             : a.kind,

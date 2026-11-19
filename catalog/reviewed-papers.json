@@ -24,6 +24,11 @@
         "kind": "재현 패키지",
         "url": "https://doi.org/10.7910/DVN/B3UBXR",
         "source": "논문 Data availability"
+      },
+      {
+        "kind": "실험 프로토콜·부록",
+        "url": "https://static.cambridge.org/content/id/urn%3Acambridge.org%3Aid%3Aarticle%3AS0003055424001205/resource/name/S0003055424001205sup001.pdf",
+        "source": "온라인 부록 A · Experimental Protocol"
       }
     ],
     "methods": [
@@ -78,6 +83,11 @@
         "kind": "재현 패키지",
         "url": "https://doi.org/10.7910/DVN/DIUPUA",
         "source": "논문 Data availability"
+      },
+      {
+        "kind": "재현 R 코드",
+        "url": "https://github.com/jian-frank-cao/Dynamic-Synthetic-Controls/blob/07bf51f8cc8a1cf7c44f3e95b9ac4ba063dbc31e/rep/code/utility/Figure_4.R#L20-L39",
+        "source": "저자 공개 저장소 · Figure 4"
       }
     ],
     "methods": [
@@ -98,6 +108,15 @@
         "location": "§4.1 · Monte Carlo simulation",
         "evidence": "열 개 단위의 모의 패널을 반복 생성해 추정 성능을 평가했다.",
         "url": "https://doi.org/10.1017/pan.2024.14"
+      },
+      {
+        "method": "mc",
+        "term": "Monte Carlo simulation",
+        "level": "direct",
+        "role": "보조·강건성 점검",
+        "location": "rep/code/utility/Figure_4.R · 20–39행",
+        "evidence": "n.simulation을 100, n을 10으로 설정하고 반복문에서 sim.data로 모의 패널을 생성한다.",
+        "url": "https://github.com/jian-frank-cao/Dynamic-Synthetic-Controls/blob/07bf51f8cc8a1cf7c44f3e95b9ac4ba063dbc31e/rep/code/utility/Figure_4.R#L20-L39"
       }
     ]
   },
