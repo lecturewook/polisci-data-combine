@@ -1289,5 +1289,25 @@
         "url": "https://scholar.kyobobook.co.kr/article/detail/4010072072975"
       }
     ]
+  },
+  {
+    "journal": "kobs",
+    "title": "Korea Observer Vol 55. No 4 Contents",
+    "doi": "10.29152/koiks.2024.55.4.0",
+    "issue_date": "2024-12",
+    "volume": "55",
+    "issue": "4",
+    "pages": "1–1",
+    "kind": "notice",
+    "notice_type": "편집자료 · 권호 목차",
+    "url": "https://scholar.kyobobook.co.kr/article/detail/4010070207331",
+    "genre_proof": {
+      "url": "https://m.riss.kr/search/detail/DetailView.do?control_no=cf91561014fcdfceb7998d826d417196&p_mat_type=1a0202e37d52c72d",
+      "location": "RISS · 한국학술연구원 55권 4호의 Contents 표기"
+    },
+    "sources": [
+      "RISS · 학술연구정보서비스",
+      "한국학술연구원 · 교보문고 스콜라"
+    ]
   }
 ]
