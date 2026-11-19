@@ -10,7 +10,7 @@ on:
         default: false
   push:
     branches: [main]
-    paths: ['catalog/site-version', 'catalog/reviewed-papers.json', 'catalog/journal-identities.json']
+    paths: ['catalog/site-version', 'catalog/reviewed-papers.json', 'catalog/journal-identities.json', '.github/workflows/journals.yml']
 permissions: {}
 concurrency:
   group: polihub-journal-publication
@@ -70,6 +70,7 @@ jobs:
       contents: write
     outputs:
       branch: ${{ steps.push.outputs.branch }}
+      release_tag: ${{ steps.release.outputs.tag }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -94,7 +95,8 @@ jobs:
             git push origin "HEAD:refs/heads/$branch"
             echo "branch=$branch" >> "$GITHUB_OUTPUT"
           fi
-      - name: Release 첨부 및 다운로드 대조
+      - id: release
+        name: Release 첨부 및 다운로드 대조
         if: steps.push.outputs.branch == ''
         env:
           GH_TOKEN: ${{ github.token }}
@@ -106,6 +108,7 @@ jobs:
           gh release create "$tag" "$asset" --target "$(git rev-parse HEAD)" --title "PoliHub v$version · $(TZ=Asia/Seoul date +%F)" --notes-file "$RUNNER_TEMP/release-notes.md"
           gh release download "$tag" --pattern "$asset" --dir "$RUNNER_TEMP/verified"
           cmp "$asset" "$RUNNER_TEMP/verified/$asset"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
           echo "[HTML 다운로드]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/$tag/$asset)" >> "$GITHUB_STEP_SUMMARY"
 
   verify-download:
@@ -122,10 +125,11 @@ jobs:
       - name: Release HTML을 오프라인 파일로 열어서 데스크톱·모바일 검사
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.publish.outputs.release_tag }}
         run: |
           version=$(cat catalog/site-version)
           asset="PoliHub-v${version}.html"
-          gh release download "polihub-v${version}-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" --pattern "$asset" --dir "$RUNNER_TEMP/download"
+          gh release download "$RELEASE_TAG" --pattern "$asset" --dir "$RUNNER_TEMP/download"
           python -m venv "$RUNNER_TEMP/check-browser"
           "$RUNNER_TEMP/check-browser/bin/pip" install --disable-pip-version-check playwright==1.56.0
           "$RUNNER_TEMP/check-browser/bin/python" scripts/check_journal_browser.py "$RUNNER_TEMP/download/$asset"

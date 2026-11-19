@@ -69,12 +69,15 @@ def check(browser, url, mobile):
     page.locator('[data-jour="directory"]').click()
     assert page.locator("#jdir-list section > details").count() == 51
     page.locator("#jdir-q").fill("APSR")
-    page.locator("#jdir-list summary").first.click()
-    assert "0003-0554" in page.locator("#jdir-list").inner_text()
-    table = page.locator("#jdir-list table")
-    assert table.get_by_role(
-        "columnheader", name="방법 집계 대상의 초록 확인 / 대상 논문"
-    ).is_visible()
+    journal = page.locator("#jdir-list section > details").filter(
+        has=page.locator("summary", has_text="American Political Science Review")
+    )
+    journal.locator(":scope > summary").click()
+    table = journal.locator("table")
+    table.locator(
+        "thead th", has_text="방법 집계 대상의 초록 확인 / 대상 논문"
+    ).wait_for(state="visible")
+    assert "0003-0554" in journal.inner_text()
     assert any(
         re.search(r"\d+\s*/\s*[\d,]+\s*\([\d.]+%\)", value)
         for value in table.locator("tbody tr td:last-child").all_text_contents()
