@@ -35,6 +35,11 @@ if audit.get("matched"):
     )
 if audit.get("error"):
     print("\nHarvard Dataverse 서지 확인 실패 · " + audit["error"])
+abstracts = run.get("abstract_audit") or {}
+if abstracts:
+    print(
+        f"\n방법 집계 대상 {abstracts['eligible']:,}편 중 초록 확인 {abstracts['after']:,}편 · 이번에 처음 확인 {abstracts['gained']:,}편"
+    )
 print(
     "\n출판사 목차 대조 범위와 저널·연도별 분모는 HTML의 저널별 확보 현황에서 확인할 수 있습니다."
 )

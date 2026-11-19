@@ -19,6 +19,24 @@ def normalized(value):
     )
 
 
+def abstract_text(value):
+    if not isinstance(value, str):
+        return ""
+    text = re.sub(r"^abstract\b\s*[:.]?\s*", "", clean(value), flags=re.I)
+    if (
+        len(text) < 45
+        or len(text) > 18000
+        or text.endswith(("…", "..."))
+        or re.search(
+            r"^(?:no abstract|abstract (?:is )?(?:not available|unavailable)|this (?:article|paper|item) (?:has no|does not have an) abstract|an abstract is not available|there is no abstract|access (?:denied|restricted)|please (?:log in|sign in)|this is (?:a |the )?(?:preview|abstract placeholder)|the first page of|graphical abstract|highlights\b)",
+            text,
+            re.I,
+        )
+    ):
+        return ""
+    return text
+
+
 def doi(value):
     value = str(value or "").strip()
     if re.match(r"^https?://(?:dx\.)?doi\.org/", value, re.I):
@@ -131,6 +149,10 @@ ACTION = re.compile(
     r"\b(?:we|I)\s+(?:(?:also|then|first|further)\s+)?(?:use[ds]?|employ(?:ed)?|conduct(?:ed)?|fit(?:ted)?|implement(?:ed)?|apply|applied|estimate[d]?|ran|run|perform(?:ed)?)\s+(?:(?:a|an|the|our|two|three|paired|preregistered|national|original|new|randomized|online|fielded|series of)\s+){0,4}$",
     re.I,
 )
+INTRO_ACTION = re.compile(
+    r"^(?:using|drawing on|applying|employing)\s+(?:(?:a|an|the|our|new|original|paired|preregistered|national|UK-based|randomized|online)\s+){0,4}$",
+    re.I,
+)
 CONTEXT = re.compile(
     r"\b(?:prior|previous|earlier|literature|others|unlike|instead of|without|not|rather than|compared? (?:with|to)|comparison|benchmark|competing|alternatives?|sensitivity to|cannot|could|would|might|future|hypothetical|limitation|whether|if|should|propose to|do not|did not|suggest)\b",
     re.I,
@@ -179,6 +201,10 @@ class Methods:
                         continue
                     taken = end
                     action = ACTION.search(sentence[:begin])
+                    if not action and re.match(
+                        r"\s*,\s*(?:we|I)\s+\w", sentence[end:], re.I
+                    ):
+                        action = INTRO_ACTION.search(sentence[:begin])
                     stated = (
                         location == "초록" and action and not CONTEXT.search(sentence)
                     )
@@ -325,6 +351,13 @@ class ArticleIndex:
                 k in ("published", "online", "issue_date")
                 and v.startswith(old[k])
                 and len(v) > len(old[k])
+            ):
+                old[k] = v
+                changed = True
+            elif (
+                k == "abstract_proof"
+                and "개별 대조" in v.get("location", "")
+                and "개별 대조" not in old[k].get("location", "")
             ):
                 old[k] = v
                 changed = True

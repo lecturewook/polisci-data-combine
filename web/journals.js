@@ -7,6 +7,7 @@ const jf = {
   journal: "",
   year: "",
   level: "",
+  abstract: "",
   method: "",
   packages: false,
   page: 1,
@@ -214,7 +215,17 @@ async function journalPage() {
       num(d.rows.filter((r) => r.a.has_abstract).length) +
       "건 · " +
       jbutton("directory", "", "저널별 확보 현황") +
-      "</p></div>" +
+      "</p>" +
+      (run.abstract_audit?.eligible
+        ? "<details class='jabstract-guide'><summary>초록 확보 현황과 미확인 사유</summary><p>방법 집계 대상 " +
+          num(run.abstract_audit.eligible) +
+          "편 중 " +
+          num(run.abstract_audit.after) +
+          "편의 초록을 확인했습니다. 이번에 새로 확인한 초록은 " +
+          num(run.abstract_audit.gained) +
+          "편입니다.</p><p>출판사 페이지에 보이는 초록이 Crossref 기탁 자료에서는 빠질 수 있습니다. 공식 저널의 초록란과 DOI·표제가 일치하는 학술 색인을 대조합니다. 각 논문에서 확인 출처와 Google Scholar 제목 검색을 열 수 있습니다.</p></details>"
+        : "") +
+      "</div>" +
       '<form class="surface jfilters" id="journal-search"><label class="jquery">논문 검색<input name="q" type="search" placeholder="제목, 저자, DOI, 저자 키워드, 방법명" value="' +
       esc(jf.q) +
       '"></label><button class="primary">검색</button>' +
@@ -236,6 +247,7 @@ async function journalPage() {
         ),
       ) +
       select("level", "논문별 최고 근거", journalLevels) +
+      select("abstract", "초록 상태", { yes: "확인", no: "미확인" }) +
       '<label class="jcheck"><input type="checkbox" data-jfilter="packages" ' +
       (jf.packages ? "checked" : "") +
       "> 재현 패키지 연결</label>" +
@@ -291,11 +303,11 @@ function methodBars(rows) {
             (100 * n) / max +
             '%"></i><i style="width:' +
             (100 * c) / max +
-            '%"></i></span><span>' +
+            '%"></i></span><span class="jvalues"><span>확인 ' +
             num(n) +
-            " / " +
+            "</span><span>단서 " +
             num(c) +
-            "</span>",
+            "</span></span>",
           "jbar",
         ) +
         "</li>"
@@ -322,7 +334,7 @@ function methodBars(rows) {
         jbutton("list", "", "선택한 방법의 논문 보기")
       : "") +
     (bars
-      ? '<p class="muted">적용 확인 / 단서만 발견 · 각 분류에서 논문당 한 번 집계</p><ul class="jbars">' +
+      ? '<dl class="jlegend" aria-label="방법별 막대 범례"><div><dt><i class="applied" aria-hidden="true"></i>초록색 위 막대 · 적용 확인</dt><dd>본문·재현 코드에서 직접 확인했거나, 초록·공식 재현자료 설명에 저자가 사용했다고 명시한 논문</dd></div><div><dt><i class="clue" aria-hidden="true"></i>황토색 아래 막대 · 단서만 발견</dt><dd>방법명이 등장하지만 이 논문에서 실제로 사용했는지는 미확인인 논문</dd></div></dl><p class="muted">각 방법 분류에서 한 논문은 가장 강한 근거로 한 번 셉니다.</p><ul class="jbars">' +
         bars +
         "</ul>"
       : '<p class="muted">이 방법에 연결된 논문은 아래 목록에서 열 수 있습니다.</p>') +
@@ -406,6 +418,7 @@ function renderJournalResults() {
       (!jf.journal || r.j.id === jf.journal) &&
       (!jf.year || r.date.startsWith(jf.year)) &&
       (!jf.level || r.best === levelOrder[jf.level]) &&
+      (!jf.abstract || Boolean(r.a.has_abstract) === (jf.abstract === "yes")) &&
       (!jf.packages ||
         (r.a.resources || []).some((v) => v.kind === "재현 패키지")) &&
       words.every((w) => r.search.includes(w)),
@@ -620,6 +633,11 @@ function renderDirectory() {
           )
           .join("") +
         "</tbody></table></div>" +
+        (c.abstract_review
+          ? "<p>이번에 초록을 새로 확인한 논문 " +
+            num(c.abstract_review.gained || 0) +
+            "편</p>"
+          : "") +
         '<p class="muted">OpenAlex 연도별 집계 범위 · ' +
         esc(audit.scope || "별도 조회 없음") +
         (audit.errors?.length ? " · " + esc(audit.errors.join(" / ")) : "") +
@@ -660,6 +678,40 @@ function journalPaper(key) {
     r = d.byKey.get(key);
   if (!r) return;
   const a = r.a;
+  const proof = a.abstract_proof;
+  const scholar = a.title
+    ? "https://scholar.google.com/scholar?q=" +
+      encodeURIComponent('"' + a.title.replace(/["“”]/g, "") + '"')
+    : "";
+  const abstract =
+    "<h3>논문 초록</h3><p>" +
+    (a.has_abstract
+      ? proof?.url
+        ? jurl(proof.url, proof.source + "에서 초록 보기") +
+          " · " +
+          esc(proof.location) +
+          (proof.checked ? " · " + esc(proof.checked) + " 확인" : "")
+        : "기존 수집에서 확인 · 초록의 세부 출처 미기록"
+      : "초록 미확인") +
+    "</p>" +
+    (a.abstract_summary
+      ? "<p><b>초록 요약</b> · " + esc(a.abstract_summary) + "</p>"
+      : "") +
+    (!a.has_abstract && a.abstract_check
+      ? "<details><summary>" +
+        esc(a.abstract_check.date) +
+        " 조회 기록</summary><ul>" +
+        Object.entries(a.abstract_check.sources)
+          .map(
+            ([name, reason]) =>
+              "<li>" + esc(name) + " · " + esc(reason) + "</li>",
+          )
+          .join("") +
+        "</ul></details>"
+      : "") +
+    (scholar
+      ? "<p>" + jurl(scholar, "Google Scholar에서 제목 검색") + "</p>"
+      : "");
   const facts = [
     ["저널", jurl(r.j.url, r.j.name)],
     ["저자", esc((a.authors || []).join(", ") || "미확인")],
@@ -731,6 +783,7 @@ function journalPaper(key) {
       '</p><dl class="facts">' +
       facts.map(([k, v]) => "<dt>" + k + "</dt><dd>" + v + "</dd>").join("") +
       "</dl>" +
+      abstract +
       "<h3>저자 키워드</h3><p>" +
       ((a.keywords || []).map((t) => "#" + esc(t)).join(" ") || "미확인") +
       "</p><h3>방법론 근거</h3>" +
@@ -797,6 +850,7 @@ document.addEventListener("click", (e) => {
       journal: "",
       year: "",
       level: "",
+      abstract: "",
       method: "",
       packages: false,
       page: 1,

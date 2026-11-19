@@ -15,7 +15,15 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlsplit
 from urllib.request import Request, urlopen
 
-from .journal_records import clean, counted, doi, normalized, parts, pub_type
+from .journal_records import (
+    abstract_text,
+    clean,
+    counted,
+    doi,
+    normalized,
+    parts,
+    pub_type,
+)
 
 
 def fetch(url, reader=json.load):
@@ -24,7 +32,7 @@ def fetch(url, reader=json.load):
             req = Request(
                 url,
                 headers={
-                    "User-Agent": "PoliHub/5 (https://github.com/lecturewook/polisci-data-combine)",
+                    "User-Agent": "PoliHub/6 (https://github.com/lecturewook/polisci-data-combine)",
                     "Accept": "application/json"
                     if reader is json.load
                     else "text/csv,*/*",
@@ -215,7 +223,7 @@ def record_cr(item, j, methods):
         or item.get("URL")
         or ("https://doi.org/" + d if d else "")
     )
-    abstract = clean(item.get("abstract"))
+    abstract = abstract_text(item.get("abstract"))
     authors = [
         clean(
             r.get("name") or " ".join(x for x in (r.get("given"), r.get("family")) if x)
@@ -266,6 +274,13 @@ def record_cr(item, j, methods):
         keywords=[],
         resources=resources,
         has_abstract=bool(abstract),
+        abstract_proof=dict(
+            source="Crossref",
+            url="https://api.crossref.org/works/" + d,
+            location="출판사가 기탁한 abstract",
+        )
+        if abstract and d
+        else {},
         methods=methods.classify(title, abstract, url),
         sources=["Crossref"],
         publisher_url=(item.get("resource") or {}).get("primary", {}).get("URL", ""),
@@ -298,7 +313,7 @@ def record_oa(item, j, methods):
         return None
     inv = item.get("abstract_inverted_index") or {}
     tokens = sorted((pos, word) for word, positions in inv.items() for pos in positions)
-    abstract = " ".join(word for _, word in tokens)
+    abstract = abstract_text(" ".join(word for _, word in tokens))
     return dict(
         journal=j["id"],
         title=title,
@@ -319,6 +334,11 @@ def record_oa(item, j, methods):
         source_type=kind,
         kind=pub_type(title, kind),
         has_abstract=bool(abstract),
+        abstract_proof=dict(
+            source="OpenAlex", url=item["id"], location="abstract_inverted_index"
+        )
+        if abstract
+        else {},
         methods=methods.classify(title, abstract, url),
     )
 

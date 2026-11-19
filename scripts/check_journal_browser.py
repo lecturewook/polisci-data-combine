@@ -4,7 +4,7 @@ import re
 import shutil
 import sys
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 
 from playwright.sync_api import sync_playwright
 
@@ -23,6 +23,37 @@ def check(browser, url, mobile):
     page.goto(url)
     page.get_by_role("heading", name="저널·방법론 색인").wait_for()
     context.set_offline(True)
+    legend = page.get_by_label("방법별 막대 범례")
+    assert "초록색 위 막대 · 적용 확인" in legend.inner_text()
+    assert "황토색 아래 막대 · 단서만 발견" in legend.inner_text()
+    assert page.evaluate("""() => ['.applied', '.clue'].every((selector, i) =>
+      getComputedStyle(document.querySelector('.jlegend ' + selector)).backgroundColor ===
+      getComputedStyle(document.querySelectorAll('.jtracks i')[i]).backgroundColor)""")
+    page.locator('[data-jfilter="abstract"]').select_option("yes")
+    page.get_by_role("searchbox", name="논문 검색").fill("10.1086/730737")
+    page.locator("#journal-search").get_by_role(
+        "button", name="검색", exact=True
+    ).click()
+    page.locator("#jpapers .jlink").click()
+    check_modal = page.locator("#modal[open]")
+    assert (
+        check_modal.get_by_role("link", name="공식 저널에서 초록 보기").get_attribute(
+            "href"
+        )
+        == "https://www.journals.uchicago.edu/doi/10.1086/730737"
+    )
+    assert "XLM-RoBERTa" in check_modal.inner_text()
+    scholar = urlsplit(
+        check_modal.get_by_role(
+            "link", name="Google Scholar에서 제목 검색"
+        ).get_attribute("href")
+    )
+    assert (
+        scholar.hostname == "scholar.google.com"
+        and "BERT, RoBERTa, or DeBERTa?" in parse_qs(scholar.query)["q"][0]
+    )
+    check_modal.get_by_role("button", name="닫기").click()
+    page.locator('[data-jour="reset"]').click()
     page.locator('[data-jour="directory"]').click()
     assert page.locator("#jdir-list section > details").count() == 51
     page.locator("#jdir-q").fill("APSR")
@@ -78,7 +109,7 @@ if __name__ == "__main__":
         for mobile in (False, True):
             check(browser, url, mobile)
             print(
-                f"{'모바일' if mobile else '데스크톱'} Chrome에서 저널, 그래프, 논문, 원문·재현 링크, 자료 탐색 확인",
+                f"{'모바일' if mobile else '데스크톱'} Chrome에서 색상 범례, 초록·출처·제목 검색, 방법 그래프와 원문·재현 링크 확인",
                 flush=True,
             )
         browser.close()

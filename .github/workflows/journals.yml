@@ -29,8 +29,13 @@ jobs:
         run: |
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           echo "asset=PoliHub-v$(cat catalog/site-version).html" >> "$GITHUB_OUTPUT"
-      - name: 누적 수집 회귀 시험
-        run: python -m unittest discover -s tests -p test_journals.py
+      - name: 초록 확인 도구 설치
+        run: |
+          python -m venv "$RUNNER_TEMP/journal-tools"
+          "$RUNNER_TEMP/journal-tools/bin/pip" install --disable-pip-version-check -r requirements-journals.txt
+          echo "$RUNNER_TEMP/journal-tools/bin" >> "$GITHUB_PATH"
+      - name: 누적 수집·초록 확인 회귀 시험
+        run: python -m unittest discover -s tests -p 'test_journal*.py'
       - name: 고정 시작일부터 수집
         env:
           CROSSREF_MAILTO: ${{ vars.CROSSREF_MAILTO }}

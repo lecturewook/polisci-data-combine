@@ -1091,9 +1091,18 @@ footer a {
 .jbars li { margin: .25rem 0; }
 .jbar { display: grid; grid-template-columns: minmax(6em,1fr) minmax(3em,1.2fr) auto; gap: .5rem; align-items: center; width: 100%; text-align: left; padding: .3rem; border: 0; background: transparent; color: #164b40; font: inherit; }
 .jbar:hover,.jbar:focus-visible { background: #e6f2ec; }
-.jtracks { display: grid; gap: 2px; }
-.jtracks i { display: block; height: 6px; background: #267760; }
-.jtracks i+i { height: 3px; background: #ad733a; }
+.journal-page { --bar-applied: #267760; --bar-clue: #ad733a; }
+.jlegend { margin: .65rem 0; display: grid; gap: .55rem; }
+.jlegend dt { display: flex; align-items: center; gap: .5rem; font-weight: 700; }
+.jlegend dd { margin: .15rem 0 0 1.85rem; font-size: .88rem; line-height: 1.45; }
+.jlegend i { width: 1.35rem; display: inline-block; }
+.jlegend .applied,.jtracks i { height: 6px; background: var(--bar-applied); }
+.jlegend .clue,.jtracks i+i { height: 3px; background: var(--bar-clue); }
+.jtracks,.jvalues { display: grid; grid-template-rows: 1fr 1fr; align-items: center; }
+.jtracks { align-self: stretch; }
+.jtracks i { display: block; }
+.jvalues { text-align: right; font-size: .82em; line-height: 1.45; font-variant-numeric: tabular-nums; }
+.jabstract-guide { margin: .5rem 0; max-width: 50rem; }
 .jlink { color: #155a4e; background: none; border: 0; padding: .3rem 0; text-align: left; text-decoration: underline; font: inherit; }
 .jpapers li { border-top: 1px solid #dae5df; padding: .65rem 0; overflow-wrap: anywhere; }
 .jpapers .jlink { font-weight: 700; }

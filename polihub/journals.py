@@ -105,6 +105,7 @@ def refresh(
     reviews=None,
     identities=None,
     package_table=None,
+    recover=None,
     size=None,
 ):
     day = day or datetime.now(ZoneInfo("Asia/Seoul")).date()
@@ -141,6 +142,12 @@ def refresh(
         index = ArticleIndex(state["articles"])
         previous = set(index.rows)
         prior_counted = {k for k, a in index.rows.items() if counted(a)}
+        prior_abstracts = {
+            k
+            for k in prior_counted
+            if index.rows[k].get("has_abstract")
+            and index.rows[k].get("kind") != "notice"
+        }
         changed = set()
         duplicates = 0
         start = date.fromisoformat(state["start"])
@@ -304,6 +311,40 @@ def refresh(
                 )
             except (ValueError, OSError) as e:
                 packages = dict(source=DATAVERSE_TABLE, error=str(e)[:140])
+        abstract_audit = {}
+        if recover:
+            newly_found, abstract_audit = recover(index, taxonomy, str(day))
+            changed.update(newly_found & previous)
+            by_journal = abstract_audit.pop("journals")
+            by_year = defaultdict(Counter)
+            verified = set()
+            for key, a in index.rows.items():
+                if not counted(a):
+                    continue
+                counts = by_year[a["journal"], publication(a)[:4]]
+                counts["abstracts"] += bool(a.get("has_abstract"))
+                if a.get("kind") == "notice":
+                    continue
+                counts["eligible"] += 1
+                if a.get("has_abstract"):
+                    counts["eligible_abstracts"] += 1
+                    verified.add(key)
+            additions = verified - prior_abstracts
+            for jid, coverage in state["coverage"].items():
+                for year, counts in coverage["years"].items():
+                    totals = by_year[jid, year]
+                    for field in ("abstracts", "eligible", "eligible_abstracts"):
+                        counts[field] = totals[field]
+                coverage["abstract_review"] = by_journal.get(jid, {})
+                coverage["abstract_review"]["gained"] = sum(
+                    index.rows[k]["journal"] == jid for k in additions
+                )
+            abstract_audit.update(
+                before=len(prior_abstracts),
+                after=len(verified),
+                gained=len(additions),
+                eligible=sum(c["eligible"] for c in by_year.values()),
+            )
         for a in index.rows.values():
             pub = publication(a)
             a["date_precision"] = {4: "year", 7: "month", 10: "day"}.get(
@@ -319,6 +360,7 @@ def refresh(
             linked=sum(bool(a.get("linked_to")) for a in index.rows.values()),
             outside=sum(bool(a.get("outside_window")) for a in index.rows.values()),
             package_audit=packages,
+            abstract_audit=abstract_audit,
             failed=[j for j, c in state["coverage"].items() if c["status"] == "failed"],
             partial=[
                 j for j, c in state["coverage"].items() if c["status"] == "partial"
@@ -343,6 +385,8 @@ def refresh(
 
 
 def main():
+    from .journal_abstracts import recover_abstracts
+
     p = argparse.ArgumentParser(
         description="고정 시작일부터 저널별 Crossref 발행목록을 수집하고 OpenAlex와 대조합니다."
     )
@@ -351,6 +395,7 @@ def main():
     run = refresh(
         supplements=read(args.supplement) if args.supplement else [],
         package_table=dataverse_table,
+        recover=recover_abstracts,
     )
     print(json.dumps(run, ensure_ascii=False))
     return 2 if run["primary_incomplete"] else 0

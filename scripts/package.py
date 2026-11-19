@@ -67,6 +67,7 @@ def build(out, versioned_only=False):
                 "AGENTS.md",
                 ".gitignore",
                 "requirements.txt",
+                "requirements-journals.txt",
                 "index.html",
             )
         ]

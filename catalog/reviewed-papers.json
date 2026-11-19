@@ -195,5 +195,178 @@
       }
     ],
     "has_abstract": true
+  },
+  {
+    "doi": "10.1086/730737",
+    "journal": "jop",
+    "title": "BERT, RoBERTa, or DeBERTa? Comparing Performance Across Transformers Models in Political Science Text",
+    "published": "2025-01-01",
+    "issue_date": "2025-01-01",
+    "has_abstract": true,
+    "abstract_proof": {
+      "source": "공식 저널",
+      "url": "https://www.journals.uchicago.edu/doi/10.1086/730737",
+      "location": "Abstract · 개별 대조",
+      "checked": "2026-11-19"
+    },
+    "abstract_summary": "정치학 텍스트 연구 세 건에서 트랜스포머 모형의 성능을 비교했다. 여러 언어를 분석하는 과제에서는 XLM-RoBERTa가 두 다국어 비교 모형보다 좋은 성능을 보였다.",
+    "keywords": [
+      "NLP",
+      "text-as-data",
+      "BERT",
+      "RoBERTa",
+      "machine learning"
+    ],
+    "methods": [
+      {
+        "method": "xlmr",
+        "term": "XLM-RoBERTa",
+        "level": "stated",
+        "role": "모형 성능 비교",
+        "evidence": "저자들은 여러 언어를 사용한 분석에서 XLM-RoBERTa와 다른 모형들의 성능을 비교한 결과를 보고한다.",
+        "location": "공식 저널 · 초록",
+        "url": "https://www.journals.uchicago.edu/doi/10.1086/730737"
+      }
+    ]
+  },
+  {
+    "doi": "10.1016/j.jpubeco.2022.104605",
+    "journal": "jpe",
+    "title": "The place-based effects of police stations on crime: Evidence from station closures",
+    "published": "2022-03",
+    "issue_date": "2022-03",
+    "has_abstract": true,
+    "abstract_proof": {
+      "source": "RePEc · 출판사 제공 서지",
+      "url": "https://ideas.repec.org/a/eee/pubeco/v207y2022ics004727272200007x.html",
+      "location": "Abstract · 개별 대조",
+      "checked": "2026-11-19"
+    },
+    "abstract_summary": "지역 경찰서 폐쇄 전후를 비교했다. 매칭과 차이의 차이를 결합한 추정에서 자동차 절도와 주거 침입 절도 신고가 늘었다.",
+    "methods": [
+      {
+        "method": "matching",
+        "term": "matching",
+        "level": "stated",
+        "role": "연구 설계",
+        "evidence": "논문 초록은 비교를 위해 매칭을 차이의 차이 사양과 결합했다고 명시한다.",
+        "location": "RePEc · 출판사 제공 서지 · 초록",
+        "url": "https://ideas.repec.org/a/eee/pubeco/v207y2022ics004727272200007x.html"
+      },
+      {
+        "method": "did",
+        "term": "difference-in-differences",
+        "level": "stated",
+        "role": "주 추정",
+        "evidence": "경찰서 폐쇄가 범죄 신고에 미친 효과를 차이의 차이로 추정했다.",
+        "location": "RePEc · 출판사 제공 서지 · 초록",
+        "url": "https://ideas.repec.org/a/eee/pubeco/v207y2022ics004727272200007x.html"
+      }
+    ]
+  },
+  {
+    "doi": "10.1007/s11127-025-01354-6",
+    "journal": "pcho",
+    "title": "Do local elections affect the spending of intergovernmental transfers? Evidence from Germany’s stimulus package of 2009",
+    "published": "2026-01-04",
+    "online": "2026-01-04",
+    "issue_date": "2026-07",
+    "has_abstract": true,
+    "abstract_proof": {
+      "source": "공식 저널",
+      "url": "https://link.springer.com/article/10.1007/s11127-025-01354-6",
+      "location": "Abstract · 개별 대조",
+      "checked": "2026-11-19"
+    },
+    "abstract_summary": "독일의 2009년 경기부양 보조금을 이용해 지방선거와 투자 지출의 관계를 살폈다. 재선에 출마한 시장이 있는 곳에서는 단기간에 눈에 띄는 사업 지출도 늘었다.",
+    "methods": [
+      {
+        "method": "did",
+        "term": "difference-in-differences",
+        "level": "stated",
+        "role": "효과 추정",
+        "evidence": "저자들은 보조금이 지방 투자 지출에 미친 효과 추정에 차이의 차이를 적용했다고 기술한다.",
+        "location": "공식 저널 · 초록",
+        "url": "https://link.springer.com/article/10.1007/s11127-025-01354-6"
+      },
+      {
+        "method": "iv",
+        "term": "instrumental variables",
+        "level": "stated",
+        "role": "효과 추정",
+        "evidence": "보조금 효과를 분석한 방법으로 도구변수 접근을 함께 명시한다.",
+        "location": "공식 저널 · 초록",
+        "url": "https://link.springer.com/article/10.1007/s11127-025-01354-6"
+      }
+    ]
+  },
+  {
+    "doi": "10.1080/13501763.2022.2027503",
+    "journal": "jepp",
+    "title": "The gender gap in support for governments during the COVID crisis",
+    "published": "2022-02-04",
+    "online": "2022-02-04",
+    "issue_date": "2023-02-01",
+    "has_abstract": true,
+    "abstract_proof": {
+      "source": "위트레흐트 대학교 연구 포털",
+      "url": "https://research-portal.uu.nl/en/publications/the-gender-gap-in-support-for-governments-during-the-covid-crisis/",
+      "location": "Abstract · 개별 대조",
+      "checked": "2026-11-19"
+    },
+    "abstract_summary": "유럽연합 회원국 다수에서 코로나19 초기 정부 지지 변화를 분석했다. 지지 하락은 여성, 특히 취업 여성에게서 더 컸고, 저자들은 보건에서 경제로 옮겨간 우려와 이 격차의 관계를 검토했다.",
+    "methods": []
+  },
+  {
+    "doi": "10.1016/j.electstud.2025.103023",
+    "journal": "es",
+    "title": "Who is trusted to navigate the storm? Gendered leadership preferences in times of crisis",
+    "published": "2026-02",
+    "issue_date": "2026-02",
+    "has_abstract": true,
+    "abstract_proof": {
+      "source": "맨체스터 대학교 연구 포털",
+      "url": "https://research.manchester.ac.uk/en/publications/who-is-trusted-to-navigate-the-storm-gendered-leadership-preferen-2/",
+      "location": "Abstract · 개별 대조",
+      "checked": "2026-11-19"
+    },
+    "abstract_summary": "영국 응답자를 대상으로 보건·안보·경제 위기별로 어떤 정치인의 자질을 신뢰하는지 조사했다. 정직성은 공통적으로 중시됐고, 다른 자질에 대한 선호는 위기의 종류와 응답자 성별에 따라 달랐다.",
+    "methods": [
+      {
+        "method": "surveyexp",
+        "term": "UK-based survey experiment",
+        "level": "stated",
+        "role": "연구 설계",
+        "evidence": "저자들은 세 유형의 위기에 따른 지도자 자질 선호를 영국 설문실험으로 비교했다고 밝힌다.",
+        "location": "맨체스터 대학교 연구 포털 · 초록",
+        "url": "https://research.manchester.ac.uk/en/publications/who-is-trusted-to-navigate-the-storm-gendered-leadership-preferen-2/"
+      }
+    ]
+  },
+  {
+    "doi": "10.1016/j.jpubeco.2025.105534",
+    "journal": "jpe",
+    "title": "Assessing the impact of grade retention: A cautionary tale of exclusion restriction violations",
+    "published": "2026-01",
+    "issue_date": "2026-01",
+    "has_abstract": true,
+    "abstract_proof": {
+      "source": "RePEc · 출판사 제공 서지",
+      "url": "https://ideas.repec.org/a/eee/pubeco/v253y2026ics0047272725002336.html",
+      "location": "Abstract · 개별 대조",
+      "checked": "2026-11-19"
+    },
+    "abstract_summary": "미시간 학생 두 코호트에서 유급 대상으로 지목된 것과 실제 유급을 구별해 분석했다. 저자들은 두 상태의 차이가 기존 유급 효과 연구의 배제 제약에 문제를 일으킬 수 있다고 지적한다.",
+    "methods": [
+      {
+        "method": "rdd",
+        "term": "regression discontinuity (RD)",
+        "level": "clue",
+        "role": "선행연구 설명",
+        "evidence": "초록은 기존 유급 연구에서 쓰인 회귀불연속 설계를 소개한다. 이 문장만으로 이 논문의 주 추정 방법을 확정할 수 없다.",
+        "location": "RePEc · 출판사 제공 서지 · 초록",
+        "url": "https://ideas.repec.org/a/eee/pubeco/v253y2026ics0047272725002336.html"
+      }
+    ]
   }
 ]
