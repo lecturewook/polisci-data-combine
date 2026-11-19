@@ -76,7 +76,9 @@ python -m polihub status --spec studies/my/study.json
 
 방법 그래프의 초록색 위 막대는 해당 방법의 적용을 확인한 논문을, 황토색 아래 막대는 방법명 단서만 찾은 논문을 센다. 논문을 선택하면 방법을 확인한 위치, 초록의 출처, Google Scholar에서 원제목을 검색하는 링크가 나온다. 저널별 확보 현황에서 연도별 초록 확인 편수와 분모를 볼 수 있다.
 
-첫 수집 기간은 2021년 11월 19일~2026년 11월 19일이다. Crossref에서 51종의 마지막 페이지까지 확인한 고유 발행 기록은 22,442건이다. 그중 서평·정정 등 1,798건을 제외한 20,644편을 방법 집계 대상으로 삼았다. OpenAlex 연도별 집계는 51종 모두 대조했고, 개별 레코드 조회는 저널당 첫 100건 이후 인증을 요구했다. [최초 수집 검증본](https://github.com/lecturewook/polisci-data-combine/releases/tag/polihub-v5-44434383132-1) · [수집·브라우저 검사 로그](https://github.com/lecturewook/polisci-data-combine/actions/runs/44434383132)
+첫 수집 기간은 2021년 11월 19일~2026년 11월 19일이다. v5 최초 검증본은 51종 모두 Crossref의 마지막 페이지까지 조회했고, 출처를 합친 고유 발행 기록 22,442건을 수록했다. 그중 서평·정정 등 1,798건을 제외한 20,644편을 방법 집계 대상으로 삼았다. OpenAlex 연도별 집계는 51종 모두 대조했고, 개별 레코드 조회는 저널당 첫 100건 이후 인증을 요구했다. [최초 수집 검증본](https://github.com/lecturewook/polisci-data-combine/releases/tag/polihub-v5-44434383132-1) · [수집·브라우저 검사 로그](https://github.com/lecturewook/polisci-data-combine/actions/runs/44434383132)
+
+2026년 11월 19일 v6 검증본은 발행 기록 22,454건을 보존한다. 방법론 집계 대상 19,952편 중 18,221편(91.3%)에서 초록을 확인했다. v5에서 초록이 비어 있던 기존 논문 4,929편과 이후에 추가한 논문 7편에서 초록을 확보했다. v5의 집계 대상 중 발행 유형을 다시 확인한 편집자료·서평·정정 등 701건은 발행 목록에서 볼 수 있다. 미확인 1,731편 중 307편은 출판사가 별도 초록을 제공하지 않는다고 표시했다. [이 검증본 다운로드](https://github.com/lecturewook/polisci-data-combine/releases/download/polihub-v6-44513527044-1/PoliHub-v6.html) · [v6 수집·다운로드 검사 로그](https://github.com/lecturewook/polisci-data-combine/actions/runs/44513527044)
 
 ```bash
 python -m polihub.journals
