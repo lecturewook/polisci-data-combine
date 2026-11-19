@@ -344,6 +344,17 @@ def record_oa(item, j, methods):
 
 
 OA_FIELDS = "id,doi,display_name,authorships,publication_date,publication_year,type,primary_location,biblio,abstract_inverted_index"
+CROSSREF_PREFIX = "Crossref · 발행기관 DOI 접두사"
+
+
+def prefix_journal(item, journal):
+    spec = journal["crossref_supplement"]
+    titles = {normalized(v) for v in item.get("container-title", [])}
+    return (
+        doi(item.get("DOI")).startswith(spec["prefix"] + "/")
+        and normalized(spec["container_title"]) in titles
+        and (not item.get("ISSN") or bool(set(item["ISSN"]) & issns(journal)))
+    )
 
 
 def walk(j, start, end, provider, receive, get=fetch, size=None):
@@ -351,7 +362,7 @@ def walk(j, start, end, provider, receive, get=fetch, size=None):
         reported=None, received=0, pages=0, complete=False, errors=[], skipped=0
     )
     seen = set()
-    cr = provider == "Crossref"
+    cr = provider in ("Crossref", CROSSREF_PREFIX)
     limit = size or (250 if cr else 100)
     scope = f"from-pub-date:{start},until-pub-date:{end},type:journal-article"
     try:
@@ -359,6 +370,13 @@ def walk(j, start, end, provider, receive, get=fetch, size=None):
             # Repeated ISSN filters are ORed by Crossref; this includes electronic-only deposits.
             filters = ",".join("issn:" + i for i in sorted(issns(j))) + "," + scope
             base = "https://api.crossref.org/works"
+            if provider == CROSSREF_PREFIX:
+                base = (
+                    "https://api.crossref.org/prefixes/"
+                    + j["crossref_supplement"]["prefix"]
+                    + "/works"
+                )
+                filters = scope
             params = {"filter": filters, "rows": limit}
             if os.getenv("CROSSREF_MAILTO"):
                 params["mailto"] = os.environ["CROSSREF_MAILTO"]

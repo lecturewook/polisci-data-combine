@@ -9,5 +9,8 @@
   "Harvard Dataverse · 관련 논문 서지": "https://github.com/jsakowuah/polisci-replication/blob/21ae1bd811e5b09efbc77673b894b8218c1a40a7/data/raw/dataverse_datasets.csv",
   "Comparative Politics · 공식 목차": "https://jcp.gc.cuny.edu/",
   "Cambridge Core · 논문 서지": "https://www.cambridge.org/core/",
-  "KCI · 공개 서지": "https://www.kci.go.kr/"
+  "KCI · 공개 서지": "https://www.kci.go.kr/",
+  "AEA · 공식 게재 페이지": "https://www.aeaweb.org/journals/app",
+  "Oxford Academic · 게재 페이지": "https://academic.oup.com/jrs",
+  "Crossref · 발행기관 DOI 접두사": "https://api.crossref.org/prefixes/10.29152/works"
 }

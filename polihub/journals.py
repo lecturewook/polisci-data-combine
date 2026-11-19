@@ -20,11 +20,13 @@ from .journal_records import (
     publication,
 )
 from .journal_sources import (
+    CROSSREF_PREFIX,
     DATAVERSE_TABLE,
     dataverse_table,
     fetch,
     link_dataverse,
     openalex_years,
+    prefix_journal,
     record_cr,
     record_oa,
     walk,
@@ -206,6 +208,43 @@ def refresh(
 
                 journal_stat[source] = walk(j, start, day, source, consume, get, size)
             cr, oa = journal_stat["Crossref"], journal_stat["OpenAlex"]
+            prefix_complete = True
+            if j.get("crossref_supplement"):
+                by_issn = {
+                    d for years in keys_by_year.values() for d in years["Crossref"]
+                }
+                matched = set()
+
+                def receive_prefix(raw):
+                    if prefix_journal(raw, j):
+                        a = record_cr(raw, j, taxonomy)
+                        a["sources"].append(CROSSREF_PREFIX)
+                        put(a, "Crossref")
+                        matched.add(a["doi"])
+
+                route = walk(j, start, day, CROSSREF_PREFIX, receive_prefix, get, size)
+                route.update(matched=len(matched), outside_issn=len(matched - by_issn))
+                journal_stat[CROSSREF_PREFIX] = route
+                prefix_complete = route["complete"] and not route["skipped"]
+            kci_audit = None
+            if j.get("kci"):
+                from .journal_kci import compare_kci, record_kci
+
+                def receive_kci(page, aid):
+                    a = record_kci(page, aid, j, taxonomy)
+                    if a["published"] == str(start.year) and a["doi"] not in index.dois:
+                        raise ValueError(
+                            "수집 시작연도 경계의 정확한 발행월 추가 확인 필요"
+                        )
+                    put(a, "KCI")
+
+                kci_audit = compare_kci(
+                    j["kci"],
+                    day,
+                    prior.get("kci_years"),
+                    receive=receive_kci,
+                    known=index.ids,
+                )
             changes = index.link_reviewed(
                 [
                     link
@@ -300,7 +339,10 @@ def refresh(
                 )
             status = (
                 "success"
-                if cr["complete"] and not cr["skipped"] and not primary_gap
+                if cr["complete"]
+                and not cr["skipped"]
+                and not primary_gap
+                and prefix_complete
                 else (
                     "partial"
                     if sum(totals.values()) or cr["received"] or oa["received"]
@@ -320,12 +362,17 @@ def refresh(
                 publisher_toc=dict(complete=False, counts=dict(toc)),
                 checked=str(day),
             )
-            if j.get("kci"):
-                from .journal_kci import compare_kci
-
-                state["coverage"][jid]["kci_years"] = compare_kci(
-                    j["kci"], day, prior.get("kci_years")
+            if kci_audit:
+                by_issue = Counter(
+                    (a.get("volume"), a.get("issue"))
+                    for _, a in journal_rows
+                    if counted(a)
                 )
+                kci_audit["issues"] = [
+                    dict(issue, indexed=by_issue[issue["volume"], issue["issue"]])
+                    for issue in j["kci"].get("issue_tables", [])
+                ]
+                state["coverage"][jid]["kci_years"] = kci_audit
             print(
                 f"{jid:6} {status:7} Crossref {cr['received']}/{cr['reported']} · OpenAlex {oa['received']}/{oa['reported']} · 누적 {sum(totals.values())}",
                 flush=True,

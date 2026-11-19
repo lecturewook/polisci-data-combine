@@ -21,6 +21,10 @@ const journalLevels = {
   unknown: "미확인",
 };
 const levelOrder = { direct: 3, stated: 2, clue: 1, unknown: 0 };
+const journalEditions = {
+  v7: "v7에서 추가한 저널",
+  original: "최초 수집 저널",
+};
 const statuses = {
   success: "수집 성공",
   partial: "부분 성공",
@@ -97,6 +101,14 @@ async function loadJournal() {
     [...interests].map(([id, group]) => [id, new Set(group.journals)]),
   );
   interestJournals.set("v7", editions);
+  interestJournals.set(
+    "original",
+    new Set(
+      registry.journals
+        .filter((j) => !j.introduced || j.introduced <= 5)
+        .map((j) => j.id),
+    ),
+  );
   const methods = new Map(nodes.map((m) => [m.id, m]));
   const paths = new Map();
   for (const node of nodes) {
@@ -128,6 +140,7 @@ async function loadJournal() {
           a.title,
           ...(a.other_titles || []),
           ...(a.authors || []),
+          ...(a.other_authors || []),
           a.doi,
           ...(a.keywords || []),
           ...terms,
@@ -233,7 +246,7 @@ async function journalPage() {
       num(d.rows.filter((r) => eligible(r.a)).length) +
       "편 · 서평·정정 등 " +
       num(d.rows.filter((r) => !eligible(r.a)).length) +
-      "건</p><p>Crossref 수집 완료 " +
+      "건</p><p>Crossref 마지막 페이지 확인 " +
       complete +
       " / " +
       d.journals.size +
@@ -258,7 +271,12 @@ async function journalPage() {
       esc(jf.q) +
       '"></label><button class="primary">검색</button>' +
       select("interest", "관심사별 저널", {
-        v7: "v7에서 추가한 저널 (" + d.interestJournals.get("v7").size + "종)",
+        ...Object.fromEntries(
+          Object.entries(journalEditions).map(([id, label]) => [
+            id,
+            label + " (" + d.interestJournals.get(id).size + "종)",
+          ]),
+        ),
         ...Object.fromEntries(
           [...d.interests].map(([id, g]) => [
             id,
@@ -296,10 +314,9 @@ async function journalPage() {
       "</form>" +
       (cohort
         ? '<p class="muted">' +
-          (jf.interest === "v7"
-            ? "v7에서 추가한"
-            : esc(d.interests.get(jf.interest).label) + " 관련") +
-          " 저널 " +
+          (journalEditions[jf.interest] ||
+            esc(d.interests.get(jf.interest).label) + " 관련 저널") +
+          " " +
           cohort.size +
           "종의 전체 발행 목록입니다. 개별 논문의 주제나 연구 대상 국가는 제목과 초록에서 확인할 수 있습니다. " +
           jbutton("directory", "", "선택한 저널과 선정 근거 보기") +
@@ -640,6 +657,13 @@ function renderDirectory() {
           num(s.pages) +
           "쪽 · " +
           (s.complete ? "API 끝 확인" : "API 끝 미확인") +
+          (s.matched == null
+            ? ""
+            : " · 정식 저널명 일치 " +
+              num(s.matched) +
+              "건 · ISSN 조회에서 빠진 DOI " +
+              num(s.outside_issn) +
+              "건") +
           (s.errors.length ? " · " + esc(s.errors.join(" / ")) : "") +
           "</li>",
       )
@@ -685,6 +709,27 @@ function renderDirectory() {
         esc(j.online_issn || "미확인") +
         "</p>" +
         selection +
+        (kci?.issues?.length
+          ? "<details><summary>KCI 권호 목록 대조 · " +
+            kci.issues.length +
+            "개 호</summary><p>해당 권호의 KCI 목록과 PoliHub에 같은 권·호로 연결된 발행 기록 수를 비교합니다.</p><ul>" +
+            kci.issues
+              .map(
+                (t) =>
+                  "<li>" +
+                  jurl(
+                    t.url,
+                    t.year + "년 " + t.volume + "권 " + t.issue + "호",
+                  ) +
+                  " · KCI " +
+                  num(t.count) +
+                  "건 / PoliHub " +
+                  num(t.indexed) +
+                  "건</li>",
+              )
+              .join("") +
+            "</ul></details>"
+          : "") +
         (kci
           ? "<p>" +
             jurl(j.kci.url, "한국연구재단 KCI 발행연도별 집계") +
@@ -698,6 +743,18 @@ function renderDirectory() {
             ". KCI는 권호 발행연도 전체를 집계합니다. 아래 발행 목록은 온라인 선출판일도 반영하며 첫해와 올해는 수집 구간에 해당하는 기간만 담습니다." +
             (kci.error
               ? " 최근 조회 " + esc(kci.attempted) + " · " + esc(kci.error)
+              : "") +
+            (kci.recent
+              ? " 이번에 확인한 KCI 검색 첫 화면의 논문 링크 " +
+                num(kci.recent.listed) +
+                "건 · 개별 서지 수신 " +
+                num(kci.recent.received) +
+                "건 · 이미 대조한 KCI ID " +
+                num(kci.recent.known) +
+                "건." +
+                (kci.recent.errors.length
+                  ? " " + esc(kci.recent.errors.join(" / "))
+                  : "")
               : "") +
             "</p>"
           : "") +
@@ -859,6 +916,9 @@ function journalPaper(key) {
   const facts = [
     ["저널", jurl(r.j.url, r.j.name)],
     ["저자", esc((a.authors || []).join(", ") || "미확인")],
+    ...(a.other_authors?.length
+      ? [["저자의 다른 언어 표기", esc(a.other_authors.join(", "))]]
+      : []),
     ...(a.other_titles?.some((t) => t !== a.title)
       ? [
           [
@@ -959,9 +1019,10 @@ function journalPaper(key) {
                     x.startsWith("https://openalex.org/"),
                   )
                 : n === "KCI · 공개 서지"
-                  ? a.abstract_proof?.source?.includes("KCI")
-                    ? a.abstract_proof.url
-                    : a.url
+                  ? a.kci_url ||
+                    (a.abstract_proof?.source?.includes("KCI")
+                      ? a.abstract_proof.url
+                      : a.url)
                   : n.includes("공식 목차")
                     ? a.toc_url
                     : d.sources[n],

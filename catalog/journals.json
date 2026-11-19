@@ -629,7 +629,7 @@
       "url": "https://academic.oup.com/jrs",
       "introduced": 7,
       "selection": {
-        "reason": "강제이주와 이에 대한 정책·제도적 대응을 다루는 다학제 전문지다.",
+        "reason": "강제이주와 이에 대한 정책·제도적 대응을 다루는 다학제 전문지다. Oxford가 공개한 2025 JCR 영향력지수 기준 Ethnic Studies 분야 40종 중 7위.",
         "source": "https://academic.oup.com/jrs/pages/about"
       },
       "print_issn": "0951-6328",
@@ -649,7 +649,8 @@
       },
       "print_issn": "",
       "online_issn": "2056-6085",
-      "scopus_id": "21100888814"
+      "scopus_id": "21100888814",
+      "issn_evidence": "https://www.cambridge.org/core/journals/journal-of-race-ethnicity-and-politics/information/about-this-journal"
     },
     {
       "id": "lsq",
@@ -723,7 +724,16 @@
             "2025": 22,
             "2026": 15
           }
-        }
+        },
+        "issue_tables": [
+          {
+            "year": 2026,
+            "volume": "60",
+            "issue": "3",
+            "count": 5,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000383&volIsseId=VOL000200889"
+          }
+        ]
       }
     },
     {
@@ -753,7 +763,128 @@
             "2025": 21,
             "2026": 15
           }
-        }
+        },
+        "issue_tables": [
+          {
+            "year": 2021,
+            "volume": "44",
+            "issue": "4",
+            "count": 4,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000141258"
+          },
+          {
+            "year": 2022,
+            "volume": "45",
+            "issue": "1",
+            "count": 2,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000145441"
+          },
+          {
+            "year": 2022,
+            "volume": "45",
+            "issue": "2",
+            "count": 5,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000148608"
+          },
+          {
+            "year": 2022,
+            "volume": "45",
+            "issue": "3",
+            "count": 3,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000151246"
+          },
+          {
+            "year": 2022,
+            "volume": "45",
+            "issue": "4",
+            "count": 4,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000154695"
+          },
+          {
+            "year": 2023,
+            "volume": "46",
+            "issue": "2",
+            "count": 2,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000160657"
+          },
+          {
+            "year": 2023,
+            "volume": "46",
+            "issue": "3",
+            "count": 4,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000163437"
+          },
+          {
+            "year": 2023,
+            "volume": "46",
+            "issue": "4",
+            "count": 7,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000166944"
+          },
+          {
+            "year": 2024,
+            "volume": "47",
+            "issue": "1",
+            "count": 5,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000169772"
+          },
+          {
+            "year": 2024,
+            "volume": "47",
+            "issue": "2",
+            "count": 3,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000173029"
+          },
+          {
+            "year": 2024,
+            "volume": "47",
+            "issue": "3",
+            "count": 5,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000175918"
+          },
+          {
+            "year": 2024,
+            "volume": "47",
+            "issue": "4",
+            "count": 5,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000179275"
+          },
+          {
+            "year": 2025,
+            "volume": "48",
+            "issue": "1",
+            "count": 3,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000182496"
+          },
+          {
+            "year": 2025,
+            "volume": "48",
+            "issue": "2",
+            "count": 8,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000185981"
+          },
+          {
+            "year": 2025,
+            "volume": "48",
+            "issue": "3",
+            "count": 4,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000188805"
+          },
+          {
+            "year": 2026,
+            "volume": "49",
+            "issue": "1",
+            "count": 4,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000195127"
+          },
+          {
+            "year": 2026,
+            "volume": "49",
+            "issue": "3",
+            "count": 4,
+            "url": "https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000201374"
+          }
+        ]
       }
     },
     {
@@ -785,6 +916,11 @@
             "2026": 18
           }
         }
+      },
+      "crossref_supplement": {
+        "prefix": "10.29152",
+        "container_title": "Korea Observer",
+        "source": "https://api.crossref.org/prefixes/10.29152"
       }
     },
     {
@@ -954,14 +1090,28 @@
     },
     {
       "id": "korea",
-      "label": "동아시아·한국",
+      "label": "한국 전문 저널",
       "aliases": [
-        "east asia",
-        "south korea",
-        "korean politics",
-        "korean demography",
+        "South Korea",
+        "Korean politics",
+        "Korean demography",
         "대한민국",
-        "한국정치"
+        "한국정치",
+        "한국인구"
+      ],
+      "journals": [
+        "kpsr",
+        "kjps",
+        "kobs"
+      ]
+    },
+    {
+      "id": "eastasia",
+      "label": "동아시아 지역연구",
+      "aliases": [
+        "East Asia",
+        "East Asian politics",
+        "동아시아 지역연구"
       ],
       "journals": [
         "kpsr",

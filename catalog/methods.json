@@ -549,5 +549,32 @@
       "multiple imputation",
       "다중대치"
     ]
+  },
+  {
+    "id": "cem",
+    "label": "Coarsened exact matching (CEM)",
+    "parent": "matching",
+    "aliases": [
+      "coarsened exact matching"
+    ]
+  },
+  {
+    "id": "lottery",
+    "label": "추첨을 이용한 정책 배정 (Randomized lottery)",
+    "parent": "exp",
+    "aliases": [
+      "randomized lottery",
+      "randomized visa lottery"
+    ]
+  },
+  {
+    "id": "testimony",
+    "label": "증언 자료 분석",
+    "parent": "qual",
+    "aliases": [
+      "analysis of testimonies",
+      "analysis of testimonies from",
+      "testimony analysis"
+    ]
   }
 ]

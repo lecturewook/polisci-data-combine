@@ -145,6 +145,96 @@ class JournalTest(unittest.TestCase):
         self.assertIn("robots", audit["error"])
         host.request.assert_not_called()
 
+    def test_kci_article_identity_and_bilingual_ris(self):
+        from polihub.journal_kci import record_kci, search_ids
+
+        journal = next(j for j in self.journals if j["id"] == "kjps")
+        listing = '<a href="/view?artiId=ART003392824">한국인구학 연구</a><a href="?artiId=ART003392824">같은 서지</a>'
+        self.assertEqual(["ART003392824"], search_ids(listing))
+        block = """TY - JOUR<br />AU - 사람<br />TI - 한국 출산의 변화<br />PY - 2025<br />VL - 48<br />IS - 2<br />SN - 1226-2986<br />KW - 출산, 인구<br />DO - 10.1234/Fertility<br />ER -"""
+        english = block.replace(
+            "한국 출산의 변화", "Fertility changes in Korea"
+        ).replace(
+            "KW - 출산, 인구",
+            "AB - We use ordinary least squares to estimate a country-level association with fertility.<br />KW - fertility, population",
+        )
+        page = (
+            "<pre>@article{ART003392824, title={한국 출산의 변화}}</pre><pre>"
+            + block
+            + "</pre><pre>"
+            + english.replace("<br />", "&lt;br /&gt;")
+            + "</pre>"
+        )
+        record = record_kci(page, "ART003392824", journal, self.tax)
+        self.assertEqual("한국 출산의 변화", record["title"])
+        self.assertIn("Fertility changes in Korea", record["other_titles"])
+        self.assertEqual("10.1234/fertility", record["doi"])
+        self.assertEqual(["KCI:ART003392824"], record["source_ids"])
+        self.assertEqual(4, len(record["keywords"]))
+        self.assertTrue(record["has_abstract"])
+        self.assertNotIn("abstract", record)
+        with self.assertRaises(ValueError):
+            record_kci(page, "ART003392824", self.j, self.tax)
+        with self.assertRaises(ValueError):
+            record_kci(
+                page.replace("10.1234/Fertility", "10.1234/other", 1),
+                "ART003392824",
+                journal,
+                self.tax,
+            )
+
+    def test_prefix_retrieves_article_without_issn_and_rejects_other_journals(self):
+        from polihub.journal_sources import CROSSREF_PREFIX
+
+        j = dict(
+            self.j,
+            crossref_supplement={
+                "prefix": "10.1234",
+                "container_title": "Test Journal",
+            },
+        )
+        extra = dict(
+            self.item(7),
+            DOI="10.1234/identified",
+            ISSN=[],
+            **{"container-title": ["TEST JOURNAL"]},
+        )
+        foreign = dict(
+            extra, DOI="10.1234/other", **{"container-title": ["Other Journal"]}
+        )
+        conflicting = dict(extra, DOI="10.1234/conflict", ISSN=["1226-2986"])
+
+        def get(url):
+            if "/prefixes/10.1234/works" not in url:
+                return self.get(url)
+            args = parse_qs(urlsplit(url).query)
+            self.assertNotIn("issn:", args["filter"][0])
+            page = [extra, foreign] if args["cursor"] == ["*"] else [conflicting]
+            return {
+                "message": {
+                    "total-results": 3,
+                    "items": page,
+                    "next-cursor": "after-two",
+                }
+            }
+
+        self.run_day(get=get, registry=[j])
+        state = read_index(self.path)
+        self.assertEqual(4, len(state["articles"]))
+        stats = state["coverage"][j["id"]]["sources"][CROSSREF_PREFIX]
+        self.assertEqual(
+            (True, 3, 3, 1, 1),
+            (
+                stats["complete"],
+                stats["reported"],
+                stats["received"],
+                stats["matched"],
+                stats["outside_issn"],
+            ),
+        )
+        self.assertIn("10.1234/identified", state["articles"])
+        self.assertEqual(0, self.run_day(get=get, registry=[j])["added"])
+
     def test_cursor_last_page_and_exact_multiple(self):
         for n in (3, 4):
             self.items = [self.item(i) for i in range(1, n + 1)]

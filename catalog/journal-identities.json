@@ -88,5 +88,12 @@
     "doi": "10.1093/jopart/muac043",
     "relation": "사전공개본",
     "evidence": "https://doi.org/10.2139/ssrn.4318561"
+  },
+  {
+    "record": "KCI:ART003386438",
+    "doi": "10.18854/kpsr.2026.60.3.004",
+    "relation": "국·영문 동일 게재본",
+    "evidence": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003386438",
+    "doi_evidence": "https://api.crossref.org/works/10.18854/kpsr.2026.60.3.004"
   }
 ]

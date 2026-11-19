@@ -1065,5 +1065,143 @@
       "local depopulation"
     ],
     "methods": []
+  },
+  {
+    "journal": "jrep",
+    "title": "Election Administration and Voting Behavior among Americans of Color",
+    "authors": [
+      "Marayna Martinez",
+      "Andrew Trexler",
+      "Mallory SoRelle"
+    ],
+    "doi": "10.1017/rep.2026.10069",
+    "online": "2026-05-12",
+    "kind": "research-article",
+    "url": "https://www.cambridge.org/core/journals/journal-of-race-ethnicity-and-politics/article/election-administration-and-voting-behavior-among-americans-of-color/59F02B9C326DB639B6329528D9914508",
+    "sources": [
+      "Cambridge Core · 본문"
+    ],
+    "keywords": [
+      "Vote by mail",
+      "elections",
+      "policy feedback",
+      "voting behavior",
+      "race and ethnicity"
+    ],
+    "has_abstract": true,
+    "abstract_proof": {
+      "source": "공식 저널",
+      "url": "https://www.cambridge.org/core/journals/journal-of-race-ethnicity-and-politics/article/election-administration-and-voting-behavior-among-americans-of-color/59F02B9C326DB639B6329528D9914508",
+      "location": "공식 논문 초록 개별 대조",
+      "checked": "2026-11-20"
+    },
+    "methods": [
+      {
+        "method": "cem",
+        "term": "coarsened exact matching (CEM)",
+        "level": "direct",
+        "role": "연구 설계",
+        "location": "Data and Methods",
+        "evidence": "우편투표 제도를 새로 도입한 주와 도입하지 않은 주의 유권자를 비교하기 위해 표본을 매칭했다.",
+        "url": "https://www.cambridge.org/core/journals/journal-of-race-ethnicity-and-politics/article/election-administration-and-voting-behavior-among-americans-of-color/59F02B9C326DB639B6329528D9914508"
+      },
+      {
+        "method": "ols",
+        "term": "ordinary least squares",
+        "level": "direct",
+        "role": "주 추정",
+        "location": "Data and Methods",
+        "evidence": "매칭한 표본에서 결과변수에 따라 OLS를 사용하고 표준오차를 주 단위로 군집화했다.",
+        "url": "https://www.cambridge.org/core/journals/journal-of-race-ethnicity-and-politics/article/election-administration-and-voting-behavior-among-americans-of-color/59F02B9C326DB639B6329528D9914508"
+      },
+      {
+        "method": "binary",
+        "term": "logit",
+        "level": "direct",
+        "role": "주 추정",
+        "location": "Data and Methods",
+        "evidence": "매칭 후 결과변수에 따라 logit을 사용했음을 본문의 추정 절차에서 확인했다.",
+        "url": "https://www.cambridge.org/core/journals/journal-of-race-ethnicity-and-politics/article/election-administration-and-voting-behavior-among-americans-of-color/59F02B9C326DB639B6329528D9914508"
+      }
+    ]
+  },
+  {
+    "journal": "aejapp",
+    "title": "The Effect of Low-Skill Immigration Restrictions on US Firms and Workers: Evidence from a Randomized Lottery",
+    "authors": [
+      "Michael A. Clemens",
+      "Ethan G. Lewis"
+    ],
+    "doi": "10.1257/app.20250049",
+    "issue_date": "2026-07",
+    "volume": "18",
+    "issue": "3",
+    "pages": "43–82",
+    "kind": "research-article",
+    "url": "https://www.aeaweb.org/articles?id=10.1257/app.20250049",
+    "sources": [
+      "AEA · 공식 게재 페이지"
+    ],
+    "has_abstract": true,
+    "abstract_proof": {
+      "source": "공식 저널",
+      "url": "https://www.aeaweb.org/articles?id=10.1257/app.20250049",
+      "location": "공식 논문 초록 개별 대조",
+      "checked": "2026-11-20"
+    },
+    "resources": [
+      {
+        "kind": "재현 패키지",
+        "url": "https://doi.org/10.3886/E234802V1",
+        "source": "American Economic Association · Additional Materials"
+      }
+    ],
+    "methods": [
+      {
+        "method": "lottery",
+        "term": "randomized lottery",
+        "level": "stated",
+        "role": "연구 설계",
+        "location": "AEA 초록",
+        "evidence": "H-2B 비자 쿼터의 기존 추첨과 기업 설문을 이용해 외국인 노동력 배정의 효과를 추정했다.",
+        "url": "https://www.aeaweb.org/articles?id=10.1257/app.20250049"
+      }
+    ]
+  },
+  {
+    "journal": "jrs",
+    "title": "Gatekeeping in asylum interviews: institutional bias and narrative inequality in South Korea’s refugee screening process",
+    "authors": [
+      "Han-Nae Yu"
+    ],
+    "doi": "10.1093/jrs/feaf030",
+    "online": "2025-05-13",
+    "issue_date": "2025-12",
+    "volume": "38",
+    "issue": "4",
+    "pages": "894–909",
+    "kind": "research-article",
+    "url": "https://academic.oup.com/jrs/article-abstract/38/4/894/8129817",
+    "sources": [
+      "Oxford Academic · 게재 페이지"
+    ],
+    "has_abstract": true,
+    "abstract_proof": {
+      "source": "공식 저널",
+      "url": "https://academic.oup.com/jrs/article-abstract/38/4/894/8129817",
+      "location": "공식 논문 초록 개별 대조",
+      "checked": "2026-11-20"
+    },
+    "methods": [
+      {
+        "method": "testimony",
+        "term": "testimonies",
+        "level": "stated",
+        "role": "데이터 구축·측정",
+        "location": "Oxford Academic 초록",
+        "evidence": "저자가 2015~2016년 한국 난민 면접 기록 조작 사건 피해자의 증언으로 심사 과정의 언어 자원 불균형을 분석했다고 기술한다.",
+        "url": "https://academic.oup.com/jrs/article-abstract/38/4/894/8129817"
+      }
+    ]
   }
 ]

@@ -337,6 +337,7 @@ class ArticleIndex:
                 "methods",
                 "resources",
                 "other_titles",
+                "other_authors",
             ):
                 bucket = old.setdefault(k, [])
                 before = len(bucket)
@@ -397,7 +398,7 @@ class ArticleIndex:
                 old["linked_to"] = target
                 changed.add(key)
             data = dict(journal=article["journal"], doi=article["doi"])
-            if link["relation"] == "목차 표기":
+            if link["relation"] in {"목차 표기", "국·영문 동일 게재본"}:
                 for field in (
                     "toc_url",
                     "sources",
@@ -408,6 +409,13 @@ class ArticleIndex:
                 ):
                     if old.get(field):
                         data[field] = old[field]
+                if link["relation"] == "국·영문 동일 게재본":
+                    data["other_titles"] = list(
+                        dict.fromkeys([old["title"], *old.get("other_titles", [])])
+                    )
+                    data["other_authors"] = old.get("authors", [])
+                    data["abstract_proof"] = old.get("abstract_proof")
+                    data["kci_url"] = link["evidence"]
             else:
                 data["resources"] = [
                     dict(

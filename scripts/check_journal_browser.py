@@ -91,6 +91,8 @@ def check(browser, url, mobile):
     assert page.locator('[data-jfilter="journal"]').input_value() == "apsr"
     page.locator('[data-jour="reset"]').click()
     interests = page.get_by_label("관심사별 저널")
+    interests.select_option("original")
+    assert page.locator('[data-jfilter="journal"] option').count() == 52
     interests.select_option("v7")
     page.get_by_role("button", name="선택한 저널과 선정 근거 보기").click()
     assert cards.count() == len(
@@ -104,10 +106,13 @@ def check(browser, url, mobile):
         cards.get_by_role("link", name="선정 근거").get_attribute("href")
         == "https://glabor.org/general-rankings/"
     )
-    interests.select_option("korea")
+    interests.select_option("eastasia")
     options = page.locator('[data-jfilter="journal"] option')
     assert options.filter(has_text="Journal of East Asian Studies").count() == 1
     assert options.filter(has_text="American Political Science Review").count() == 0
+    interests.select_option("korea")
+    assert options.filter(has_text="The China Quarterly").count() == 0
+    assert options.filter(has_text="한국인구학").count() == 1
     page.get_by_label("저널", exact=True).select_option("kpsr")
     page.get_by_role("searchbox", name="논문 검색").fill(
         "Revisiting the Ideological Foundations"
