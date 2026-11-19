@@ -1,8 +1,8 @@
 # PoliHub · 정치학 비교연구 데이터 허브
 
-**[PoliHub-v6.html 바로 다운로드](https://github.com/lecturewook/polisci-data-combine/releases/latest/download/PoliHub-v6.html)** · [이전 v5 다운로드](https://github.com/lecturewook/polisci-data-combine/releases/download/polihub-v5-44434383132-1/PoliHub-v5.html) · [배포 기록](https://github.com/lecturewook/polisci-data-combine/releases)
+**[PoliHub-v6.html 다운로드](https://github.com/lecturewook/polisci-data-combine/releases/download/polihub-v6-44513527044-1/PoliHub-v6.html)** · [이전 v5 다운로드](https://github.com/lecturewook/polisci-data-combine/releases/download/polihub-v5-44434383132-1/PoliHub-v5.html) · [배포 기록](https://github.com/lecturewook/polisci-data-combine/releases)
 
-한국과 동아시아를 중심으로 선거, 정치태도, 의회, 행정, 정책, 민주주의 자료를 찾고 연구별로 수집하는 도구다. 화면과 Python CLI가 같은 카탈로그를 읽는다. 원자료 카탈로그 기준일은 2026년 11월 18일이다. 51개 저널의 논문·방법론 색인에는 별도로 수집 기간과 갱신일을 표시한다.
+한국과 동아시아를 중심으로 선거, 정치태도, 의회, 행정, 정책, 민주주의 자료를 찾고 연구별로 수집하는 도구다. 화면과 Python CLI가 같은 카탈로그를 읽는다. 원자료 카탈로그 기준일은 2026년 11월 18일이다. 69개 저널의 논문·방법론 색인에는 별도로 수집 기간과 갱신일을 표시한다.
 
 ## 시작하기
 
@@ -72,7 +72,7 @@ python -m polihub status --spec studies/my/study.json
 
 ## 저널·방법론 색인
 
-독립 HTML을 브라우저에서 열면 저널 색인이 먼저 표시된다. 상단 메뉴에서 원자료 탐색과 연구 작업공간으로 이동할 수 있다. 저널 화면에서 출처별 응답, 분야별 저널 목록, 연도별 근거 확보율을 확인할 수 있다.
+독립 HTML을 브라우저에서 열면 저널 색인이 먼저 표시된다. 상단 메뉴에서 원자료 탐색과 연구 작업공간으로 이동할 수 있다. 저널 화면에서 출처별 응답, 분야별 저널 목록, 연도별 근거 확보율을 확인할 수 있다. 관심사별 저널에서 인구학·인구정책, 국제이주·난민, 인종·민족과 대표성, 선거·정당일체감, 인과추론·정책평가, 동아시아·한국, 미국, 정치학 종합 중 하나를 고르면 해당 저널의 발행 목록과 방법 그래프가 함께 바뀐다. v7에서 추가한 18종은 각 저널의 선정 이유와 근거 출처를 열 수 있다.
 
 방법 그래프의 초록색 위 막대는 해당 방법의 적용을 확인한 논문을, 황토색 아래 막대는 방법명 단서만 찾은 논문을 센다. 논문을 선택하면 방법을 확인한 위치, 초록의 출처, Google Scholar에서 원제목을 검색하는 링크가 나온다. 저널별 확보 현황에서 연도별 초록 확인 편수와 분모를 볼 수 있다.
 

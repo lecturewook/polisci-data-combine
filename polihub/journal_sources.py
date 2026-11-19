@@ -32,7 +32,7 @@ def fetch(url, reader=json.load):
             req = Request(
                 url,
                 headers={
-                    "User-Agent": "PoliHub/6 (https://github.com/lecturewook/polisci-data-combine)",
+                    "User-Agent": "PoliHub (https://github.com/lecturewook/polisci-data-combine)",
                     "Accept": "application/json"
                     if reader is json.load
                     else "text/csv,*/*",

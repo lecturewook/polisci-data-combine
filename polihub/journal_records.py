@@ -330,7 +330,14 @@ class ArticleIndex:
         for k, v in a.items():
             if not v or k in ("first_seen", "journal"):
                 continue
-            if k in ("sources", "source_ids", "keywords", "methods", "resources"):
+            if k in (
+                "sources",
+                "source_ids",
+                "keywords",
+                "methods",
+                "resources",
+                "other_titles",
+            ):
                 bucket = old.setdefault(k, [])
                 before = len(bucket)
                 if k == "resources":

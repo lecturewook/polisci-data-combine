@@ -10,7 +10,7 @@ on:
         default: false
   push:
     branches: [main]
-    paths: ['catalog/site-version', 'catalog/reviewed-papers.json', 'catalog/journal-identities.json', '.github/workflows/journals.yml']
+    paths: ['catalog/site-version', 'catalog/journals.json', 'catalog/reviewed-papers.json', 'catalog/journal-identities.json', '.github/workflows/journals.yml']
 permissions: {}
 concurrency:
   group: polihub-journal-publication

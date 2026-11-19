@@ -2,6 +2,14 @@
 
 정치학 종합 9종, 정치방법론 3종, 비교정치·지역연구 11종, 국제관계·안보 10종, 선거·정치행태·여론 5종, 정치경제 3종, 공공정책·행정 7종, 정치이론 3종을 선정했다. 인접 분야를 포함하며 배열 순서는 분야별이다. 저널 ID는 영구 식별자다. 명칭·약칭·분야·공식 사이트를 설정에서 수정할 수 있다. 인쇄·온라인 ISSN은 Elsevier Scopus 2026년 7월 출처 목록에서 정식 명칭으로 대조했다. 자료에 누락된 매체의 근거는 해당 저널에 별도로 기록했다. [저널 설정](../catalog/journals.json) · [Scopus 출처](https://www.elsevier.com/products/scopus/content)
 
+## 관심사별 저널
+
+2026년 11월 20일 인구학·인구정책·이주·난민·소수자 대표성·미국 정치·동아시아·정책 효과평가의 학술지 18종을 추가했다. 관심사 필터는 기존 51종과 추가 18종에서 해당 분야를 다루는 저널을 함께 고른다. 필터를 적용하면 선택된 저널의 전체 발행 목록, 방법별 논문 수와 연도별 분모를 볼 수 있다. 개별 논문의 연구 대상 국가는 제목·초록에서 확인한다. 한 저널을 여러 관심사에 연결할 수 있다. [분야·관심사·선정 근거 설정](../catalog/journals.json)
+
+저널별로 학회의 대표지·분과지 여부, 특정 분야와 연도를 명시한 인용 지표, 지역·주제 전문성을 확인했다. *Demography*는 미국인구학회 대표지다. *Journal of Population Economics*는 2024 JCR 영향력지수 기준 Demography 분야 7/50위다. 『한국정치학회보』는 KCI 우수등재지, 『한국인구학』은 한국인구학회가 발행하는 KCI 등재지다. 저널별 선정 근거와 원출처는 화면의 ‘선정 근거와 확보 현황’에서 열 수 있다. [미국인구학회](https://www.populationassociation.org/demography/about/aims-scope) · [인구경제학 분야 지표](https://glabor.org/general-rankings/) · [미국정치학회 분과 학술지](https://apsanet.org/publications/journals/organized-section-journals/) · [KCI 한국정치학회보](https://www.kci.go.kr/kciportal/po/search/poCitaView.kci?sereId=000383) · [KCI 한국인구학](https://www.kci.go.kr/kciportal/po/search/poCitaView.kci?sereId=000152)
+
+한국 학술지 3종은 한국연구재단 KCI의 발행연도별 집계와도 대조한다. 조회에 실패하면 근거와 마지막 확인일이 있는 기존 수치를 유지한다. KCI의 연간 발행 수와 PoliHub에서 선출판일을 반영한 수집기간 내 발행 수는 경계 연도와 발행 기준이 다를 수 있다. 『한국인구학』 49권 3호와 『한국정치학회보』 60권 3호는 KCI 권호별 목록과 논문 서지를 개별 확인해 한글·영문 표제, 저자 키워드와 초록 근거를 연결했다. [한국인구학 49권 3호](https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000152&volIsseId=VOL000201374) · [한국정치학회보 60권 3호](https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000383&volIsseId=VOL000200889)
+
 ## 수집 범위와 날짜
 
 첫 실행은 서울 날짜에서 달력상 5년을 거슬러 올라간 날부터 실행일까지 포함한다. 첫날과 첫 실행일을 고정하고 이후에는 그 첫날부터 매번 다시 조회한다. 초록 유무·인용수·방법에 따른 수집 조건은 없다. Crossref의 저널 발행물에는 연구논문, 연구노트, 이론·방법론 논문, 리뷰, 서평, 정정 등이 함께 들어온다. 출판사가 종류를 표시하지 않으면 세부 유형을 미확인으로 둔다.
@@ -35,7 +43,7 @@ Crossref에 등록된 인쇄·온라인 ISSN을 OR로 결합해 발행일 필터
 
 Crossref는 출판사가 기탁한 메타데이터를 제공한다. 초록 기탁은 권장 사항이며 논문 페이지에 있는 초록도 API에서 빠질 수 있다. Google Scholar는 논문을 찾은 뒤 원문 또는 저자가 쓴 초록이 있는 페이지로 이동하는 경로를 제공한다. 논문 상세 창에는 확인 출처, 원문, 정확한 표제로 검색하는 링크를 함께 제공한다. [Crossref의 저널 메타데이터 지침](https://www.crossref.org/documentation/principles-practices/journals/) · [Google Scholar 색인 안내](https://scholar.google.com/intl/en/scholar/inclusion.html)
 
-매번 방법 집계 대상 중 초록이 비어 있는 논문을 다시 점검한다. 저널·발행연도별 공식 페이지 표본을 먼저 열어 DOI 또는 표제와 출판사의 명시적인 초록란을 확인한다. 이어서 확보한 DOI 목록을 OpenAlex, Semantic Scholar, OpenAIRE의 문서화된 묶음 조회로 대조하고 저널 게재본의 DOI와 표제가 일치하는 초록을 채택한다. Journal of Public Economics와 Public Choice는 RePEc가 공개한 두 저널의 ReDIF 배포본도 대조한다. DOI 또는 Elsevier의 고유 논문번호(PII)와 표제를 확인한다. 이 추가 출처의 로컬 조회에는 `rsync`가 필요하다. [RePEc 데이터 안내](https://ideas.repec.org/getdata.html) · [공식 배포 서버](https://rsync.repec.org/)
+매번 방법 집계 대상 중 초록이 비어 있는 논문을 다시 점검한다. 저널·발행연도별 공식 페이지 표본을 먼저 열어 DOI 또는 표제와 출판사의 명시적인 초록란을 확인한다. 이어서 확보한 DOI 목록을 OpenAlex, Semantic Scholar, OpenAIRE의 문서화된 묶음 조회로 대조하고 저널 게재본의 DOI와 표제가 일치하는 초록을 채택한다. Journal of Public Economics, Public Choice, Journal of Econometrics, Journal of Population Economics, American Economic Journal: Applied Economics는 RePEc에서 출판사가 제공한 ReDIF 배포본도 대조한다. DOI 또는 Elsevier의 고유 논문번호(PII)와 표제를 확인한다. 이 추가 출처의 로컬 조회에는 `rsync`가 필요하다. [RePEc 데이터 안내](https://ideas.repec.org/getdata.html) · [공식 배포 서버](https://rsync.repec.org/)
 
 남은 논문은 공식 페이지로 돌아가 점검한다. 같은 한국 날짜에 반복 실행하면 출판사의 초록 미제공·접근 제한 응답과 DOI 조회에서 초록을 받지 못한 결과를 재사용하며 다음 날짜에는 다시 요청한다. 서버 오류와 전송 실패는 당일에도 재시도한다. Actions의 수동 실행 옵션 또는 로컬의 `--recheck-abstracts`로 당일 재조회를 선택할 수 있다. 출판사에서 자동 접근을 제한하면 해당 정책과 응답을 기록한다. 페이지의 일반 소개문, 검색 결과 발췌문과 잘린 텍스트는 초록 확보 건수에서 제외한다. Cambridge Core에서는 검색용 메타태그가 서평 문두나 도서 서지를 담는 경우가 있어, 독자가 볼 수 있는 Abstract 영역과 출판사의 초록 미제공 표기를 확인한다. 재검토로 철회한 초록 근거는 이력으로 보존한다. 저널 페이지를 직접 열람한 경우와 학술 색인에서 확인한 경우는 서로 다른 출처로 표시한다. [OpenAlex API](https://help.openalex.org/api/authentication/) · [Semantic Scholar Academic Graph](https://api.semanticscholar.org/api-docs/) · [OpenAIRE 조회 방식](https://graph.openaire.eu/docs/apis/graph-api-v4/quickstart/)
 

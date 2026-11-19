@@ -74,16 +74,76 @@ class JournalTest(unittest.TestCase):
             )
 
     def test_registry(self):
-        validate_config(self.journals)
-        self.assertEqual(51, len(self.journals))
+        groups = json.loads((CATALOG / "journals.json").read_text())["interest_groups"]
+        validate_config(self.journals, groups)
+        initial = [j for j in self.journals if not j.get("introduced")]
+        self.assertEqual(51, len(initial))
         self.assertEqual(
             [9, 3, 11, 10, 5, 3, 7, 3],
             [
-                sum(j["field"] == f for j in self.journals)
-                for f in dict.fromkeys(j["field"] for j in self.journals)
+                sum(j["field"] == f for j in initial)
+                for f in dict.fromkeys(j["field"] for j in initial)
             ],
         )
+        new = {j["id"] for j in self.journals if j.get("introduced") == 7}
+        self.assertEqual(18, len(new))
+        self.assertTrue(new <= {jid for g in groups for jid in g["journals"]})
+        self.assertTrue(
+            all(j["selection"]["source"] for j in self.journals if j["id"] in new)
+        )
+        with self.assertRaises(ValueError):
+            validate_config(
+                self.journals, [dict(id="broken", label="오류", journals=["typo"])]
+            )
         self.assertEqual(initial_start(date(2024, 2, 29)), date(2019, 2, 28))
+
+    def test_journal_added_after_first_run(self):
+        self.run_day()
+        original = read_index(self.path)
+        new_journal = next(j for j in self.journals if j["id"] == "demog")
+        item = self.item(4)
+        item.update(
+            DOI="10.1234/population",
+            ISSN=[new_journal["online_issn"]],
+            published={"date-parts": [[2022, 1, 15]]},
+        )
+
+        def expanded(url):
+            args = parse_qs(urlsplit(url).query)
+            if (
+                "crossref" in url
+                and new_journal["print_issn"] in args.get("filter", [""])[0]
+            ):
+                self.assertIn("from-pub-date:2021-11-19", args["filter"][0])
+                return {"message": {"total-results": 1, "items": [item]}}
+            return self.get(url)
+
+        for day in (20, 21):
+            self.run_day(date(2026, 11, day), expanded, [self.j, new_journal])
+            state = read_index(self.path)
+            self.assertEqual(original["start"], state["start"])
+            self.assertEqual(len(original["articles"]) + 1, len(state["articles"]))
+            self.assertTrue(original["articles"].keys() <= state["articles"].keys())
+            self.assertEqual(
+                "2026-11-20", state["articles"]["10.1234/population"]["first_seen"]
+            )
+
+    def test_kci_results_and_refresh_failure(self):
+        from polihub.journal_kci import annual_counts, compare_kci
+
+        html = "<ul><li>한국인구학 (490)</li><li><input> 2025 (21)</li><li>2024 (18)</li></ul>"
+        self.assertEqual({"2025": 21, "2024": 18}, annual_counts(html, "한국인구학"))
+        with self.assertRaises(ValueError):
+            annual_counts(html, "한국정치학회보")
+        from unittest.mock import Mock
+
+        host = Mock(stop="robots 정책에 따라 보류")
+        spec = next(j["kci"] for j in self.journals if j["id"] == "kjps")
+        audit = compare_kci(spec, date(2026, 12, 1), host=host)
+        self.assertEqual(spec["snapshot"]["counts"], audit["counts"])
+        self.assertEqual(spec["snapshot"]["checked"], audit["checked"])
+        self.assertIn("robots", audit["error"])
+        host.request.assert_not_called()
 
     def test_cursor_last_page_and_exact_multiple(self):
         for n in (3, 4):

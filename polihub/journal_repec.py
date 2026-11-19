@@ -1,4 +1,4 @@
-"""RePEc가 공개한 ReDIF 배포본에서 두 경제학 저널의 출판사 초록을 대조한다."""
+"""RePEc가 공개한 ReDIF 배포본에서 경제학 저널의 출판사 초록을 대조한다."""
 
 import re
 import shutil
@@ -9,7 +9,13 @@ from urllib.parse import quote
 
 from .journal_records import abstract_text, doi
 
-SERIES = {"jpe": "eee/pubeco", "pcho": "kap/pubcho"}
+SERIES = {
+    "jpe": "eee/pubeco",
+    "pcho": "kap/pubcho",
+    "joem": "eee/econom",
+    "jpope": "spr/jopoec",
+    "aejapp": "aea/aejapp",
+}
 
 
 def entries(text):

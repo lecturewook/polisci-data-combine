@@ -1,5 +1,6 @@
 """Release에서 내려받은 독립 HTML을 데스크톱·모바일 Chrome에서 검사한다."""
 
+import json
 import re
 import shutil
 import sys
@@ -67,7 +68,11 @@ def check(browser, url, mobile):
     check_modal.get_by_role("button", name="닫기").click()
     page.locator('[data-jour="reset"]').click()
     page.locator('[data-jour="directory"]').click()
-    assert page.locator("#jdir-list section > details").count() == 51
+    registry = json.loads(
+        (Path(__file__).resolve().parents[1] / "catalog/journals.json").read_text()
+    )
+    cards = page.locator("#jdir-list section > details")
+    assert cards.count() == len(registry["journals"])
     page.locator("#jdir-q").fill("APSR")
     journal = page.locator("#jdir-list section > details").filter(
         has=page.locator("summary", has_text="American Political Science Review")
@@ -84,6 +89,39 @@ def check(browser, url, mobile):
     )
     page.locator('#jdir-list [data-jour="journal"]').click()
     assert page.locator('[data-jfilter="journal"]').input_value() == "apsr"
+    page.locator('[data-jour="reset"]').click()
+    interests = page.get_by_label("관심사별 저널")
+    interests.select_option("v7")
+    page.get_by_role("button", name="선택한 저널과 선정 근거 보기").click()
+    assert cards.count() == len(
+        [j for j in registry["journals"] if j.get("introduced") == 7]
+    )
+    page.locator("#jdir-q").fill("Journal of Population Economics")
+    assert cards.count() == 1
+    cards.locator(":scope > summary").click()
+    assert "50종 중 7위" in cards.inner_text()
+    assert (
+        cards.get_by_role("link", name="선정 근거").get_attribute("href")
+        == "https://glabor.org/general-rankings/"
+    )
+    interests.select_option("korea")
+    options = page.locator('[data-jfilter="journal"] option')
+    assert options.filter(has_text="Journal of East Asian Studies").count() == 1
+    assert options.filter(has_text="American Political Science Review").count() == 0
+    page.get_by_label("저널", exact=True).select_option("kpsr")
+    page.get_by_role("searchbox", name="논문 검색").fill(
+        "Revisiting the Ideological Foundations"
+    )
+    page.locator("#journal-search").get_by_role(
+        "button", name="검색", exact=True
+    ).click()
+    page.locator("#jpapers .jlink").click()
+    assert "교차지연 패널 모형" in check_modal.inner_text()
+    assert "10.18854/kpsr.2026.60.3.003" in check_modal.inner_text()
+    assert "ART003386437" in check_modal.get_by_role(
+        "link", name="한국학술지인용색인(KCI)에서 초록 보기"
+    ).get_attribute("href")
+    check_modal.get_by_role("button", name="닫기").click()
     page.locator('[data-jour="reset"]').click()
     for method in ["exp", "surveyexp", "conjoint"]:
         page.locator(f'[data-jour="method"][data-value="{method}"]').click()
@@ -132,7 +170,7 @@ if __name__ == "__main__":
         for mobile in (False, True):
             check(browser, url, mobile)
             print(
-                f"{'모바일' if mobile else '데스크톱'} Chrome에서 색상 범례, 초록·출처·제목 검색, 방법 그래프와 원문·재현 링크 확인",
+                f"{'모바일' if mobile else '데스크톱'} Chrome에서 관심사별 저널, 한국 논문 국·영문 검색과 KCI 출처, 색상 범례, 방법 그래프와 원문·재현 링크 확인",
                 flush=True,
             )
         browser.close()

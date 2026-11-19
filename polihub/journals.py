@@ -73,7 +73,7 @@ def initial_start(day):
         return day.replace(year=day.year - 5, day=28)
 
 
-def validate_config(registry):
+def validate_config(registry, interests=()):
     used = set()
     ids = set()
     for j in registry:
@@ -92,6 +92,25 @@ def validate_config(registry):
             ):
                 raise ValueError("ISSN 검증 오류 " + code)
         used.update(codes)
+        selection = j.get("selection")
+        if selection and not (
+            selection.get("reason")
+            and selection.get("source", "").startswith("https://")
+        ):
+            raise ValueError("저널 선정 근거 오류 " + j["id"])
+    group_ids = set()
+    for group in interests:
+        members = group["journals"]
+        if (
+            not group["id"]
+            or group["id"] in group_ids
+            or not group["label"]
+            or not members
+            or not set(members) <= ids
+            or len(members) != len(set(members))
+        ):
+            raise ValueError("관심사별 저널 목록 오류 " + group["id"])
+        group_ids.add(group["id"])
 
 
 def refresh(
@@ -109,13 +128,12 @@ def refresh(
     size=None,
 ):
     day = day or datetime.now(ZoneInfo("Asia/Seoul")).date()
-    registry = (
-        registry
-        if registry is not None
-        else read(CATALOG / "journals.json")["journals"]
-    )
+    interests = ()
+    if registry is None:
+        config = read(CATALOG / "journals.json")
+        registry, interests = config["journals"], config.get("interest_groups", [])
     taxonomy = taxonomy or Methods(read(CATALOG / "methods.json"))
-    validate_config(registry)
+    validate_config(registry, interests)
     reviews = read(CATALOG / "reviewed-papers.json", []) if reviews is None else reviews
     identities = (
         read(CATALOG / "journal-identities.json") if identities is None else identities
@@ -272,9 +290,17 @@ def refresh(
                 (a.get("issue_date") or a.get("published", ""))[:4]
                 for a in supplemental
             )
+            # A completed zero-result search can coexist with independently verified publications.
+            primary_gap = (
+                cr["complete"] and not cr["reported"] and sum(totals.values()) > 0
+            )
+            if primary_gap:
+                cr["errors"].append(
+                    "Crossref 보고 0건 · 다른 출처에서 같은 기간 게재 기록 확인"
+                )
             status = (
                 "success"
-                if cr["complete"] and not cr["skipped"]
+                if cr["complete"] and not cr["skipped"] and not primary_gap
                 else (
                     "partial"
                     if sum(totals.values()) or cr["received"] or oa["received"]
@@ -294,6 +320,12 @@ def refresh(
                 publisher_toc=dict(complete=False, counts=dict(toc)),
                 checked=str(day),
             )
+            if j.get("kci"):
+                from .journal_kci import compare_kci
+
+                state["coverage"][jid]["kci_years"] = compare_kci(
+                    j["kci"], day, prior.get("kci_years")
+                )
             print(
                 f"{jid:6} {status:7} Crossref {cr['received']}/{cr['reported']} · OpenAlex {oa['received']}/{oa['reported']} · 누적 {sum(totals.values())}",
                 flush=True,

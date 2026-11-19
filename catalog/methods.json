@@ -494,5 +494,60 @@
       "game theoretic model",
       "formal theory"
     ]
+  },
+  {
+    "id": "clpm",
+    "label": "교차지연 패널 모형 (CLPM)",
+    "parent": "panel",
+    "aliases": [
+      "cross-lagged panel model",
+      "cross-lagged panel models",
+      "cross-lagged panel modeling",
+      "교차지연 패널 모형"
+    ]
+  },
+  {
+    "id": "moran",
+    "label": "Global Moran’s I",
+    "parent": "spatial",
+    "aliases": [
+      "Global Moran’s I",
+      "global Moran's I"
+    ]
+  },
+  {
+    "id": "lisa",
+    "label": "국지적 공간연관 지표 (LISA)",
+    "parent": "spatial",
+    "aliases": [
+      "local indicators of spatial association",
+      "local indicator of spatial association"
+    ]
+  },
+  {
+    "id": "sem",
+    "label": "구조방정식모형 (SEM)",
+    "parent": "estimation",
+    "aliases": [
+      "structural equation modeling",
+      "structural equation modelling",
+      "structural equation model",
+      "구조방정식모형"
+    ]
+  },
+  {
+    "id": "missing",
+    "label": "결측자료 처리",
+    "parent": null,
+    "aliases": []
+  },
+  {
+    "id": "mi",
+    "label": "다중대치 (Multiple imputation)",
+    "parent": "missing",
+    "aliases": [
+      "multiple imputation",
+      "다중대치"
+    ]
   }
 ]

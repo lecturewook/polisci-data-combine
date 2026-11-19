@@ -1,11 +1,12 @@
 """GitHub 실행 요약 및 Release 본문."""
 
+import json
 import sys
 from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from polihub.journals import INDEX, read_index
+from polihub.journals import CATALOG, INDEX, read_index
 from polihub.journal_records import counted
 
 state = read_index(INDEX)
@@ -18,13 +19,25 @@ print(
     f"누적 발행 기록 {run['total']:,}건 · 신규 {run['added']:,} · 기존 보완 {run['updated']:,} · 중복 수신 {run['duplicates']:,}\n"
 )
 print(
-    f"Crossref 성공 {counts['success']}종 · 부분 성공 {counts['partial']}종 · 실패 {counts['failed']}종"
+    f"저널 수집 성공 {counts['success']}종 · 부분 성공 {counts['partial']}종 · 실패 {counts['failed']}종"
+)
+complete = sum(c["sources"]["Crossref"]["complete"] for c in state["coverage"].values())
+print(
+    f"\nCrossref 마지막 페이지와 수신 합계 확인 {complete}/{len(state['coverage'])}종"
 )
 if run["primary_incomplete"]:
-    print("\nCrossref 미완료 저널 " + ", ".join(run["primary_incomplete"]))
+    print("\n추가 확인이 필요한 저널 " + ", ".join(run["primary_incomplete"]))
 rows = [a for a in state["articles"].values() if counted(a)]
 eligible = sum(a.get("kind") != "notice" for a in rows)
 print(f"\n방법론 집계 대상 {eligible:,}편 · 서평·정정 등 {len(rows) - eligible:,}건")
+registry = json.loads((CATALOG / "journals.json").read_text())
+new_ids = {j["id"] for j in registry["journals"] if j.get("introduced") == 7}
+added_journals = [a for a in rows if a["journal"] in new_ids]
+if added_journals:
+    research = sum(a.get("kind") != "notice" for a in added_journals)
+    print(
+        f"\nv7에서 추가한 {len(new_ids)}종의 누적 발행 기록 {len(added_journals):,}건 · 방법 집계 대상 {research:,}편"
+    )
 print(
     f"\n같은 논문으로 연결한 원기록 {run.get('linked', 0)}건 · 기간 밖 원기록 {run.get('outside', 0)}건"
 )

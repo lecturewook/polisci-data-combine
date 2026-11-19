@@ -1,7 +1,7 @@
 {
   "issn_source": "https://github.com/wosaide/wosaide-journal-lists/blob/49cd56e0620429f2c7120e3821f2f18608d1ea21/SCOPUS/ext_list_Jul_2026.csv",
   "issn_origin": "https://www.elsevier.com/products/scopus/content",
-  "issn_checked": "2026-11-19",
+  "issn_checked": "2026-11-20",
   "journals": [
     {
       "id": "apsr",
@@ -515,6 +515,505 @@
       "online_issn": "1088-4963",
       "url": "https://onlinelibrary.wiley.com/journal/10884963",
       "scopus_id": "22738"
+    },
+    {
+      "id": "demog",
+      "name": "Demography",
+      "abbr": "Demography",
+      "field": "인구학·인구정책",
+      "url": "https://read.dukeupress.edu/demography",
+      "introduced": 7,
+      "selection": {
+        "reason": "미국인구학회(PAA) 대표지. 출산·사망·이동과 인구변동을 연구한다.",
+        "source": "https://www.populationassociation.org/demography/about/aims-scope"
+      },
+      "print_issn": "0070-3370",
+      "online_issn": "1533-7790",
+      "scopus_id": "26365"
+    },
+    {
+      "id": "pdr",
+      "name": "Population and Development Review",
+      "abbr": "PDR",
+      "field": "인구학·인구정책",
+      "url": "https://onlinelibrary.wiley.com/journal/17284457",
+      "introduced": 7,
+      "selection": {
+        "reason": "Population Council이 발간하며 인구변화와 사회·경제 변화의 관계, 관련 공공정책을 다룬다.",
+        "source": "https://popcouncil.org/population-and-development-review-journal/"
+      },
+      "print_issn": "0098-7921",
+      "online_issn": "1728-4457",
+      "scopus_id": "27364"
+    },
+    {
+      "id": "popstud",
+      "name": "Population Studies",
+      "abbr": "Population Studies",
+      "field": "인구학·인구정책",
+      "url": "https://www.tandfonline.com/journals/rpst20",
+      "introduced": 7,
+      "selection": {
+        "reason": "LSE의 Population Investigation Committee가 발간해 온 인구학 저널로, 인구변동의 이론과 분석 방법을 다룬다.",
+        "source": "https://www.lse.ac.uk/international-development/research/population-investigation-committee/population-studies"
+      },
+      "print_issn": "0032-4728",
+      "online_issn": "1477-4747",
+      "scopus_id": "27392"
+    },
+    {
+      "id": "prpr",
+      "name": "Population Research and Policy Review",
+      "abbr": "PRPR",
+      "field": "인구학·인구정책",
+      "url": "https://link.springer.com/journal/11113",
+      "introduced": 7,
+      "selection": {
+        "reason": "Southern Demographic Association 대표지. 인구에 영향을 미치는 정책·프로그램의 직접 평가를 게재한다.",
+        "source": "https://link.springer.com/journal/11113"
+      },
+      "print_issn": "0167-5923",
+      "online_issn": "1573-7829",
+      "scopus_id": "27387"
+    },
+    {
+      "id": "jpope",
+      "name": "Journal of Population Economics",
+      "abbr": "JPopE",
+      "field": "인구학·인구정책",
+      "url": "https://link.springer.com/journal/148",
+      "introduced": 7,
+      "selection": {
+        "reason": "인구경제학과 정책을 다룬다. 발행 협력기관 GLO가 공개한 2024 JCR 영향력지수 기준 Demography 분야 50종 중 7위(Q1).",
+        "source": "https://glabor.org/general-rankings/"
+      },
+      "print_issn": "0933-1433",
+      "online_issn": "1432-1475",
+      "scopus_id": "26878"
+    },
+    {
+      "id": "imr",
+      "name": "International Migration Review",
+      "abbr": "IMR",
+      "field": "국제이주·난민",
+      "url": "https://journals.sagepub.com/home/mrx",
+      "introduced": 7,
+      "selection": {
+        "reason": "Center for Migration Studies가 1964년 창간했다. 국제이주, 민족집단 관계와 난민 이동이 주요 연구 범위다.",
+        "source": "https://cmsny.org/research-and-policy/international-migration-review/"
+      },
+      "print_issn": "0197-9183",
+      "online_issn": "1747-7379",
+      "scopus_id": "26857"
+    },
+    {
+      "id": "jems",
+      "name": "Journal of Ethnic and Migration Studies",
+      "abbr": "JEMS",
+      "field": "국제이주·난민",
+      "url": "https://www.tandfonline.com/journals/cjms20",
+      "introduced": 7,
+      "selection": {
+        "reason": "이주의 다양한 형태와 결과, 인종·민족 관계와 통합 정책을 함께 다루는 전문지다.",
+        "source": "https://www.tandfonline.com/journals/cjms20"
+      },
+      "print_issn": "1369-183X",
+      "online_issn": "1469-9451",
+      "scopus_id": "27343"
+    },
+    {
+      "id": "jrs",
+      "name": "Journal of Refugee Studies",
+      "abbr": "JRS",
+      "field": "국제이주·난민",
+      "url": "https://academic.oup.com/jrs",
+      "introduced": 7,
+      "selection": {
+        "reason": "강제이주와 이에 대한 정책·제도적 대응을 다루는 다학제 전문지다.",
+        "source": "https://academic.oup.com/jrs/pages/about"
+      },
+      "print_issn": "0951-6328",
+      "online_issn": "1471-6925",
+      "scopus_id": "26363"
+    },
+    {
+      "id": "jrep",
+      "name": "Journal of Race, Ethnicity, and Politics",
+      "abbr": "JREP",
+      "field": "소수자 정치·정치대표성",
+      "url": "https://www.cambridge.org/core/journals/journal-of-race-ethnicity-and-politics",
+      "introduced": 7,
+      "selection": {
+        "reason": "미국정치학회(APSA) Race, Ethnicity, and Politics 분과 공식지. 인종·민족·이민·원주민 정치를 다룬다.",
+        "source": "https://apsanet.org/publications/journals/organized-section-journals/"
+      },
+      "print_issn": "",
+      "online_issn": "2056-6085",
+      "scopus_id": "21100888814"
+    },
+    {
+      "id": "lsq",
+      "name": "Legislative Studies Quarterly",
+      "abbr": "LSQ",
+      "field": "소수자 정치·정치대표성",
+      "url": "https://onlinelibrary.wiley.com/journal/19399162",
+      "introduced": 7,
+      "selection": {
+        "reason": "미국정치학회 입법연구 분과 학술지. 대표기관인 의회와 의원의 활동을 국가 간에 비교할 수 있다.",
+        "source": "https://apsanet.org/publications/journals/organized-section-journals/"
+      },
+      "print_issn": "0362-9805",
+      "online_issn": "1939-9162",
+      "scopus_id": "20444"
+    },
+    {
+      "id": "sppq",
+      "name": "State Politics & Policy Quarterly",
+      "abbr": "SPPQ",
+      "field": "선거·정치행태·여론",
+      "url": "https://www.cambridge.org/core/journals/state-politics-and-policy-quarterly",
+      "introduced": 7,
+      "selection": {
+        "reason": "미국정치학회 주 정치·정책 분과 공식지. 미국 주 간 차이를 이용한 정치행태·정책결정 연구를 다룬다.",
+        "source": "https://apsanet.org/publications/journals/organized-section-journals/"
+      },
+      "print_issn": "1532-4400",
+      "online_issn": "1946-1607",
+      "scopus_id": "4700152270"
+    },
+    {
+      "id": "asian",
+      "name": "Asian Survey",
+      "abbr": "Asian Survey",
+      "field": "비교정치·지역연구",
+      "url": "https://online.ucpress.edu/as",
+      "introduced": 7,
+      "selection": {
+        "reason": "University of California Press가 발간하며 아시아의 선거, 민족 정치, 정치경제와 국제관계를 다룬다.",
+        "source": "https://online.ucpress.edu/as"
+      },
+      "print_issn": "0004-4687",
+      "online_issn": "1533-838X",
+      "scopus_id": "15713"
+    },
+    {
+      "id": "kpsr",
+      "name": "한국정치학회보 (Korean Political Science Review)",
+      "abbr": "한국정치학회보 · KPSR",
+      "field": "비교정치·지역연구",
+      "url": "https://www.kci.go.kr/kciportal/po/search/poCitaView.kci?sereId=000383",
+      "introduced": 7,
+      "selection": {
+        "reason": "한국정치학회 발행. KCI 우수등재지로 한국의 정당·선거·대표성 연구를 한국어 원제로 찾을 수 있다.",
+        "source": "https://www.kci.go.kr/kciportal/po/search/poCitaView.kci?sereId=000383"
+      },
+      "print_issn": "1229-506X",
+      "online_issn": "2733-8916",
+      "issn_evidence": "https://www.kci.go.kr/kciportal/po/search/poCitaView.kci?sereId=000383",
+      "kci": {
+        "name": "한국정치학회보",
+        "url": "https://www.kci.go.kr/kciportal/po/search/poArtiSearList.kci?sereId=000383",
+        "snapshot": {
+          "checked": "2026-11-20",
+          "counts": {
+            "2021": 19,
+            "2022": 33,
+            "2023": 28,
+            "2024": 19,
+            "2025": 22,
+            "2026": 15
+          }
+        }
+      }
+    },
+    {
+      "id": "kjps",
+      "name": "한국인구학 (Korea Journal of Population Studies)",
+      "abbr": "한국인구학 · KJPS",
+      "field": "인구학·인구정책",
+      "url": "https://www.kci.go.kr/kciportal/po/search/poCitaView.kci?sereId=000152",
+      "introduced": 7,
+      "selection": {
+        "reason": "한국인구학회 발행 KCI 등재지. 한국의 출산, 고령화, 지역 인구 이동과 인구정책을 다룬다.",
+        "source": "https://www.kci.go.kr/kciportal/po/search/poCitaView.kci?sereId=000152"
+      },
+      "print_issn": "1226-2986",
+      "online_issn": "2733-9807",
+      "issn_evidence": "https://www.kci.go.kr/kciportal/po/search/poCitaView.kci?sereId=000152",
+      "kci": {
+        "name": "한국인구학",
+        "url": "https://www.kci.go.kr/kciportal/po/search/poArtiSearList.kci?sereId=000152",
+        "snapshot": {
+          "checked": "2026-11-20",
+          "counts": {
+            "2021": 19,
+            "2022": 14,
+            "2023": 14,
+            "2024": 18,
+            "2025": 21,
+            "2026": 15
+          }
+        }
+      }
+    },
+    {
+      "id": "kobs",
+      "name": "Korea Observer",
+      "abbr": "Korea Observer",
+      "field": "비교정치·지역연구",
+      "url": "https://www.kci.go.kr/kciportal/po/search/poCitaView.kci?sereId=000783",
+      "introduced": 7,
+      "selection": {
+        "reason": "한국학술연구원(Institute of Korean Studies)이 발행하는 영문 한국학 저널. KCI의 주 연구분야는 정치외교학이다.",
+        "source": "https://www.kci.go.kr/kciportal/po/search/poCitaView.kci?sereId=000783"
+      },
+      "print_issn": "0023-3919",
+      "online_issn": "2586-3053",
+      "scopus_id": "5700165171",
+      "issn_evidence": "https://www.kci.go.kr/kciportal/po/search/poCitaView.kci?sereId=000783",
+      "kci": {
+        "name": "Korea Observer",
+        "url": "https://www.kci.go.kr/kciportal/po/search/poArtiSearList.kci?sereId=000783",
+        "snapshot": {
+          "checked": "2026-11-20",
+          "counts": {
+            "2021": 28,
+            "2022": 27,
+            "2023": 24,
+            "2024": 24,
+            "2025": 26,
+            "2026": 18
+          }
+        }
+      }
+    },
+    {
+      "id": "aejapp",
+      "name": "American Economic Journal: Applied Economics",
+      "abbr": "AEJ: Applied",
+      "field": "정치경제",
+      "url": "https://www.aeaweb.org/journals/app",
+      "introduced": 7,
+      "selection": {
+        "reason": "미국경제학회(AEA)의 응용미시경제학 저널. 인구, 노동, 보건, 교육의 실증 연구를 포함한다.",
+        "source": "https://www.aeaweb.org/journals/app"
+      },
+      "print_issn": "1945-7782",
+      "online_issn": "1945-7790",
+      "scopus_id": "19900191767"
+    },
+    {
+      "id": "jpam",
+      "name": "Journal of Policy Analysis and Management",
+      "abbr": "JPAM",
+      "field": "공공정책·행정",
+      "url": "https://onlinelibrary.wiley.com/journal/15206688",
+      "introduced": 7,
+      "selection": {
+        "reason": "미국정책분석관리학회(APPAM)가 창간했다. 가족휴가·보육지원 등 공공정책 효과의 실증 평가를 다룬다.",
+        "source": "https://www.appam.org/news-publications/jpam/"
+      },
+      "print_issn": "0276-8739",
+      "online_issn": "1520-6688",
+      "scopus_id": "15821"
+    },
+    {
+      "id": "joem",
+      "name": "Journal of Econometrics",
+      "abbr": "JoE",
+      "field": "계량경제학",
+      "url": "https://www.sciencedirect.com/journal/journal-of-econometrics",
+      "introduced": 7,
+      "selection": {
+        "reason": "식별, 추정, 검정과 실험설계를 다루는 계량경제학 전문지다. 인과추론과 정책 효과 추정의 방법을 탐색할 수 있다.",
+        "source": "https://shop.elsevier.com/journals/journal-of-econometrics/0304-4076"
+      },
+      "print_issn": "0304-4076",
+      "online_issn": "1872-6895",
+      "scopus_id": "28973"
+    }
+  ],
+  "interest_groups": [
+    {
+      "id": "population",
+      "label": "인구학·인구정책",
+      "aliases": [
+        "demography",
+        "population",
+        "demographic policy",
+        "fertility",
+        "인구변동",
+        "출산",
+        "고령화"
+      ],
+      "journals": [
+        "demog",
+        "pdr",
+        "popstud",
+        "prpr",
+        "jpope",
+        "kjps",
+        "aejapp",
+        "jpam",
+        "jpe"
+      ]
+    },
+    {
+      "id": "migration",
+      "label": "국제이주·난민",
+      "aliases": [
+        "migration",
+        "immigration",
+        "refugee",
+        "forced displacement",
+        "이민",
+        "강제이주"
+      ],
+      "journals": [
+        "imr",
+        "jems",
+        "jrs",
+        "jrep",
+        "demog",
+        "pdr",
+        "jpope"
+      ]
+    },
+    {
+      "id": "representation",
+      "label": "소수자·인종·민족 정치와 대표성",
+      "aliases": [
+        "minority politics",
+        "political representation",
+        "representative politics",
+        "race and ethnicity",
+        "race and ethnic politics",
+        "입법",
+        "민족",
+        "의회"
+      ],
+      "journals": [
+        "jrep",
+        "lsq",
+        "jems",
+        "imr",
+        "pb",
+        "jop",
+        "prq",
+        "apsr",
+        "ajps",
+        "kpsr"
+      ]
+    },
+    {
+      "id": "elections",
+      "label": "선거·투표행태·정당일체감",
+      "aliases": [
+        "election",
+        "voting behavior",
+        "party identity",
+        "party identification",
+        "partisanship",
+        "정당 정체성"
+      ],
+      "journals": [
+        "es",
+        "pb",
+        "party",
+        "ppsy",
+        "poq",
+        "sppq",
+        "ajps",
+        "apsr",
+        "jop",
+        "kpsr"
+      ]
+    },
+    {
+      "id": "evaluation",
+      "label": "정책 효과평가·인과추론",
+      "aliases": [
+        "impact evaluation",
+        "causal inference",
+        "policy evaluation",
+        "정책평가",
+        "효과 추정"
+      ],
+      "journals": [
+        "jpam",
+        "aejapp",
+        "joem",
+        "prpr",
+        "jpope",
+        "jpe",
+        "pa",
+        "psrm",
+        "psj",
+        "jpart"
+      ]
+    },
+    {
+      "id": "korea",
+      "label": "동아시아·한국",
+      "aliases": [
+        "east asia",
+        "south korea",
+        "korean politics",
+        "korean demography",
+        "대한민국",
+        "한국정치"
+      ],
+      "journals": [
+        "kpsr",
+        "kjps",
+        "kobs",
+        "jeas",
+        "asian",
+        "cq"
+      ]
+    },
+    {
+      "id": "us",
+      "label": "미국 정치·인구·정책",
+      "aliases": [
+        "united states",
+        "american politics",
+        "U.S.",
+        "미국 정치"
+      ],
+      "journals": [
+        "sppq",
+        "ajps",
+        "jop",
+        "prq",
+        "poq",
+        "lsq",
+        "jrep",
+        "demog",
+        "prpr",
+        "jpam"
+      ]
+    },
+    {
+      "id": "politics",
+      "label": "정치학 종합",
+      "aliases": [
+        "political science",
+        "general political science",
+        "정치학"
+      ],
+      "journals": [
+        "apsr",
+        "ajps",
+        "bjps",
+        "jop",
+        "pop",
+        "prq",
+        "ps",
+        "ejpr",
+        "epsr",
+        "kpsr"
+      ]
     }
   ]
 }

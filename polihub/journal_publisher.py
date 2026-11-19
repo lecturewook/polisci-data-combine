@@ -13,7 +13,7 @@ from protego import Protego
 
 from .journal_records import abstract_text, doi, normalized
 
-AGENT = "PoliHub/6 (+https://github.com/lecturewook/polisci-data-combine)"
+AGENT = "PoliHub (+https://github.com/lecturewook/polisci-data-combine)"
 HOSTS = {
     "www.sciencedirect.com",
     "www.journals.uchicago.edu",
@@ -26,6 +26,9 @@ HOSTS = {
     "direct.mit.edu",
     "www.ingentaconnect.com",
     "muse.jhu.edu",
+    "read.dukeupress.edu",
+    "online.ucpress.edu",
+    "www.aeaweb.org",
 }
 SECTIONS = (
     ".abstractSection",

@@ -3,6 +3,7 @@
 let journalLoad, journalData;
 const jf = {
   q: "",
+  interest: "",
   field: "",
   journal: "",
   year: "",
@@ -88,6 +89,14 @@ async function loadJournal() {
     journalIndex(),
   ]);
   const journals = new Map(registry.journals.map((j) => [j.id, j]));
+  const interests = new Map(registry.interest_groups.map((g) => [g.id, g]));
+  const editions = new Set(
+    registry.journals.filter((j) => j.introduced === 7).map((j) => j.id),
+  );
+  const interestJournals = new Map(
+    [...interests].map(([id, group]) => [id, new Set(group.journals)]),
+  );
+  interestJournals.set("v7", editions);
   const methods = new Map(nodes.map((m) => [m.id, m]));
   const paths = new Map();
   for (const node of nodes) {
@@ -117,6 +126,7 @@ async function loadJournal() {
       const search = jnorm(
         [
           a.title,
+          ...(a.other_titles || []),
           ...(a.authors || []),
           a.doi,
           ...(a.keywords || []),
@@ -149,6 +159,8 @@ async function loadJournal() {
   return {
     registry,
     journals,
+    interests,
+    interestJournals,
     methods,
     paths,
     sources,
@@ -182,12 +194,14 @@ async function journalPage() {
         0,
       );
     const complete = Object.values(s.coverage).filter(
-      (c) => c.status === "success",
+      (c) => c.sources.Crossref?.complete,
     ).length;
     const select = (k, label, choices) =>
       "<label>" +
       label +
-      '<select data-jfilter="' +
+      '<select aria-label="' +
+      esc(label) +
+      '" data-jfilter="' +
       k +
       '">' +
       options(choices, jf[k]) +
@@ -197,6 +211,10 @@ async function journalPage() {
         f,
         f,
       ]),
+    );
+    const cohort = d.interestJournals.get(jf.interest);
+    const available = [...d.journals].filter(
+      ([id]) => !cohort || cohort.has(id),
     );
     main.innerHTML =
       '<div class="journal-page"><div class="page-intro"><h1 class="page-title">저널·방법론 색인</h1>' +
@@ -239,11 +257,20 @@ async function journalPage() {
       '<form class="surface jfilters" id="journal-search"><label class="jquery">논문 검색<input name="q" type="search" placeholder="제목, 저자, DOI, 저자 키워드, 방법명" value="' +
       esc(jf.q) +
       '"></label><button class="primary">검색</button>' +
+      select("interest", "관심사별 저널", {
+        v7: "v7에서 추가한 저널 (" + d.interestJournals.get("v7").size + "종)",
+        ...Object.fromEntries(
+          [...d.interests].map(([id, g]) => [
+            id,
+            g.label + " (" + g.journals.length + "종)",
+          ]),
+        ),
+      }) +
       select("field", "분야", fields) +
       select(
         "journal",
         "저널",
-        Object.fromEntries([...d.journals].map(([k, j]) => [k, j.name])),
+        Object.fromEntries(available.map(([k, j]) => [k, j.name])),
       ) +
       select(
         "year",
@@ -266,10 +293,22 @@ async function journalPage() {
       (jf.packages ? "checked" : "") +
       "> 재현 패키지 연결</label>" +
       jbutton("reset", "", "조건 초기화") +
-      '</form><div id="jresults"></div>' +
+      "</form>" +
+      (cohort
+        ? '<p class="muted">' +
+          (jf.interest === "v7"
+            ? "v7에서 추가한"
+            : esc(d.interests.get(jf.interest).label) + " 관련") +
+          " 저널 " +
+          cohort.size +
+          "종의 전체 발행 목록입니다. 개별 논문의 주제나 연구 대상 국가는 제목과 초록에서 확인할 수 있습니다. " +
+          jbutton("directory", "", "선택한 저널과 선정 근거 보기") +
+          "</p>"
+        : "") +
+      '<div id="jresults"></div>' +
       '<details class="surface" id="jdir"><summary>저널 ' +
-      d.journals.size +
-      '종 · 분야별 확보 현황</summary><label class="jdir-search">저널명·약칭·분야 검색 <input type="search" id="jdir-q" value="' +
+      available.length +
+      '종 · 선정 근거와 확보 현황</summary><label class="jdir-search">저널명·약칭·분야·관심사 검색 <input type="search" id="jdir-q" value="' +
       esc(jf.directory) +
       '"></label><div id="jdir-list"></div></details>' +
       '<p class="muted">논문·재현 패키지·외부 데이터셋은 별도로 표시합니다. 원문과 배포처 링크를 열려면 인터넷 연결이 필요합니다.</p></div>';
@@ -428,6 +467,7 @@ function renderJournalResults() {
       .filter(Boolean);
   const base = d.rows.filter(
     (r) =>
+      (!jf.interest || d.interestJournals.get(jf.interest).has(r.j.id)) &&
       (!jf.field || r.j.field === jf.field) &&
       (!jf.journal || r.j.id === jf.journal) &&
       (!jf.year || r.date.startsWith(jf.year)) &&
@@ -542,16 +582,49 @@ function renderDirectory() {
     groups = new Map(),
     q = jnorm(jf.directory);
   for (const j of d.journals.values()) {
+    if (jf.interest && !d.interestJournals.get(jf.interest).has(j.id)) continue;
+    const groupsForJournal = [...d.interests.values()].filter((g) =>
+      g.journals.includes(j.id),
+    );
     if (
       !jnorm(
-        [j.name, j.abbr, j.field, j.print_issn, j.online_issn].join(" "),
+        [
+          j.name,
+          j.abbr,
+          j.field,
+          j.print_issn,
+          j.online_issn,
+          ...groupsForJournal.flatMap((g) => [g.label, ...g.aliases]),
+        ].join(" "),
       ).includes(q)
     )
       continue;
     if (!groups.has(j.field)) groups.set(j.field, []);
     const c = d.state.coverage[j.id];
+    const selection =
+      (j.selection
+        ? "<p>" +
+          esc(j.selection.reason) +
+          " " +
+          jurl(j.selection.source, "선정 근거") +
+          "</p>"
+        : "") +
+      (groupsForJournal.length
+        ? "<p>관련 관심사 · " +
+          groupsForJournal.map((g) => esc(g.label)).join(" / ") +
+          "</p>"
+        : "");
     if (!c) {
-      groups.get(j.field).push("<p>" + esc(j.name) + " · 미수집</p>");
+      groups
+        .get(j.field)
+        .push(
+          "<details><summary>" +
+            esc(j.name) +
+            " · 미수집</summary>" +
+            selection +
+            jurl(j.url, "공식 저널") +
+            "</details>",
+        );
       continue;
     }
     const stats = Object.entries(c.sources)
@@ -572,6 +645,7 @@ function renderDirectory() {
       )
       .join("");
     const audit = c.openalex_years || {};
+    const kci = c.kci_years || j.kci?.snapshot;
     const publisherChecks = Object.entries(c.abstract_review?.publisher || {})
       .sort((a, b) => b[1] - a[1])
       .map(([reason, n]) => "<li>" + esc(reason) + " · " + num(n) + "편</li>")
@@ -610,6 +684,23 @@ function renderDirectory() {
         " / 온라인 " +
         esc(j.online_issn || "미확인") +
         "</p>" +
+        selection +
+        (kci
+          ? "<p>" +
+            jurl(j.kci.url, "한국연구재단 KCI 발행연도별 집계") +
+            " · 확인 " +
+            esc(kci.checked) +
+            " · " +
+            Object.entries(kci.counts)
+              .filter(([y]) => c.years[y])
+              .map(([y, n]) => esc(y) + "년 " + num(n) + "건")
+              .join(" / ") +
+            ". KCI는 권호 발행연도 전체를 집계합니다. 아래 발행 목록은 온라인 선출판일도 반영하며 첫해와 올해는 수집 구간에 해당하는 기간만 담습니다." +
+            (kci.error
+              ? " 최근 조회 " + esc(kci.attempted) + " · " + esc(kci.error)
+              : "") +
+            "</p>"
+          : "") +
         "<p>최근 점검 " +
         esc(c.checked) +
         " · Crossref 마지막 성공 " +
@@ -768,6 +859,17 @@ function journalPaper(key) {
   const facts = [
     ["저널", jurl(r.j.url, r.j.name)],
     ["저자", esc((a.authors || []).join(", ") || "미확인")],
+    ...(a.other_titles?.some((t) => t !== a.title)
+      ? [
+          [
+            "다른 언어 표제",
+            a.other_titles
+              .filter((t) => t !== a.title)
+              .map(esc)
+              .join(" · "),
+          ],
+        ]
+      : []),
     ["발행일 · 정밀도", jdate(r.date)],
     ["온라인 선출판", jdate(a.online)],
     ["권호 발행", jdate(a.issue_date)],
@@ -856,9 +958,13 @@ function journalPaper(key) {
                 ? a.source_ids?.find((x) =>
                     x.startsWith("https://openalex.org/"),
                   )
-                : n.includes("공식 목차")
-                  ? a.toc_url
-                  : d.sources[n],
+                : n === "KCI · 공개 서지"
+                  ? a.abstract_proof?.source?.includes("KCI")
+                    ? a.abstract_proof.url
+                    : a.url
+                  : n.includes("공식 목차")
+                    ? a.toc_url
+                    : d.sources[n],
             n,
           ),
         )
@@ -884,6 +990,13 @@ document.addEventListener("change", (e) => {
   if (!k) return;
   jf[k] = k === "packages" ? e.target.checked : e.target.value;
   jf.page = 1;
+  if (k === "interest") {
+    const members = journalData.interestJournals.get(jf.interest);
+    if (members && !members.has(jf.journal)) jf.journal = "";
+    jf.directory = "";
+    journalPage();
+    return;
+  }
   renderJournalResults();
 });
 document.addEventListener("click", (e) => {
@@ -902,6 +1015,8 @@ document.addEventListener("click", (e) => {
   if (k === "reset") {
     Object.assign(jf, {
       q: "",
+      interest: "",
+      directory: "",
       field: "",
       journal: "",
       year: "",
