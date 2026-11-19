@@ -1,0 +1,520 @@
+{
+  "issn_source": "https://github.com/wosaide/wosaide-journal-lists/blob/49cd56e0620429f2c7120e3821f2f18608d1ea21/SCOPUS/ext_list_Jul_2026.csv",
+  "issn_origin": "https://www.elsevier.com/products/scopus/content",
+  "issn_checked": "2026-11-19",
+  "journals": [
+    {
+      "id": "apsr",
+      "name": "American Political Science Review",
+      "abbr": "APSR",
+      "field": "정치학 종합",
+      "print_issn": "0003-0554",
+      "online_issn": "1537-5943",
+      "url": "https://www.cambridge.org/core/journals/american-political-science-review",
+      "scopus_id": "15557"
+    },
+    {
+      "id": "ajps",
+      "name": "American Journal of Political Science",
+      "abbr": "AJPS",
+      "field": "정치학 종합",
+      "print_issn": "0092-5853",
+      "online_issn": "1540-5907",
+      "url": "https://onlinelibrary.wiley.com/journal/15405907",
+      "scopus_id": "15555"
+    },
+    {
+      "id": "bjps",
+      "name": "British Journal of Political Science",
+      "abbr": "BJPS",
+      "field": "정치학 종합",
+      "print_issn": "0007-1234",
+      "online_issn": "1469-2112",
+      "url": "https://www.cambridge.org/core/journals/british-journal-of-political-science",
+      "scopus_id": "16232"
+    },
+    {
+      "id": "jop",
+      "name": "The Journal of Politics",
+      "abbr": "JOP",
+      "field": "정치학 종합",
+      "print_issn": "0022-3816",
+      "online_issn": "1468-2508",
+      "url": "https://www.journals.uchicago.edu/toc/jop/current",
+      "scopus_id": "20333"
+    },
+    {
+      "id": "pop",
+      "name": "Perspectives on Politics",
+      "abbr": "PoP",
+      "field": "정치학 종합",
+      "print_issn": "1537-5927",
+      "online_issn": "1541-0986",
+      "url": "https://www.cambridge.org/core/journals/perspectives-on-politics",
+      "scopus_id": "4000148701"
+    },
+    {
+      "id": "prq",
+      "name": "Political Research Quarterly",
+      "abbr": "PRQ",
+      "field": "정치학 종합",
+      "print_issn": "1065-9129",
+      "online_issn": "1938-274X",
+      "url": "https://journals.sagepub.com/home/prq",
+      "scopus_id": "22867"
+    },
+    {
+      "id": "ps",
+      "name": "Political Studies",
+      "abbr": "PS",
+      "field": "정치학 종합",
+      "print_issn": "0032-3217",
+      "online_issn": "1467-9248",
+      "url": "https://journals.sagepub.com/home/psx",
+      "scopus_id": "22890"
+    },
+    {
+      "id": "ejpr",
+      "name": "European Journal of Political Research",
+      "abbr": "EJPR",
+      "field": "정치학 종합",
+      "print_issn": "0304-4130",
+      "online_issn": "1475-6765",
+      "url": "https://www.cambridge.org/core/journals/european-journal-of-political-research",
+      "scopus_id": "18437"
+    },
+    {
+      "id": "epsr",
+      "name": "European Political Science Review",
+      "abbr": "EPSR",
+      "field": "정치학 종합",
+      "print_issn": "1755-7739",
+      "online_issn": "1755-7747",
+      "url": "https://www.cambridge.org/core/journals/european-political-science-review",
+      "scopus_id": "21100264650"
+    },
+    {
+      "id": "pa",
+      "name": "Political Analysis",
+      "abbr": "PA",
+      "field": "정치방법론",
+      "print_issn": "1047-1987",
+      "online_issn": "1476-4989",
+      "url": "https://www.cambridge.org/core/journals/political-analysis",
+      "scopus_id": "145558"
+    },
+    {
+      "id": "psrm",
+      "name": "Political Science Research and Methods",
+      "abbr": "PSRM",
+      "field": "정치방법론",
+      "print_issn": "2049-8470",
+      "online_issn": "2049-8489",
+      "url": "https://www.cambridge.org/core/journals/political-science-research-and-methods",
+      "scopus_id": "21100870919"
+    },
+    {
+      "id": "rap",
+      "name": "Research & Politics",
+      "abbr": "R&P",
+      "field": "정치방법론",
+      "print_issn": null,
+      "online_issn": "2053-1680",
+      "url": "https://journals.sagepub.com/home/rap",
+      "scopus_id": "21100865122"
+    },
+    {
+      "id": "wp",
+      "name": "World Politics",
+      "abbr": "WP",
+      "field": "비교정치·지역연구",
+      "print_issn": "0043-8871",
+      "online_issn": "1086-3338",
+      "url": "https://www.press.jhu.edu/journals/world-politics",
+      "scopus_id": "25725",
+      "issn_evidence": "https://www.cambridge.org/core/journals/world-politics/information"
+    },
+    {
+      "id": "cps",
+      "name": "Comparative Political Studies",
+      "abbr": "CPS",
+      "field": "비교정치·지역연구",
+      "print_issn": "0010-4140",
+      "online_issn": "1552-3829",
+      "url": "https://journals.sagepub.com/home/cps",
+      "scopus_id": "13447"
+    },
+    {
+      "id": "cp",
+      "name": "Comparative Politics",
+      "abbr": "CP",
+      "field": "비교정치·지역연구",
+      "print_issn": "0010-4159",
+      "online_issn": "2151-6227",
+      "url": "https://jcp.gc.cuny.edu/",
+      "scopus_id": "13448"
+    },
+    {
+      "id": "dem",
+      "name": "Democratization",
+      "abbr": "Democratization",
+      "field": "비교정치·지역연구",
+      "print_issn": "1351-0347",
+      "online_issn": "1743-890X",
+      "url": "https://www.tandfonline.com/toc/fdem20/current",
+      "scopus_id": "24034"
+    },
+    {
+      "id": "go",
+      "name": "Government and Opposition",
+      "abbr": "G&O",
+      "field": "비교정치·지역연구",
+      "print_issn": "0017-257X",
+      "online_issn": "1477-7053",
+      "url": "https://www.cambridge.org/core/journals/government-and-opposition",
+      "scopus_id": "19089"
+    },
+    {
+      "id": "party",
+      "name": "Party Politics",
+      "abbr": "Party Politics",
+      "field": "비교정치·지역연구",
+      "print_issn": "1354-0688",
+      "online_issn": "1460-3683",
+      "url": "https://journals.sagepub.com/home/ppq",
+      "scopus_id": "67863"
+    },
+    {
+      "id": "wep",
+      "name": "West European Politics",
+      "abbr": "WEP",
+      "field": "비교정치·지역연구",
+      "print_issn": "0140-2382",
+      "online_issn": "1743-9655",
+      "url": "https://www.tandfonline.com/toc/fwep20/current",
+      "scopus_id": "25691"
+    },
+    {
+      "id": "jeas",
+      "name": "Journal of East Asian Studies",
+      "abbr": "JEAS",
+      "field": "비교정치·지역연구",
+      "print_issn": "1598-2408",
+      "online_issn": "2234-6643",
+      "url": "https://www.cambridge.org/core/journals/journal-of-east-asian-studies",
+      "scopus_id": "5800169167"
+    },
+    {
+      "id": "cq",
+      "name": "The China Quarterly",
+      "abbr": "CQ",
+      "field": "비교정치·지역연구",
+      "print_issn": "0305-7410",
+      "online_issn": "1468-2648",
+      "url": "https://www.cambridge.org/core/journals/china-quarterly",
+      "scopus_id": "23465"
+    },
+    {
+      "id": "laps",
+      "name": "Latin American Politics and Society",
+      "abbr": "LAPS",
+      "field": "비교정치·지역연구",
+      "print_issn": "1531-426X",
+      "online_issn": "1548-2456",
+      "url": "https://www.cambridge.org/core/journals/latin-american-politics-and-society",
+      "scopus_id": "26459"
+    },
+    {
+      "id": "afra",
+      "name": "African Affairs",
+      "abbr": "African Affairs",
+      "field": "비교정치·지역연구",
+      "print_issn": "0001-9909",
+      "online_issn": "1468-2621",
+      "url": "https://academic.oup.com/afraf",
+      "scopus_id": "15039"
+    },
+    {
+      "id": "io",
+      "name": "International Organization",
+      "abbr": "IO",
+      "field": "국제관계·안보",
+      "print_issn": "0020-8183",
+      "online_issn": "1531-5088",
+      "url": "https://www.cambridge.org/core/journals/international-organization",
+      "scopus_id": "39139"
+    },
+    {
+      "id": "isq",
+      "name": "International Studies Quarterly",
+      "abbr": "ISQ",
+      "field": "국제관계·안보",
+      "print_issn": "0020-8833",
+      "online_issn": "1468-2478",
+      "url": "https://academic.oup.com/isq",
+      "scopus_id": "25848"
+    },
+    {
+      "id": "isec",
+      "name": "International Security",
+      "abbr": "IS",
+      "field": "국제관계·안보",
+      "print_issn": "0162-2889",
+      "online_issn": "1531-4804",
+      "url": "https://direct.mit.edu/isec",
+      "scopus_id": "25835"
+    },
+    {
+      "id": "jcr",
+      "name": "Journal of Conflict Resolution",
+      "abbr": "JCR",
+      "field": "국제관계·안보",
+      "print_issn": "0022-0027",
+      "online_issn": "1552-8766",
+      "url": "https://journals.sagepub.com/home/jcr",
+      "scopus_id": "27663"
+    },
+    {
+      "id": "jpr",
+      "name": "Journal of Peace Research",
+      "abbr": "JPR",
+      "field": "국제관계·안보",
+      "print_issn": "0022-3433",
+      "online_issn": "1460-3578",
+      "url": "https://academic.oup.com/jpr",
+      "scopus_id": "26362"
+    },
+    {
+      "id": "ss",
+      "name": "Security Studies",
+      "abbr": "Security Studies",
+      "field": "국제관계·안보",
+      "print_issn": "0963-6412",
+      "online_issn": "1556-1852",
+      "url": "https://www.tandfonline.com/toc/fsst20/current",
+      "scopus_id": "28011"
+    },
+    {
+      "id": "ejir",
+      "name": "European Journal of International Relations",
+      "abbr": "EJIR",
+      "field": "국제관계·안보",
+      "print_issn": "1354-0661",
+      "online_issn": "1460-3713",
+      "url": "https://journals.sagepub.com/home/ejt",
+      "scopus_id": "24592"
+    },
+    {
+      "id": "ris",
+      "name": "Review of International Studies",
+      "abbr": "RIS",
+      "field": "국제관계·안보",
+      "print_issn": "0260-2105",
+      "online_issn": "1469-9044",
+      "url": "https://www.cambridge.org/core/journals/review-of-international-studies",
+      "scopus_id": "27944"
+    },
+    {
+      "id": "ia",
+      "name": "International Affairs",
+      "abbr": "IA",
+      "field": "국제관계·안보",
+      "print_issn": "0020-5850",
+      "online_issn": "1468-2346",
+      "url": "https://academic.oup.com/ia",
+      "scopus_id": "25772"
+    },
+    {
+      "id": "ripe",
+      "name": "Review of International Political Economy",
+      "abbr": "RIPE",
+      "field": "국제관계·안보",
+      "print_issn": "0969-2290",
+      "online_issn": "1466-4526",
+      "url": "https://www.tandfonline.com/toc/rrip20/current",
+      "scopus_id": "26261"
+    },
+    {
+      "id": "es",
+      "name": "Electoral Studies",
+      "abbr": "ES",
+      "field": "선거·정치행태·여론",
+      "print_issn": "0261-3794",
+      "online_issn": "1873-6890",
+      "url": "https://www.sciencedirect.com/journal/electoral-studies",
+      "scopus_id": "16114",
+      "issn_evidence": "https://portal.issn.org/resource/ISSN/1873-6890"
+    },
+    {
+      "id": "pb",
+      "name": "Political Behavior",
+      "abbr": "PB",
+      "field": "선거·정치행태·여론",
+      "print_issn": "0190-9320",
+      "online_issn": "1573-6687",
+      "url": "https://link.springer.com/journal/11109",
+      "scopus_id": "22832"
+    },
+    {
+      "id": "ppsy",
+      "name": "Political Psychology",
+      "abbr": "Political Psychology",
+      "field": "선거·정치행태·여론",
+      "print_issn": "0162-895X",
+      "online_issn": "1467-9221",
+      "url": "https://onlinelibrary.wiley.com/journal/14679221",
+      "scopus_id": "22861"
+    },
+    {
+      "id": "pc",
+      "name": "Political Communication",
+      "abbr": "PolComm",
+      "field": "선거·정치행태·여론",
+      "print_issn": "1058-4609",
+      "online_issn": "1091-7675",
+      "url": "https://www.tandfonline.com/journals/upcp20",
+      "scopus_id": "22838"
+    },
+    {
+      "id": "poq",
+      "name": "Public Opinion Quarterly",
+      "abbr": "POQ",
+      "field": "선거·정치행태·여론",
+      "print_issn": "0033-362X",
+      "online_issn": "1537-5331",
+      "url": "https://academic.oup.com/poq",
+      "scopus_id": "23574"
+    },
+    {
+      "id": "jpe",
+      "name": "Journal of Public Economics",
+      "abbr": "JPubE",
+      "field": "정치경제",
+      "print_issn": "0047-2727",
+      "online_issn": "1879-2316",
+      "url": "https://www.sciencedirect.com/journal/journal-of-public-economics",
+      "scopus_id": "29009",
+      "issn_evidence": "https://discover.library.unt.edu/catalog/b3755577"
+    },
+    {
+      "id": "pcho",
+      "name": "Public Choice",
+      "abbr": "Public Choice",
+      "field": "정치경제",
+      "print_issn": "0048-5829",
+      "online_issn": "1573-7101",
+      "url": "https://link.springer.com/journal/11127",
+      "scopus_id": "23611"
+    },
+    {
+      "id": "ser",
+      "name": "Socio-Economic Review",
+      "abbr": "SER",
+      "field": "정치경제",
+      "print_issn": "1475-1461",
+      "online_issn": "1475-147X",
+      "url": "https://academic.oup.com/ser",
+      "scopus_id": "26796"
+    },
+    {
+      "id": "gov",
+      "name": "Governance",
+      "abbr": "Governance",
+      "field": "공공정책·행정",
+      "print_issn": "0952-1895",
+      "online_issn": "1468-0491",
+      "url": "https://onlinelibrary.wiley.com/journal/14680491",
+      "scopus_id": "19088"
+    },
+    {
+      "id": "jepp",
+      "name": "Journal of European Public Policy",
+      "abbr": "JEPP",
+      "field": "공공정책·행정",
+      "print_issn": "1350-1763",
+      "online_issn": "1466-4429",
+      "url": "https://www.tandfonline.com/toc/rjpp20/current",
+      "scopus_id": "19878"
+    },
+    {
+      "id": "jpp",
+      "name": "Journal of Public Policy",
+      "abbr": "JPP",
+      "field": "공공정책·행정",
+      "print_issn": "0143-814X",
+      "online_issn": "1469-7815",
+      "url": "https://www.cambridge.org/core/journals/journal-of-public-policy",
+      "scopus_id": "27691"
+    },
+    {
+      "id": "psj",
+      "name": "Policy Studies Journal",
+      "abbr": "PSJ",
+      "field": "공공정책·행정",
+      "print_issn": "0190-292X",
+      "online_issn": "1541-0072",
+      "url": "https://onlinelibrary.wiley.com/journal/15410072",
+      "scopus_id": "22786"
+    },
+    {
+      "id": "jpart",
+      "name": "Journal of Public Administration Research and Theory",
+      "abbr": "JPART",
+      "field": "공공정책·행정",
+      "print_issn": "1053-1858",
+      "online_issn": "1477-9803",
+      "url": "https://academic.oup.com/jpart",
+      "scopus_id": "15823"
+    },
+    {
+      "id": "par",
+      "name": "Public Administration Review",
+      "abbr": "PAR",
+      "field": "공공정책·행정",
+      "print_issn": "0033-3352",
+      "online_issn": "1540-6210",
+      "url": "https://onlinelibrary.wiley.com/journal/15406210",
+      "scopus_id": "17167"
+    },
+    {
+      "id": "reg",
+      "name": "Regulation & Governance",
+      "abbr": "R&G",
+      "field": "공공정책·행정",
+      "print_issn": "1748-5983",
+      "online_issn": "1748-5991",
+      "url": "https://onlinelibrary.wiley.com/journal/17485991",
+      "scopus_id": "14000156253"
+    },
+    {
+      "id": "pt",
+      "name": "Political Theory",
+      "abbr": "PT",
+      "field": "정치이론",
+      "print_issn": "0090-5917",
+      "online_issn": "1552-7476",
+      "url": "https://journals.sagepub.com/home/ptx",
+      "scopus_id": "23421"
+    },
+    {
+      "id": "ejpt",
+      "name": "European Journal of Political Theory",
+      "abbr": "EJPT",
+      "field": "정치이론",
+      "print_issn": "1474-8851",
+      "online_issn": "1741-2730",
+      "url": "https://journals.sagepub.com/home/ept",
+      "scopus_id": "4100151709"
+    },
+    {
+      "id": "ppa",
+      "name": "Philosophy & Public Affairs",
+      "abbr": "P&PA",
+      "field": "정치이론",
+      "print_issn": "0048-3915",
+      "online_issn": "1088-4963",
+      "url": "https://onlinelibrary.wiley.com/journal/10884963",
+      "scopus_id": "22738"
+    }
+  ]
+}

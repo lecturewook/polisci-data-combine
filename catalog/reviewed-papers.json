@@ -1,0 +1,180 @@
+[
+  {
+    "journal": "apsr",
+    "title": "Gendered Perceptions and the Costs of Political Toxicity: Experimental Evidence from Politicians and Citizens in Four Democracies",
+    "authors": [
+      "Gregory Eady",
+      "Anne Rasmussen"
+    ],
+    "doi": "10.1017/s0003055424001205",
+    "online": "2024-12-06",
+    "issue_date": "2025-08",
+    "volume": "119",
+    "issue": "3",
+    "pages": "1446–1462",
+    "kind": "research-article",
+    "url": "https://doi.org/10.1017/s0003055424001205",
+    "sources": [
+      "Cambridge Core · 본문"
+    ],
+    "has_abstract": true,
+    "keywords": [],
+    "resources": [
+      {
+        "kind": "재현 패키지",
+        "url": "https://doi.org/10.7910/DVN/B3UBXR",
+        "source": "논문 Data availability"
+      }
+    ],
+    "methods": [
+      {
+        "method": "conjoint",
+        "term": "paired conjoint experiment",
+        "level": "direct",
+        "role": "연구 설계",
+        "location": "Analysis · paired conjoint experiment",
+        "evidence": "응답자가 짝지은 프로필을 평가하도록 설계하고 각 속성을 무작위로 배정했다.",
+        "url": "https://doi.org/10.1017/s0003055424001205"
+      },
+      {
+        "method": "amce",
+        "term": "Average Marginal Component Effects",
+        "level": "direct",
+        "role": "주 추정",
+        "location": "Analysis · AMCE / AMCIE",
+        "evidence": "각 속성이 선택 확률에 미치는 평균한계구성요소효과를 계산했다.",
+        "url": "https://doi.org/10.1017/s0003055424001205"
+      }
+    ]
+  },
+  {
+    "journal": "pa",
+    "title": "Dynamic Synthetic Controls: Accounting for Varying Speeds in Comparative Case Studies",
+    "authors": [
+      "Jian Cao",
+      "Thomas Chadefaux"
+    ],
+    "doi": "10.1017/pan.2024.14",
+    "online": "2024-11-05",
+    "issue_date": "2025",
+    "volume": "33",
+    "issue": "",
+    "pages": "18–31",
+    "kind": "methods-article",
+    "url": "https://doi.org/10.1017/pan.2024.14",
+    "sources": [
+      "Cambridge Core · 본문"
+    ],
+    "has_abstract": true,
+    "keywords": [
+      "causal inference",
+      "time series",
+      "dynamic time warping",
+      "difference in differences",
+      "comparative case studies"
+    ],
+    "resources": [
+      {
+        "kind": "재현 패키지",
+        "url": "https://doi.org/10.7910/DVN/DIUPUA",
+        "source": "논문 Data availability"
+      }
+    ],
+    "methods": [
+      {
+        "method": "dsc",
+        "term": "dynamic synthetic control",
+        "level": "direct",
+        "role": "주 추정",
+        "location": "§3 · Figure 2, §4 · 성능 평가",
+        "evidence": "처리 전 시계열의 속도 차이를 정렬하는 추정량을 구성하고 기존 실증 사례에 적용했다.",
+        "url": "https://doi.org/10.1017/pan.2024.14"
+      },
+      {
+        "method": "mc",
+        "term": "Monte Carlo simulation",
+        "level": "direct",
+        "role": "보조·강건성 점검",
+        "location": "§4.1 · Monte Carlo simulation",
+        "evidence": "열 개 단위의 모의 패널을 반복 생성해 추정 성능을 평가했다.",
+        "url": "https://doi.org/10.1017/pan.2024.14"
+      }
+    ]
+  },
+  {
+    "journal": "epsr",
+    "title": "Sympathy for the devil? Voter support for illiberal politicians",
+    "authors": [
+      "Marcel Lewandowsky",
+      "Michael Jankowski"
+    ],
+    "doi": "10.1017/s175577392200042x",
+    "online": "2022-09-30",
+    "issue_date": "2023",
+    "volume": "15",
+    "issue": "",
+    "pages": "39–56",
+    "kind": "research-article",
+    "url": "https://doi.org/10.1017/s175577392200042x",
+    "sources": [
+      "Cambridge Core · 본문"
+    ],
+    "has_abstract": true,
+    "keywords": [
+      "liberal democracy",
+      "authoritarianism",
+      "illiberalism",
+      "populism",
+      "survey experiment"
+    ],
+    "resources": [
+      {
+        "kind": "재현 패키지",
+        "url": "https://doi.org/10.7910/DVN/HAWOIC",
+        "source": "논문 Data availability"
+      }
+    ],
+    "methods": [
+      {
+        "method": "conjoint",
+        "term": "conjoint experiment",
+        "level": "direct",
+        "role": "연구 설계",
+        "location": "Research design · Table 1",
+        "evidence": "독일 응답자가 속성이 다른 두 정치인 프로필 중 한 명을 선택했다. 표 1에 실험 속성과 수준이 제시되어 있다.",
+        "url": "https://doi.org/10.1017/s175577392200042x"
+      }
+    ]
+  },
+  {
+    "journal": "apsr",
+    "doi": "10.1017/s0003055421001349",
+    "title": "“Outside Lobbying” over the Airwaves: A Randomized Field Experiment on Televised Issue Ads",
+    "authors": [
+      "Joshua L. Kalla",
+      "David E. Broockman"
+    ],
+    "online": "2021-12-07",
+    "issue_date": "2022-08",
+    "volume": "116",
+    "issue": "3",
+    "pages": "1126–1132",
+    "kind": "letter",
+    "sources": [
+      "Cambridge Core · 논문 서지"
+    ],
+    "url": "https://doi.org/10.1017/s0003055421001349",
+    "methods": [
+      {
+        "method": "fieldexp",
+        "term": "field experiment",
+        "level": "stated",
+        "role": "연구 설계",
+        "location": "초록",
+        "evidence": "저자들은 유권자 31,404명을 두 광고 주제에 무작위 배정한 현장실험으로 설명한다.",
+        "url": "https://doi.org/10.1017/s0003055421001349"
+      }
+    ],
+    "has_abstract": true
+  }
+]

@@ -1,0 +1,427 @@
+[
+  {
+    "id": "reg",
+    "label": "회귀 분석",
+    "parent": null,
+    "aliases": []
+  },
+  {
+    "id": "ols",
+    "label": "OLS",
+    "parent": "reg",
+    "aliases": [
+      "ordinary least squares",
+      "OLS"
+    ]
+  },
+  {
+    "id": "fe",
+    "label": "고정효과 회귀",
+    "parent": "reg",
+    "aliases": [
+      "fixed effects regression",
+      "fixed-effects model",
+      "fixed effects models",
+      "two-way fixed effects",
+      "TWFE"
+    ]
+  },
+  {
+    "id": "binary",
+    "label": "이산선택 모형",
+    "parent": "reg",
+    "aliases": [
+      "logit",
+      "probit",
+      "logistic regression",
+      "multinomial logit"
+    ]
+  },
+  {
+    "id": "penalty",
+    "label": "정규화 회귀",
+    "parent": null,
+    "aliases": []
+  },
+  {
+    "id": "lasso",
+    "label": "LASSO",
+    "parent": "penalty",
+    "aliases": [
+      "LASSO",
+      "least absolute shrinkage and selection operator"
+    ]
+  },
+  {
+    "id": "fused",
+    "label": "Fused LASSO",
+    "parent": "lasso",
+    "aliases": [
+      "fused lasso"
+    ]
+  },
+  {
+    "id": "pairwise",
+    "label": "Pairwise fused lasso",
+    "parent": "fused",
+    "aliases": [
+      "pairwise fused lasso"
+    ]
+  },
+  {
+    "id": "adaptive",
+    "label": "Adaptive LASSO",
+    "parent": "lasso",
+    "aliases": [
+      "adaptive lasso"
+    ]
+  },
+  {
+    "id": "causal",
+    "label": "인과추론",
+    "parent": null,
+    "aliases": []
+  },
+  {
+    "id": "iv",
+    "label": "도구변수 분석",
+    "parent": "causal",
+    "aliases": [
+      "instrumental variables",
+      "instrumental variable",
+      "IV regression"
+    ]
+  },
+  {
+    "id": "2sls",
+    "label": "2SLS",
+    "parent": "iv",
+    "aliases": [
+      "2SLS",
+      "two-stage least squares"
+    ]
+  },
+  {
+    "id": "rdd",
+    "label": "회귀불연속 설계 (RDD)",
+    "parent": "causal",
+    "aliases": [
+      "regression discontinuity",
+      "RDD"
+    ]
+  },
+  {
+    "id": "matching",
+    "label": "매칭",
+    "parent": "causal",
+    "aliases": [
+      "propensity score matching",
+      "coarsened exact matching",
+      "nearest neighbor matching"
+    ]
+  },
+  {
+    "id": "panel",
+    "label": "패널·정책평가",
+    "parent": null,
+    "aliases": []
+  },
+  {
+    "id": "did",
+    "label": "차이의 차이 (DiD)",
+    "parent": "panel",
+    "aliases": [
+      "difference-in-differences",
+      "differences-in-differences",
+      "difference in differences",
+      "DiD"
+    ]
+  },
+  {
+    "id": "event",
+    "label": "사건연구",
+    "parent": "panel",
+    "aliases": [
+      "event study",
+      "event-study",
+      "event studies"
+    ]
+  },
+  {
+    "id": "sa",
+    "label": "Sun–Abraham",
+    "parent": "event",
+    "aliases": [
+      "Sun–Abraham",
+      "Sun and Abraham",
+      "Sun-Abraham"
+    ]
+  },
+  {
+    "id": "sc",
+    "label": "합성통제",
+    "parent": "panel",
+    "aliases": [
+      "synthetic control",
+      "synthetic controls"
+    ]
+  },
+  {
+    "id": "dsc",
+    "label": "Dynamic synthetic control",
+    "parent": "sc",
+    "aliases": [
+      "dynamic synthetic control",
+      "dynamic synthetic controls"
+    ]
+  },
+  {
+    "id": "exp",
+    "label": "실험 설계",
+    "parent": null,
+    "aliases": []
+  },
+  {
+    "id": "surveyexp",
+    "label": "설문실험",
+    "parent": "exp",
+    "aliases": [
+      "survey experiment",
+      "survey experiments",
+      "survey-based experiment"
+    ]
+  },
+  {
+    "id": "conjoint",
+    "label": "Conjoint",
+    "parent": "surveyexp",
+    "aliases": [
+      "conjoint",
+      "conjoint experiment",
+      "conjoint analysis"
+    ]
+  },
+  {
+    "id": "fieldexp",
+    "label": "현장실험",
+    "parent": "exp",
+    "aliases": [
+      "field experiment",
+      "field experiments"
+    ]
+  },
+  {
+    "id": "labexp",
+    "label": "실험실 실험",
+    "parent": "exp",
+    "aliases": [
+      "laboratory experiment",
+      "lab experiment",
+      "laboratory experiments"
+    ]
+  },
+  {
+    "id": "amce",
+    "label": "Average Marginal Component Effect (AMCE)",
+    "parent": "exp",
+    "aliases": [
+      "AMCE",
+      "average marginal component effects"
+    ]
+  },
+  {
+    "id": "ml",
+    "label": "머신러닝",
+    "parent": null,
+    "aliases": [
+      "machine learning"
+    ]
+  },
+  {
+    "id": "transformer",
+    "label": "트랜스포머",
+    "parent": "ml",
+    "aliases": [
+      "transformer model",
+      "transformer models"
+    ]
+  },
+  {
+    "id": "xlmr",
+    "label": "XLM-RoBERTa",
+    "parent": "transformer",
+    "aliases": [
+      "XLM-RoBERTa",
+      "XLM-R"
+    ]
+  },
+  {
+    "id": "tree",
+    "label": "트리 기반 앙상블",
+    "parent": "ml",
+    "aliases": []
+  },
+  {
+    "id": "rf",
+    "label": "Random forest",
+    "parent": "tree",
+    "aliases": [
+      "random forest",
+      "random forests"
+    ]
+  },
+  {
+    "id": "text",
+    "label": "텍스트 분석",
+    "parent": null,
+    "aliases": [
+      "text analysis",
+      "quantitative text analysis",
+      "text classification"
+    ]
+  },
+  {
+    "id": "topic",
+    "label": "토픽 모형",
+    "parent": "text",
+    "aliases": [
+      "topic modeling",
+      "topic model",
+      "latent Dirichlet allocation"
+    ]
+  },
+  {
+    "id": "net",
+    "label": "네트워크·공간 분석",
+    "parent": null,
+    "aliases": []
+  },
+  {
+    "id": "network",
+    "label": "네트워크 분석",
+    "parent": "net",
+    "aliases": [
+      "network analysis",
+      "social network analysis",
+      "exponential random graph"
+    ]
+  },
+  {
+    "id": "spatial",
+    "label": "공간 분석",
+    "parent": "net",
+    "aliases": [
+      "spatial regression",
+      "spatial autoregressive",
+      "spatial analysis"
+    ]
+  },
+  {
+    "id": "bayes",
+    "label": "베이지안 분석",
+    "parent": null,
+    "aliases": [
+      "Bayesian analysis",
+      "Bayesian model",
+      "Bayesian estimation",
+      "Bayesian models"
+    ]
+  },
+  {
+    "id": "sim",
+    "label": "시뮬레이션",
+    "parent": null,
+    "aliases": [
+      "simulation study",
+      "simulations"
+    ]
+  },
+  {
+    "id": "mc",
+    "label": "Monte Carlo simulation",
+    "parent": "sim",
+    "aliases": [
+      "Monte Carlo simulation",
+      "Monte Carlo simulations",
+      "Monte Carlo experiment"
+    ]
+  },
+  {
+    "id": "synth",
+    "label": "연구 종합",
+    "parent": null,
+    "aliases": []
+  },
+  {
+    "id": "meta",
+    "label": "메타분석",
+    "parent": "synth",
+    "aliases": [
+      "meta-analysis",
+      "meta-analytic",
+      "meta analysis"
+    ]
+  },
+  {
+    "id": "review",
+    "label": "체계적 문헌고찰",
+    "parent": "synth",
+    "aliases": [
+      "systematic review"
+    ]
+  },
+  {
+    "id": "qual",
+    "label": "질적 방법",
+    "parent": null,
+    "aliases": []
+  },
+  {
+    "id": "interview",
+    "label": "인터뷰",
+    "parent": "qual",
+    "aliases": [
+      "semi-structured interviews",
+      "in-depth interviews",
+      "structured interviews"
+    ]
+  },
+  {
+    "id": "trace",
+    "label": "과정추적",
+    "parent": "qual",
+    "aliases": [
+      "process tracing",
+      "process-tracing"
+    ]
+  },
+  {
+    "id": "ethno",
+    "label": "민족지",
+    "parent": "qual",
+    "aliases": [
+      "ethnography",
+      "ethnographic fieldwork"
+    ]
+  },
+  {
+    "id": "mixed",
+    "label": "혼합방법",
+    "parent": null,
+    "aliases": [
+      "mixed methods",
+      "mixed-methods"
+    ]
+  },
+  {
+    "id": "theory",
+    "label": "이론·형식 모형",
+    "parent": null,
+    "aliases": [
+      "formal model",
+      "game-theoretic model",
+      "game theoretic model",
+      "formal theory"
+    ]
+  }
+]

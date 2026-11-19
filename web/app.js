@@ -463,12 +463,17 @@ function repaint() {
   document
     .querySelectorAll("[data-nav]")
     .forEach((x) => x.classList.toggle("active", x.dataset.nav === view));
+  if (view === "journals") {
+    journalPage();
+    return;
+  }
   $("#main").innerHTML =
     view === "explore" ? explore() : view === "work" ? work() : guide();
 }
 function navigate() {
-  view = ["work", "guide"].includes(location.hash.slice(1))
-    ? location.hash.slice(1)
+  const route = location.hash.slice(1) || document.body.dataset.start;
+  view = ["work", "guide", "journals"].includes(route)
+    ? route
     : "explore";
   repaint();
 }

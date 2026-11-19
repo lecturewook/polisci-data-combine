@@ -1074,3 +1074,34 @@ footer a {
       color 0.13s;
   }
 }
+
+.journal-page { margin: 1.5rem 0 3rem; }
+.journal-page .surface { margin-bottom: 1.1rem; min-width: 0; }
+.journal-page h2 { font-size: 1.18rem; margin: .2rem 0 .7rem; }
+.journal-page h3 { margin: 1.4rem 0 .5rem; }
+.jfilters { display: grid; gap: .7rem 1rem; grid-template-columns: repeat(4,minmax(0,1fr)); align-items: end; }
+.jfilters label:not(.jcheck), .jdir-search { display: grid; gap: .25rem; font-weight: 650; }
+.jquery { grid-column: span 3; }
+.jfilters input[type=search],.jfilters select,.jdir-search input { min-width: 0; width: 100%; padding: .56rem; border: 1px solid #acbdb7; border-radius: .3rem; background: white; color: #173c34; font: inherit; }
+.jcheck { grid-column: span 2; }
+.jstats,.jpaging { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem 1.4rem; margin: 1rem 0; }
+.jstats b { color: #115a4e; }
+.jpanels { display: grid; grid-template-columns: 1fr 1.15fr; gap: 1rem; }
+.jbars,.jpapers { padding: 0; list-style: none; }
+.jbars li { margin: .25rem 0; }
+.jbar { display: grid; grid-template-columns: minmax(6em,1fr) minmax(3em,1.2fr) auto; gap: .5rem; align-items: center; width: 100%; text-align: left; padding: .3rem; border: 0; background: transparent; color: #164b40; font: inherit; }
+.jbar:hover,.jbar:focus-visible { background: #e6f2ec; }
+.jtracks { display: grid; gap: 2px; }
+.jtracks i { display: block; height: 6px; background: #267760; }
+.jtracks i+i { height: 3px; background: #ad733a; }
+.jlink { color: #155a4e; background: none; border: 0; padding: .3rem 0; text-align: left; text-decoration: underline; font: inherit; }
+.jpapers li { border-top: 1px solid #dae5df; padding: .65rem 0; overflow-wrap: anywhere; }
+.jpapers .jlink { font-weight: 700; }
+.jpapers li div, .jdir-search, .journal-page small { font-size: .86rem; }
+.journal-page meter { width: 5em; display: block; }
+.journal-page summary { cursor: pointer; padding: .5rem 0; overflow-wrap: anywhere; }
+.jdir-search { max-width: 30rem; margin: 1rem 0; }
+#jdir-list details { border-bottom: 1px solid #d5dfda; }
+#modal-body dd, #modal-body li { overflow-wrap: anywhere; }
+@media(max-width:760px){.jpanels{grid-template-columns:1fr}.jfilters{grid-template-columns: repeat(2,minmax(0,1fr))}.jquery{grid-column:span 1}.jstats{gap:.5rem 1rem}.bar{flex-wrap:wrap}.bar nav{flex-wrap:wrap}.journal-page .surface{padding:1rem}.jbar{font-size:.88rem}}
+.jpanels > .surface { margin-top: 0; }

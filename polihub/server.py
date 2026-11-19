@@ -21,7 +21,19 @@ from .research import workflow
 STATIC = {
     "/": ROOT / "index.html",
     "/index.html": ROOT / "index.html",
-    **{"/web/" + f: ROOT / "web" / f for f in ("app.js", "style.css", "east-asia.png")},
+    **{
+        "/web/" + f: ROOT / "web" / f
+        for f in ("app.js", "journals.js", "style.css", "east-asia.png")
+    },
+    **{
+        "/catalog/" + f: ROOT / "catalog" / f
+        for f in (
+            "journals.json",
+            "methods.json",
+            "journal-sources.json",
+            "journal-index.json.gz",
+        )
+    },
     "/catalog/catalog.json": ROOT / "catalog/catalog.json",
     "/catalog/sources.json": ROOT / "catalog/sources.json",
 }

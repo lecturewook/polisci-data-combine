@@ -1,0 +1,12 @@
+{
+  "Crossref": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/",
+  "OpenAlex": "https://openalex.org/",
+  "Cambridge Core · 본문": "https://www.cambridge.org/core/",
+  "HOAD · Crossref issued": "https://github.com/subugoe/hoaddata/blob/b3e5e0bc0311a41603d094aa344dce5bc53e8c96/man/cc_articles.Rd",
+  "Hall · 논문 서지": "https://github.com/andybhall/ai-in-political-science/blob/5db77ca6fa63c520611a1d0d0d0113975ca7b6dc/ai_papers.csv",
+  "Econ Journal Authors · 권호 목록": "https://github.com/kochiuyu/econ-journal-authors/tree/c54c997888859067223103b659f4ee98d059b71b/releases/articles_toc_2010_2025",
+  "Paper Picnic · Crossref": "https://github.com/sumtxt/picnic/tree/e8cb5b18d7853f3675537aeaadbc1314c7cbccf6",
+  "Harvard Dataverse · 관련 논문 서지": "https://github.com/jsakowuah/polisci-replication/blob/21ae1bd811e5b09efbc77673b894b8218c1a40a7/data/raw/dataverse_datasets.csv",
+  "Comparative Politics · 공식 목차": "https://jcp.gc.cuny.edu/",
+  "Cambridge Core · 논문 서지": "https://www.cambridge.org/core/"
+}

@@ -1,0 +1,769 @@
+"use strict";
+
+let journalLoad, journalData;
+const jf = {
+  q: "",
+  field: "",
+  journal: "",
+  year: "",
+  level: "",
+  method: "",
+  packages: false,
+  page: 1,
+  directory: "",
+};
+const journalLevels = {
+  direct: "본문·코드 직접 확인",
+  stated: "초록·재현 설명에 적용 명시",
+  clue: "방법명 단서",
+  unknown: "미확인",
+};
+const levelOrder = { direct: 3, stated: 2, clue: 1, unknown: 0 };
+const statuses = {
+  success: "수집 성공",
+  partial: "부분 성공",
+  failed: "수집 실패",
+};
+const num = (n) => Number(n).toLocaleString("ko-KR");
+const jnorm = (v) =>
+  String(v || "")
+    .normalize("NFKC")
+    .toLowerCase();
+const jpdate = (a) => {
+  const values = [a.online, a.issue_date, a.published].filter(Boolean);
+  return (
+    values
+      .filter((v) => !values.some((o) => o !== v && o.startsWith(v)))
+      .sort()[0] || ""
+  );
+};
+const jdate = (v) =>
+  v
+    ? esc(v) + (v.length === 4 ? " (연도)" : v.length === 7 ? " (월)" : "")
+    : "미확인";
+const jurl = (u, t) =>
+  link(typeof u === "string" ? u.replace(/^http:\/\//, "https://") : "", t);
+const jbutton = (key, value, label, cls = "jlink") =>
+  '<button type="button" class="' +
+  cls +
+  '" data-jour="' +
+  key +
+  '" data-value="' +
+  esc(value) +
+  '">' +
+  label +
+  "</button>";
+const percent = (a, b) => (b ? ((100 * a) / b).toFixed(1) + "%" : "—");
+const eligible = (a) => a.kind !== "notice";
+
+async function jsonResource(name) {
+  if (window.POLIHUB_OFFLINE) return window.POLIHUB_OFFLINE[name];
+  const r = await fetch("catalog/" + name + ".json");
+  if (!r.ok) throw Error(name + " HTTP " + r.status);
+  return r.json();
+}
+async function journalIndex() {
+  let bytes;
+  const embedded = document.getElementById("journal-data");
+  if (embedded) {
+    const str = atob(embedded.textContent.trim());
+    bytes = Uint8Array.from(str, (c) => c.charCodeAt(0));
+  } else {
+    const r = await fetch("catalog/journal-index.json.gz");
+    if (!r.ok) throw Error("논문 색인 HTTP " + r.status);
+    bytes = new Uint8Array(await r.arrayBuffer());
+  }
+  let stream = new Blob([bytes]).stream();
+  if (bytes[0] === 31 && bytes[1] === 139)
+    stream = stream.pipeThrough(new DecompressionStream("gzip"));
+  return new Response(stream).json();
+}
+async function loadJournal() {
+  const [registry, nodes, sources, state] = await Promise.all([
+    jsonResource("journals"),
+    jsonResource("methods"),
+    jsonResource("journal-sources"),
+    journalIndex(),
+  ]);
+  const journals = new Map(registry.journals.map((j) => [j.id, j]));
+  const methods = new Map(nodes.map((m) => [m.id, m]));
+  const paths = new Map();
+  for (const node of nodes) {
+    const path = [];
+    for (let m = node; m; m = methods.get(m.parent)) path.unshift(m.id);
+    paths.set(node.id, path);
+  }
+  const rows = Object.entries(state.articles)
+    .map(([key, a]) => {
+      const levels = new Map();
+      for (const e of a.methods || []) {
+        for (const id of paths.get(e.method) || [])
+          levels.set(id, Math.max(levels.get(id) || 0, levelOrder[e.level]));
+      }
+      const best = Math.max(0, ...levels.values());
+      const j = journals.get(a.journal);
+      const terms = [...levels.keys()].map((id) =>
+        [methods.get(id).label, ...methods.get(id).aliases].join(" "),
+      );
+      const search = jnorm(
+        [
+          a.title,
+          ...(a.authors || []),
+          a.doi,
+          ...(a.keywords || []),
+          ...terms,
+          ...(a.methods || []).map((e) => e.term),
+          j.name,
+          j.abbr,
+          j.field,
+        ]
+          .filter(Boolean)
+          .join(" "),
+      );
+      return {
+        key,
+        a,
+        j,
+        levels,
+        best,
+        search,
+        date: jpdate(a),
+        proof: Boolean(
+          a.has_abstract ||
+          (a.methods || []).some(
+            (e) => e.level === "direct" || e.level === "stated",
+          ),
+        ),
+      };
+    })
+    .sort((x, y) => y.date.localeCompare(x.date) || x.key.localeCompare(y.key));
+  return {
+    registry,
+    journals,
+    methods,
+    paths,
+    sources,
+    state,
+    rows,
+    byKey: new Map(rows.map((r) => [r.key, r])),
+  };
+}
+async function journalPage() {
+  const main = document.getElementById("main");
+  try {
+    if (!journalData) {
+      main.innerHTML =
+        '<p class="loading" role="status">저널 색인을 여는 중입니다.</p>';
+      journalLoad ||= loadJournal();
+      journalData = await journalLoad;
+    }
+    if (view !== "journals") return;
+    const d = journalData,
+      s = d.state,
+      run = s.runs[s.runs.length - 1];
+    const complete = Object.values(s.coverage).filter(
+      (c) => c.status === "success",
+    ).length;
+    const select = (k, label, choices) =>
+      "<label>" +
+      label +
+      '<select data-jfilter="' +
+      k +
+      '">' +
+      options(choices, jf[k]) +
+      "</select></label>";
+    const fields = Object.fromEntries(
+      [...new Set([...d.journals.values()].map((j) => j.field))].map((f) => [
+        f,
+        f,
+      ]),
+    );
+    main.innerHTML =
+      '<div class="journal-page"><div class="page-intro"><h1 class="page-title">저널·방법론 색인</h1>' +
+      "<p>분야별 대표 저널과 인접 분야 저널 " +
+      d.journals.size +
+      "종의 발행 기록을 탐색합니다.</p>" +
+      "<p>최초 수집 " +
+      esc(s.start) +
+      " ~ " +
+      esc(s.initial_end) +
+      " · 최근 수집 " +
+      esc(s.as_of) +
+      " (한국 시간) · 누적 발행 기록 " +
+      num(run.total) +
+      "건</p><p>Crossref 수집 완료 " +
+      complete +
+      " / " +
+      d.journals.size +
+      "종 · 제목 확보 " +
+      num(d.rows.filter((r) => r.a.title).length) +
+      "건 · 초록 확보 " +
+      num(d.rows.filter((r) => r.a.has_abstract).length) +
+      "건 · " +
+      jbutton("directory", "", "저널별 확보 현황") +
+      "</p></div>" +
+      '<form class="surface jfilters" id="journal-search"><label class="jquery">논문 검색<input name="q" type="search" placeholder="제목, 저자, DOI, 저자 키워드, 방법명" value="' +
+      esc(jf.q) +
+      '"></label><button class="primary">검색</button>' +
+      select("field", "분야", fields) +
+      select(
+        "journal",
+        "저널",
+        Object.fromEntries([...d.journals].map(([k, j]) => [k, j.name])),
+      ) +
+      select(
+        "year",
+        "발행연도",
+        Object.fromEntries(
+          [...new Set(d.rows.map((r) => r.date.slice(0, 4)))]
+            .filter(Boolean)
+            .sort()
+            .reverse()
+            .map((y) => [y, y]),
+        ),
+      ) +
+      select("level", "논문별 최고 근거", journalLevels) +
+      '<label class="jcheck"><input type="checkbox" data-jfilter="packages" ' +
+      (jf.packages ? "checked" : "") +
+      "> 재현 패키지 연결</label>" +
+      jbutton("reset", "", "조건 초기화") +
+      '</form><div id="jresults"></div>' +
+      '<details class="surface" id="jdir"><summary>저널 ' +
+      d.journals.size +
+      '종 · 분야별 확보 현황</summary><label class="jdir-search">저널명·약칭·분야 검색 <input type="search" id="jdir-q" value="' +
+      esc(jf.directory) +
+      '"></label><div id="jdir-list"></div></details>' +
+      '<p class="muted">논문·재현 패키지·외부 데이터셋은 별도로 표시합니다. 원문과 배포처 링크를 열려면 인터넷 연결이 필요합니다.</p></div>';
+    renderJournalResults();
+    renderDirectory();
+  } catch (err) {
+    journalLoad = undefined;
+    if (view === "journals")
+      main.innerHTML =
+        '<div class="empty"><h2>저널 색인을 열 수 없습니다.</h2><p>' +
+        esc(err.message) +
+        "</p></div>";
+  }
+}
+function methodBars(rows) {
+  const d = journalData,
+    stats = new Map();
+  for (const r of rows.filter((r) => eligible(r.a))) {
+    for (const [key, n] of r.levels) {
+      const value = stats.get(key) || [0, 0];
+      value[n >= 2 ? 0 : 1]++;
+      stats.set(key, value);
+    }
+  }
+  const nodes = [...d.methods.values()].filter(
+    (m) => (m.parent || "") === (jf.method || ""),
+  );
+  nodes.sort(
+    (x, y) => (stats.get(y.id)?.[0] || 0) - (stats.get(x.id)?.[0] || 0),
+  );
+  const max = Math.max(
+    1,
+    ...nodes.map((m) => Math.max(...(stats.get(m.id) || [0, 0]))),
+  );
+  const bars = nodes
+    .map((m) => {
+      const [n, c] = stats.get(m.id) || [0, 0];
+      return (
+        "<li>" +
+        jbutton(
+          "method",
+          m.id,
+          esc(m.label) +
+            '<span class="jtracks" aria-hidden="true"><i style="width:' +
+            (100 * n) / max +
+            '%"></i><i style="width:' +
+            (100 * c) / max +
+            '%"></i></span><span>' +
+            num(n) +
+            " / " +
+            num(c) +
+            "</span>",
+          "jbar",
+        ) +
+        "</li>"
+      );
+    })
+    .join("");
+  const crumb = [
+    "전체 방법",
+    ...(d.paths.get(jf.method) || []).map((k) => d.methods.get(k).label),
+  ]
+    .map(esc)
+    .join(" › ");
+  return (
+    '<section class="surface"><h2>방법별 논문 수</h2><p>' +
+    crumb +
+    "</p>" +
+    (jf.method
+      ? jbutton(
+          "method",
+          d.methods.get(jf.method)?.parent || "",
+          "상위 분류로",
+        ) +
+        " · " +
+        jbutton("list", "", "선택한 방법의 논문 보기")
+      : "") +
+    (bars
+      ? '<p class="muted">적용 확인 / 단서만 발견 · 각 분류에서 논문당 한 번 집계</p><ul class="jbars">' +
+        bars +
+        "</ul>"
+      : '<p class="muted">이 방법에 연결된 논문은 아래 목록에서 열 수 있습니다.</p>') +
+    "</section>"
+  );
+}
+function trends(base) {
+  const years = new Map(),
+    months = new Map();
+  for (const r of base) {
+    const month = r.a.first_seen.slice(0, 7);
+    months.set(month, (months.get(month) || 0) + 1);
+    if (!eligible(r.a)) continue;
+    const y = r.date.slice(0, 4),
+      v = years.get(y) || [0, 0, 0, 0];
+    const rank = jf.method ? r.levels.get(jf.method) || 0 : r.best;
+    v[0]++;
+    if (rank >= 2) v[1]++;
+    if (rank === 1) v[2]++;
+    if (r.proof) v[3]++;
+    years.set(y, v);
+  }
+  const yrows = [...years]
+    .sort()
+    .map(
+      ([y, [n, ap, cl, ev]]) =>
+        "<tr><th>" +
+        esc(y) +
+        "</th><td>" +
+        num(n) +
+        "</td><td>" +
+        num(ap) +
+        " / " +
+        num(cl) +
+        "</td><td>" +
+        percent(ap, n) +
+        '<meter min="0" max="1" value="' +
+        ap / n +
+        '"></meter></td><td>' +
+        num(ev) +
+        " (" +
+        percent(ev, n) +
+        ")</td></tr>",
+    )
+    .join("");
+  let total = 0;
+  const mrows = [...months]
+    .sort()
+    .map(([m, n]) => {
+      total += n;
+      return (
+        "<tr><th>" +
+        esc(m) +
+        "</th><td>" +
+        num(n) +
+        "</td><td>" +
+        num(total) +
+        "</td></tr>"
+      );
+    })
+    .join("");
+  return (
+    '<section class="surface"><h2>연도별 방법 적용</h2><p class="muted">분모는 검색·필터 후 서평·정정 등 식별된 비연구물을 뺀 발행 기록입니다. 근거 확보는 초록 또는 적용 근거를 확인한 논문입니다.</p>' +
+    '<div class="table-wrap"><table class="data-table"><thead><tr><th>발행연도</th><th>분모</th><th>적용 / 단서</th><th>적용 비중</th><th>근거 확보</th></tr></thead><tbody>' +
+    yrows +
+    "</tbody></table></div>" +
+    '<details><summary>최초 발견월별 누적</summary><table class="data-table"><thead><tr><th>발견월</th><th>신규</th><th>누적</th></tr></thead><tbody>' +
+    mrows +
+    "</tbody></table></details></section>"
+  );
+}
+function renderJournalResults() {
+  const d = journalData,
+    words = jnorm(jf.q.trim())
+      .replace(/^(?:https?:\/\/(?:dx\.)?doi\.org\/|doi:\s*)/i, "")
+      .split(/\s+/)
+      .filter(Boolean);
+  const base = d.rows.filter(
+    (r) =>
+      (!jf.field || r.j.field === jf.field) &&
+      (!jf.journal || r.j.id === jf.journal) &&
+      (!jf.year || r.date.startsWith(jf.year)) &&
+      (!jf.level || r.best === levelOrder[jf.level]) &&
+      (!jf.packages ||
+        (r.a.resources || []).some((v) => v.kind === "재현 패키지")) &&
+      words.every((w) => r.search.includes(w)),
+  );
+  const filtered = jf.method
+    ? base.filter((r) => eligible(r.a) && r.levels.has(jf.method))
+    : base;
+  const pages = Math.max(1, Math.ceil(filtered.length / 25));
+  jf.page = Math.min(pages, jf.page);
+  const list = filtered
+    .slice((jf.page - 1) * 25, jf.page * 25)
+    .map((r) => {
+      const a = r.a;
+      return (
+        "<li>" +
+        jbutton("paper", r.key, esc(a.title || a.doi || "제목 미확인")) +
+        "<div>" +
+        esc(r.j.abbr) +
+        " · " +
+        jdate(r.date) +
+        " · " +
+        esc((a.authors || []).join(", ") || "저자 미확인") +
+        "</div></li>"
+      );
+    })
+    .join("");
+  const research = base.filter((r) => eligible(r.a));
+  const counts = [
+    research.filter((r) => r.best >= 2).length,
+    research.filter((r) => r.best === 1).length,
+    research.filter((r) => !r.best).length,
+  ];
+  const run = d.state.runs.at(-1);
+  document.getElementById("jresults").innerHTML =
+    '<div class="jstats">' +
+    counts
+      .map(
+        (n, i) =>
+          "<span>" +
+          ["적용 확인", "단서만 발견", "방법 미확인"][i] +
+          " <b>" +
+          num(n) +
+          "</b>편</span>",
+      )
+      .join("") +
+    "</div>" +
+    '<div class="jpanels">' +
+    methodBars(base) +
+    trends(base) +
+    '</div><section class="surface" id="jpapers"><h2>' +
+    esc(jf.method ? d.methods.get(jf.method).label + " · " : "") +
+    "발행 목록 <small>" +
+    num(filtered.length) +
+    "건</small></h2>" +
+    (list
+      ? '<ol class="jpapers" start="' +
+        ((jf.page - 1) * 25 + 1) +
+        '">' +
+        list +
+        "</ol>"
+      : "<p>조건에 맞는 발행 기록이 없습니다.</p>") +
+    '<div class="jpaging">' +
+    (jf.page > 1 ? jbutton("page", jf.page - 1, "이전") : "") +
+    "<span>" +
+    jf.page +
+    " / " +
+    num(pages) +
+    "</span>" +
+    (jf.page < pages ? jbutton("page", jf.page + 1, "다음") : "") +
+    "</div></section>" +
+    '<details class="surface"><summary>월별 수집 기록 · 최근 신규 ' +
+    num(run.added) +
+    '건</summary><div class="table-wrap"><table class="data-table"><thead><tr><th>실행일</th><th>신규</th><th>기존 보완</th><th>중복 수신</th><th>부분 / 실패 저널</th><th>두 API 모두 실패</th><th>누적</th></tr></thead><tbody>' +
+    [...d.state.runs]
+      .reverse()
+      .map(
+        (s) =>
+          "<tr>" +
+          [
+            s.date,
+            num(s.added),
+            num(s.updated),
+            num(s.duplicates),
+            s.partial.length + " / " + s.failed.length,
+            s.api_failed?.length ?? "미기록",
+            num(s.total),
+          ]
+            .map((v) => "<td>" + esc(v) + "</td>")
+            .join("") +
+          "</tr>",
+      )
+      .join("") +
+    "</tbody></table></div></details>";
+}
+function renderDirectory() {
+  const d = journalData,
+    groups = new Map(),
+    q = jnorm(jf.directory);
+  for (const j of d.journals.values()) {
+    if (
+      !jnorm(
+        [j.name, j.abbr, j.field, j.print_issn, j.online_issn].join(" "),
+      ).includes(q)
+    )
+      continue;
+    if (!groups.has(j.field)) groups.set(j.field, []);
+    const c = d.state.coverage[j.id];
+    if (!c) {
+      groups.get(j.field).push("<p>" + esc(j.name) + " · 미수집</p>");
+      continue;
+    }
+    const stats = Object.entries(c.sources)
+      .map(
+        ([n, s]) =>
+          "<li>" +
+          esc(n) +
+          " · 보고 " +
+          (s.reported == null ? "미확인" : num(s.reported)) +
+          " · 수신 " +
+          num(s.received) +
+          " · " +
+          num(s.pages) +
+          "쪽 · " +
+          (s.complete ? "API 끝 확인" : "API 끝 미확인") +
+          (s.errors.length ? " · " + esc(s.errors.join(" / ")) : "") +
+          "</li>",
+      )
+      .join("");
+    groups.get(j.field).push(
+      "<details><summary>" +
+        esc(j.name) +
+        " <small>" +
+        statuses[c.status] +
+        " · " +
+        num(c.total) +
+        "건</small></summary>" +
+        "<p>" +
+        jurl(j.url, "공식 저널") +
+        " · " +
+        jurl(j.issn_evidence || d.registry.issn_source, "ISSN 근거") +
+        " · 인쇄 " +
+        esc(j.print_issn || "해당 없음") +
+        " / 온라인 " +
+        esc(j.online_issn || "미확인") +
+        "</p>" +
+        "<p>최근 점검 " +
+        esc(c.checked) +
+        " · Crossref 마지막 성공 " +
+        esc(c.last_success || "없음") +
+        " · 출판사 전체 목차 대조 " +
+        (c.publisher_toc.complete ? "완료" : "미완료") +
+        "</p><ul>" +
+        stats +
+        "</ul>" +
+        '<div class="table-wrap"><table class="data-table"><thead><tr><th>연도</th><th>누적</th><th>초록</th><th>Crossref DOI</th><th>OpenAlex DOI</th><th>공통 DOI</th><th>OpenAlex에만</th><th>목차 연결</th></tr></thead><tbody>' +
+        Object.entries(c.years)
+          .map(
+            ([y, t]) =>
+              "<tr>" +
+              [
+                y,
+                t.total,
+                t.abstracts,
+                t.crossref,
+                t.openalex,
+                t.both,
+                t.only_openalex,
+                c.publisher_toc.counts[y] || 0,
+              ]
+                .map(
+                  (v, i) =>
+                    "<td>" +
+                    (i >= 3 &&
+                    i <= 6 &&
+                    !(i === 3
+                      ? c.sources.Crossref.complete
+                      : i === 4
+                        ? c.sources.OpenAlex.complete
+                        : c.sources.Crossref.complete &&
+                          c.sources.OpenAlex.complete)
+                      ? "미완료 · "
+                      : "") +
+                    esc(v) +
+                    "</td>",
+                )
+                .join("") +
+              "</tr>",
+          )
+          .join("") +
+        "</tbody></table></div>" +
+        '<p class="muted">한 출처에서만 발견한 DOI는 대조 후보입니다. 출판사 누락 규모는 미확인입니다.</p>' +
+        jbutton("journal", j.id, "이 저널의 발행 목록") +
+        "</details>",
+    );
+  }
+  document.getElementById("jdir-list").innerHTML =
+    [...groups]
+      .map(
+        ([f, rows]) =>
+          "<section><h3>" +
+          esc(f) +
+          " · " +
+          rows.length +
+          "종</h3>" +
+          rows.join("") +
+          "</section>",
+      )
+      .join("") || "<p>일치하는 저널이 없습니다.</p>";
+}
+function journalPaper(key) {
+  const d = journalData,
+    r = d.byKey.get(key);
+  if (!r) return;
+  const a = r.a;
+  const facts = [
+    ["저널", jurl(r.j.url, r.j.name)],
+    ["저자", esc((a.authors || []).join(", ") || "미확인")],
+    ["발행일 · 정밀도", jdate(r.date)],
+    ["온라인 선출판", jdate(a.online)],
+    ["권호 발행", jdate(a.issue_date)],
+    [
+      "권 · 호 · 면",
+      esc([a.volume, a.issue, a.pages].map((v) => v || "—").join(" · ")),
+    ],
+    ["최초 발견", esc(a.first_seen)],
+    [
+      "발행 유형",
+      esc(
+        a.kind === "notice"
+          ? "비연구물 · 방법 집계 제외"
+          : a.kind === "journal-article"
+            ? "저널 발행물 · 세부 유형 미확인"
+            : a.kind,
+      ),
+    ],
+    ["DOI", a.doi ? jurl("https://doi.org/" + a.doi, a.doi) : "미확인"],
+  ];
+  const ev = (a.methods || [])
+    .map(
+      (e) =>
+        "<li><b>" +
+        esc(
+          d.paths
+            .get(e.method)
+            .map((k) => d.methods.get(k).label)
+            .join(" › "),
+        ) +
+        "</b><p>" +
+        esc(e.term) +
+        " · " +
+        esc(e.role) +
+        " · " +
+        journalLevels[e.level] +
+        "</p><p>" +
+        esc(e.evidence) +
+        " · " +
+        jurl(e.url, e.location) +
+        "</p></li>",
+    )
+    .join("");
+  const refs = (a.resources || [])
+    .map(
+      (x) =>
+        "<li>" +
+        jurl(x.url, x.kind) +
+        (x.registered ? " · 자료 등록 " + esc(x.registered) : "") +
+        " · " +
+        esc(x.source || "") +
+        "</li>",
+    )
+    .join("");
+  openDialog(
+    a.title || a.doi || "제목 미확인",
+    "<p>" +
+      [
+        a.publisher_url || a.url
+          ? jurl(a.publisher_url || a.url, "논문 원문·출판사")
+          : "",
+        a.toc_url ? jurl(a.toc_url, "권호 목차") : "",
+      ]
+        .filter(Boolean)
+        .join(" · ") +
+      '</p><dl class="facts">' +
+      facts.map(([k, v]) => "<dt>" + k + "</dt><dd>" + v + "</dd>").join("") +
+      "</dl>" +
+      "<h3>저자 키워드</h3><p>" +
+      ((a.keywords || []).map((t) => "#" + esc(t)).join(" ") || "미확인") +
+      "</p><h3>방법론 근거</h3>" +
+      (ev ? "<ul>" + ev + "</ul>" : "<p>미확인</p>") +
+      "<h3>재현 패키지·관련 자료</h3>" +
+      (refs ? "<ul>" + refs + "</ul>" : "<p>확인된 링크 없음</p>") +
+      "<h3>서지 출처</h3><p>" +
+      (a.sources || [])
+        .map((n) =>
+          jurl(
+            n === "Crossref" && a.doi
+              ? "https://api.crossref.org/works/" + a.doi
+              : n === "OpenAlex"
+                ? a.source_ids?.find((x) =>
+                    x.startsWith("https://openalex.org/"),
+                  )
+                : n.includes("공식 목차")
+                  ? a.toc_url
+                  : d.sources[n],
+            n,
+          ),
+        )
+        .join(" · ") +
+      "</p>",
+  );
+}
+document.addEventListener("submit", (e) => {
+  if (e.target.id !== "journal-search") return;
+  e.preventDefault();
+  jf.q = new FormData(e.target).get("q").trim();
+  jf.page = 1;
+  renderJournalResults();
+});
+document.addEventListener("input", (e) => {
+  if (e.target.id === "jdir-q") {
+    jf.directory = e.target.value;
+    renderDirectory();
+  }
+});
+document.addEventListener("change", (e) => {
+  const k = e.target.dataset.jfilter;
+  if (!k) return;
+  jf[k] = k === "packages" ? e.target.checked : e.target.value;
+  jf.page = 1;
+  renderJournalResults();
+});
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-jour]");
+  if (!b) return;
+  const k = b.dataset.jour,
+    v = b.dataset.value;
+  if (k === "paper") return journalPaper(v);
+  if (k === "directory") {
+    const el = document.getElementById("jdir");
+    el.open = true;
+    el.scrollIntoView();
+    return;
+  }
+  if (k === "list") return document.getElementById("jpapers").scrollIntoView();
+  if (k === "reset") {
+    Object.assign(jf, {
+      q: "",
+      field: "",
+      journal: "",
+      year: "",
+      level: "",
+      method: "",
+      packages: false,
+      page: 1,
+    });
+    journalPage();
+    return;
+  }
+  if (k === "journal") {
+    jf.journal = v;
+    jf.field = "";
+    jf.page = 1;
+    journalPage();
+    document.getElementById("main").scrollIntoView();
+    return;
+  }
+  if (k === "method") {
+    jf.method = v;
+    jf.page = 1;
+  }
+  if (k === "page") jf.page = Number(v);
+  renderJournalResults();
+  if (k === "page") document.getElementById("jpapers").scrollIntoView();
+});

@@ -67,3 +67,15 @@ python -m polihub status --spec studies/my/study.json
 기본 화면에는 대표자료 7개가 나온다. 국가 필터는 자료 대상 지역을 사용한다. 국제조사의 프로젝트 범위와 개별 배포판 국가표는 따로 보관한다. 접근하지 못한 배포판의 기간·수록국·변수·표본 수는 미확인 상태다. 포털·조건부 패널 후보·선별 보류 자료는 이용 안내에서 확인한다.
 
 기능 시험은 `python -m unittest discover -s tests -v`로 실행한다. 단독 HTML과 원자료 없는 소스 묶음은 `python scripts/package.py --out /원하는/폴더`로 만든다. 지도는 Natural Earth의 공용 도메인 1:110m 국가 경계로 그렸다. [Natural Earth 원본](https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_admin_0_countries.geojson)
+
+## 저널·방법론 색인
+
+독립 실행 파일 [PoliHub-v5.html](PoliHub-v5.html)을 내려받아 브라우저에서 열면 저널 색인이 먼저 표시된다. 자료 탐색과 연구 작업공간은 상단 메뉴에서 이용한다. 웹 진입점은 [저널·방법론](index.html#journals)이다. 첫 수집 구간, 출처별 응답과 저널·연도별 근거 확보율은 저널 화면에 표시한다.
+
+```bash
+python -m polihub.journals
+python scripts/package.py --out . --versioned-only
+python scripts/journal_summary.py
+```
+
+[수집 범위·중복 처리·분류 근거](docs/JOURNALS.md) · [저널 설정](catalog/journals.json) · [방법 분류와 별칭](catalog/methods.json) · [월별 수집 워크플로](.github/workflows/journals.yml)

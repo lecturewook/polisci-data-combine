@@ -1,0 +1,111 @@
+name: 저널 발행목록 누적 및 HTML 배포
+on:
+  schedule:
+    - cron: '20 0 1 * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['catalog/site-version']
+permissions: {}
+concurrency:
+  group: polihub-journal-publication
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    timeout-minutes: 200
+    permissions:
+      contents: read
+    outputs:
+      base: ${{ steps.base.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - id: base
+        run: |
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "asset=PoliHub-v$(cat catalog/site-version).html" >> "$GITHUB_OUTPUT"
+      - name: 누적 수집 회귀 시험
+        run: python -m unittest discover -s tests -p test_journals.py
+      - name: 고정 시작일부터 수집
+        env:
+          CROSSREF_MAILTO: ${{ vars.CROSSREF_MAILTO }}
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+        run: |
+          rc=0
+          python -m polihub.journals || rc=$?
+          if [[ "$rc" != 0 && "$rc" != 2 ]]; then exit "$rc"; fi
+          python scripts/journal_summary.py >> "$GITHUB_STEP_SUMMARY"
+      - name: 단일 파일 빌드
+        run: python scripts/package.py --out . --versioned-only
+      - uses: actions/upload-artifact@v4
+        with:
+          name: journal-publication
+          path: |
+            catalog/journal-index.json.gz
+            ${{ steps.base.outputs.asset }}
+          if-no-files-found: error
+
+  publish:
+    needs: collect
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      branch: ${{ steps.push.outputs.branch }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.collect.outputs.base }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: journal-publication
+      - id: push
+        name: 누적 색인 반영
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          version=$(cat catalog/site-version)
+          asset="PoliHub-v${version}.html"
+          test -s "$asset"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- catalog/journal-index.json.gz "$asset"
+          if ! git diff --cached --quiet; then git commit -m '저널 누적 색인과 독립 HTML 갱신'; fi
+          if ! git push origin "HEAD:refs/heads/$DEFAULT_BRANCH"; then
+            branch="polihub/journals-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+            git push origin "HEAD:refs/heads/$branch"
+            echo "branch=$branch" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Release 첨부 및 다운로드 대조
+        if: steps.push.outputs.branch == ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(cat catalog/site-version)
+          tag="polihub-v${version}-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          asset="PoliHub-v${version}.html"
+          python scripts/journal_summary.py > "$RUNNER_TEMP/release-notes.md"
+          gh release create "$tag" "$asset" --target "$(git rev-parse HEAD)" --title "PoliHub v$version · $(TZ=Asia/Seoul date +%F)" --notes-file "$RUNNER_TEMP/release-notes.md"
+          gh release download "$tag" --pattern "$asset" --dir "$RUNNER_TEMP/verified"
+          cmp "$asset" "$RUNNER_TEMP/verified/$asset"
+          echo "[HTML 다운로드]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/$tag/$asset)" >> "$GITHUB_STEP_SUMMARY"
+
+  pull-request:
+    needs: publish
+    if: needs.publish.outputs.branch != ''
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - name: 보호된 기본 브랜치에 병합 요청
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ needs.publish.outputs.branch }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: gh pr create --repo "$GITHUB_REPOSITORY" --head "$BRANCH" --base "$DEFAULT_BRANCH" --title '저널 누적 색인과 HTML 갱신' --body '검증한 수집 결과와 독립 HTML을 반영합니다.'
