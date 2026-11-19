@@ -142,6 +142,9 @@ def refresh(
         index = ArticleIndex(state["articles"])
         previous = set(index.rows)
         prior_counted = {k for k, a in index.rows.items() if counted(a)}
+        prior_eligible = {
+            k for k in prior_counted if index.rows[k].get("kind") != "notice"
+        }
         prior_abstracts = {
             k
             for k in prior_counted
@@ -313,8 +316,8 @@ def refresh(
                 packages = dict(source=DATAVERSE_TABLE, error=str(e)[:140])
         abstract_audit = {}
         if recover:
-            newly_found, abstract_audit = recover(index, taxonomy, str(day))
-            changed.update(newly_found & previous)
+            reviewed_changes, abstract_audit = recover(index, taxonomy, str(day))
+            changed.update(reviewed_changes & previous)
             by_journal = abstract_audit.pop("journals")
             by_year = defaultdict(Counter)
             verified = set()
@@ -330,6 +333,11 @@ def refresh(
                     counts["eligible_abstracts"] += 1
                     verified.add(key)
             additions = verified - prior_abstracts
+            now_eligible = {
+                k
+                for k, a in index.rows.items()
+                if counted(a) and a.get("kind") != "notice"
+            }
             for jid, coverage in state["coverage"].items():
                 for year, counts in coverage["years"].items():
                     totals = by_year[jid, year]
@@ -343,6 +351,12 @@ def refresh(
                 before=len(prior_abstracts),
                 after=len(verified),
                 gained=len(additions),
+                reclassified=len(prior_eligible - now_eligible),
+                before_same_cohort=len(prior_abstracts & now_eligible),
+                unconfirmed_after_review=len(
+                    (prior_abstracts & now_eligible) - verified
+                ),
+                excluded_abstracts=len(prior_abstracts - now_eligible),
                 eligible=sum(c["eligible"] for c in by_year.values()),
             )
         for a in index.rows.values():
@@ -385,17 +399,28 @@ def refresh(
 
 
 def main():
+    from functools import partial
     from .journal_abstracts import recover_abstracts
+    from .journal_repec import repec_batch
 
     p = argparse.ArgumentParser(
         description="고정 시작일부터 저널별 Crossref 발행목록을 수집하고 OpenAlex와 대조합니다."
     )
     p.add_argument("--supplement", type=Path, help="출처가 있는 서지 보완 JSON")
+    p.add_argument(
+        "--recheck-abstracts",
+        action="store_true",
+        help="같은 날 확인한 저널 페이지와 학술 색인의 초록 상태도 다시 조회합니다.",
+    )
     args = p.parse_args()
     run = refresh(
         supplements=read(args.supplement) if args.supplement else [],
         package_table=dataverse_table,
-        recover=recover_abstracts,
+        recover=partial(
+            recover_abstracts,
+            recheck_abstracts=args.recheck_abstracts,
+            repec=repec_batch,
+        ),
     )
     print(json.dumps(run, ensure_ascii=False))
     return 2 if run["primary_incomplete"] else 0

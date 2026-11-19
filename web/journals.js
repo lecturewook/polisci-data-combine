@@ -171,6 +171,16 @@ async function journalPage() {
     const d = journalData,
       s = d.state,
       run = s.runs[s.runs.length - 1];
+    const monthGain = s.runs
+      .filter((v) => v.date.slice(0, 7) === run.date.slice(0, 7))
+      .reduce(
+        (sum, v) =>
+          sum +
+          (v.abstract_audit
+            ? (v.abstract_audit.after || 0) - (v.abstract_audit.before || 0)
+            : 0),
+        0,
+      );
     const complete = Object.values(s.coverage).filter(
       (c) => c.status === "success",
     ).length;
@@ -221,8 +231,8 @@ async function journalPage() {
           num(run.abstract_audit.eligible) +
           "편 중 " +
           num(run.abstract_audit.after) +
-          "편의 초록을 확인했습니다. 이번에 새로 확인한 초록은 " +
-          num(run.abstract_audit.gained) +
+          "편의 초록을 확인했습니다. 이달의 보완 실행을 거친 확인 편수의 순증은 " +
+          num(monthGain) +
           "편입니다.</p><p>출판사 페이지에 보이는 초록이 Crossref 기탁 자료에서는 빠질 수 있습니다. 공식 저널의 초록란과 DOI·표제가 일치하는 학술 색인을 대조합니다. 각 논문에서 확인 출처와 Google Scholar 제목 검색을 열 수 있습니다.</p></details>"
         : "") +
       "</div>" +
@@ -247,7 +257,11 @@ async function journalPage() {
         ),
       ) +
       select("level", "논문별 최고 근거", journalLevels) +
-      select("abstract", "초록 상태", { yes: "확인", no: "미확인" }) +
+      select("abstract", "초록 상태", {
+        yes: "확인",
+        no: "미확인 전체",
+        unavailable: "출판사가 미제공으로 표시",
+      }) +
       '<label class="jcheck"><input type="checkbox" data-jfilter="packages" ' +
       (jf.packages ? "checked" : "") +
       "> 재현 패키지 연결</label>" +
@@ -418,7 +432,10 @@ function renderJournalResults() {
       (!jf.journal || r.j.id === jf.journal) &&
       (!jf.year || r.date.startsWith(jf.year)) &&
       (!jf.level || r.best === levelOrder[jf.level]) &&
-      (!jf.abstract || Boolean(r.a.has_abstract) === (jf.abstract === "yes")) &&
+      (!jf.abstract ||
+        (jf.abstract === "unavailable"
+          ? !r.a.has_abstract && Boolean(r.a.publisher_statement)
+          : Boolean(r.a.has_abstract) === (jf.abstract === "yes"))) &&
       (!jf.packages ||
         (r.a.resources || []).some((v) => v.kind === "재현 패키지")) &&
       words.every((w) => r.search.includes(w)),
@@ -491,7 +508,7 @@ function renderJournalResults() {
     "</div></section>" +
     '<details class="surface"><summary>월별 수집 기록 · 최근 신규 ' +
     num(run.added) +
-    '건</summary><div class="table-wrap"><table class="data-table"><thead><tr><th>실행일</th><th>신규</th><th>기존 보완</th><th>중복 수신</th><th>부분 / 실패 저널</th><th>두 API 모두 실패</th><th>누적</th></tr></thead><tbody>' +
+    '건</summary><div class="table-wrap"><table class="data-table"><thead><tr><th>실행일</th><th>신규</th><th>기존 보완</th><th>새로 확인한 초록</th><th>근거 재검토로 미확인 전환</th><th>방법 집계에서 재분류</th><th>중복 수신</th><th>부분 / 실패 저널</th><th>두 API 모두 실패</th><th>누적</th></tr></thead><tbody>' +
     [...d.state.runs]
       .reverse()
       .map(
@@ -501,6 +518,9 @@ function renderJournalResults() {
             s.date,
             num(s.added),
             num(s.updated),
+            s.abstract_audit?.gained ?? "미기록",
+            s.abstract_audit?.unconfirmed_after_review ?? "미기록",
+            s.abstract_audit?.reclassified ?? "미기록",
             num(s.duplicates),
             s.partial.length + " / " + s.failed.length,
             s.api_failed?.length ?? "미기록",
@@ -552,6 +572,10 @@ function renderDirectory() {
       )
       .join("");
     const audit = c.openalex_years || {};
+    const publisherChecks = Object.entries(c.abstract_review?.publisher || {})
+      .sort((a, b) => b[1] - a[1])
+      .map(([reason, n]) => "<li>" + esc(reason) + " · " + num(n) + "편</li>")
+      .join("");
     const sourceOnly = [
       ...new Set(Object.values(c.years).flatMap((y) => y.examples || [])),
     ];
@@ -595,7 +619,7 @@ function renderDirectory() {
         "</p><ul>" +
         stats +
         "</ul>" +
-        '<div class="table-wrap"><table class="data-table"><thead><tr><th>연도</th><th>누적</th><th>초록</th><th>Crossref DOI</th><th>OpenAlex DOI</th><th>공통 DOI</th><th>OpenAlex에만</th><th>목차 연결</th><th>OpenAlex 연도별 집계</th></tr></thead><tbody>' +
+        '<div class="table-wrap"><table class="data-table"><thead><tr><th>연도</th><th>전체 발행 기록</th><th>초록이 있는 발행 기록</th><th>Crossref DOI</th><th>OpenAlex DOI</th><th>공통 DOI</th><th>OpenAlex에만</th><th>목차 연결</th><th>OpenAlex 연도별 집계</th><th>방법 집계 대상의 초록 확인 / 대상 논문</th></tr></thead><tbody>' +
         Object.entries(c.years)
           .map(
             ([y, t]) =>
@@ -611,6 +635,14 @@ function renderDirectory() {
                 c.publisher_toc.counts[y] || 0,
                 audit.counts?.[y] ??
                   (audit.scope?.startsWith("선택 기간") ? 0 : "미확인"),
+                t.eligible == null
+                  ? "미집계"
+                  : num(t.eligible_abstracts) +
+                    " / " +
+                    num(t.eligible) +
+                    (t.eligible
+                      ? " (" + percent(t.eligible_abstracts, t.eligible) + ")"
+                      : ""),
               ]
                 .map(
                   (v, i) =>
@@ -637,6 +669,17 @@ function renderDirectory() {
           ? "<p>이번에 초록을 새로 확인한 논문 " +
             num(c.abstract_review.gained || 0) +
             "편</p>"
+          : "") +
+        (publisherChecks
+          ? "<details><summary>공식 저널 초록 조회 결과</summary>" +
+            (c.abstract_review.publisher_reused
+              ? "<p>이 중 " +
+                num(c.abstract_review.publisher_reused) +
+                "편은 같은 날 확인한 게재처의 응답을 사용했습니다.</p>"
+              : "") +
+            "<ul>" +
+            publisherChecks +
+            "</ul></details>"
           : "") +
         '<p class="muted">OpenAlex 연도별 집계 범위 · ' +
         esc(audit.scope || "별도 조회 없음") +
@@ -692,8 +735,18 @@ function journalPaper(key) {
           esc(proof.location) +
           (proof.checked ? " · " + esc(proof.checked) + " 확인" : "")
         : "기존 수집에서 확인 · 초록의 세부 출처 미기록"
-      : "초록 미확인") +
+      : a.publisher_statement
+        ? "출판사가 별도 초록을 제공하지 않는다고 표시했습니다."
+        : "초록 미확인") +
     "</p>" +
+    (a.publisher_statement
+      ? "<p>" +
+        jurl(a.publisher_statement.url, a.publisher_statement.label) +
+        "</p>"
+      : "") +
+    (a.superseded_abstract && !a.has_abstract
+      ? "<p>이전에 수록한 메타데이터는 출판사의 초록란과 대조한 뒤 확인 집계에서 제외했습니다.</p>"
+      : "") +
     (a.abstract_summary
       ? "<p><b>초록 요약</b> · " + esc(a.abstract_summary) + "</p>"
       : "") +
@@ -731,7 +784,10 @@ function journalPaper(key) {
           : a.kind === "journal-article"
             ? "저널 발행물 · 세부 유형 미확인"
             : a.kind,
-      ),
+      ) +
+        (a.genre_proof
+          ? " · " + jurl(a.genre_proof.url, a.genre_proof.location)
+          : ""),
     ],
     ["DOI", a.doi ? jurl("https://doi.org/" + a.doi, a.doi) : "미확인"],
   ];

@@ -35,9 +35,11 @@ Crossref에 등록된 인쇄·온라인 ISSN을 OR로 결합해 발행일 필터
 
 Crossref는 출판사가 기탁한 메타데이터를 제공한다. 초록 기탁은 권장 사항이며 논문 페이지에 있는 초록도 API에서 빠질 수 있다. Google Scholar는 논문을 찾은 뒤 원문 또는 저자가 쓴 초록이 있는 페이지로 이동하는 경로를 제공한다. 논문 상세 창에는 확인 출처, 원문, 정확한 표제로 검색하는 링크를 함께 제공한다. [Crossref의 저널 메타데이터 지침](https://www.crossref.org/documentation/principles-practices/journals/) · [Google Scholar 색인 안내](https://scholar.google.com/intl/en/scholar/inclusion.html)
 
-매번 방법 집계 대상 중 초록이 비어 있는 논문을 다시 점검한다. 저널·발행연도별 공식 페이지 표본을 먼저 열어 DOI 또는 표제와 출판사의 명시적인 초록란을 확인한다. 이어서 확보한 DOI 목록을 OpenAlex, Semantic Scholar, OpenAIRE의 문서화된 묶음 조회로 대조하고 저널 게재본의 DOI와 표제가 일치하는 초록을 채택한다. 남은 논문은 공식 페이지로 돌아가 점검한다. 출판사에서 자동 접근을 제한하면 해당 정책과 응답을 기록한다. 페이지의 일반 소개문, 검색 결과 발췌문과 잘린 텍스트는 초록 확보 건수에서 제외한다. 저널 페이지를 직접 열람한 경우와 학술 색인에서 확인한 경우는 서로 다른 출처로 표시한다. [OpenAlex API](https://help.openalex.org/api/authentication/) · [Semantic Scholar Academic Graph](https://api.semanticscholar.org/api-docs/) · [OpenAIRE 조회 방식](https://graph.openaire.eu/docs/apis/graph-api-v4/quickstart/)
+매번 방법 집계 대상 중 초록이 비어 있는 논문을 다시 점검한다. 저널·발행연도별 공식 페이지 표본을 먼저 열어 DOI 또는 표제와 출판사의 명시적인 초록란을 확인한다. 이어서 확보한 DOI 목록을 OpenAlex, Semantic Scholar, OpenAIRE의 문서화된 묶음 조회로 대조하고 저널 게재본의 DOI와 표제가 일치하는 초록을 채택한다. Journal of Public Economics와 Public Choice는 RePEc가 공개한 두 저널의 ReDIF 배포본도 대조한다. DOI 또는 Elsevier의 고유 논문번호(PII)와 표제를 확인한다. 이 추가 출처의 로컬 조회에는 `rsync`가 필요하다. [RePEc 데이터 안내](https://ideas.repec.org/getdata.html) · [공식 배포 서버](https://rsync.repec.org/)
 
-확인한 초록으로 방법론을 다시 분류한다. 색인에는 초록 확인 위치와 링크, 짧은 방법 근거를 남긴다. 초록을 개별 대조한 일부 논문에는 한국어 요약도 제공한다. 원어 초록은 연결한 출처에서 읽을 수 있다. 전체 발행 기록의 초록 수, 방법 집계 대상의 초록 수, 초록 또는 방법 적용 근거가 있는 논문의 수는 분모가 달라 각각 표시한다.
+남은 논문은 공식 페이지로 돌아가 점검한다. 같은 한국 날짜에 반복 실행하면 출판사의 초록 미제공·접근 제한 응답과 DOI 조회에서 초록을 받지 못한 결과를 재사용하며 다음 날짜에는 다시 요청한다. 서버 오류와 전송 실패는 당일에도 재시도한다. Actions의 수동 실행 옵션 또는 로컬의 `--recheck-abstracts`로 당일 재조회를 선택할 수 있다. 출판사에서 자동 접근을 제한하면 해당 정책과 응답을 기록한다. 페이지의 일반 소개문, 검색 결과 발췌문과 잘린 텍스트는 초록 확보 건수에서 제외한다. Cambridge Core에서는 검색용 메타태그가 서평 문두나 도서 서지를 담는 경우가 있어, 독자가 볼 수 있는 Abstract 영역과 출판사의 초록 미제공 표기를 확인한다. 재검토로 철회한 초록 근거는 이력으로 보존한다. 저널 페이지를 직접 열람한 경우와 학술 색인에서 확인한 경우는 서로 다른 출처로 표시한다. [OpenAlex API](https://help.openalex.org/api/authentication/) · [Semantic Scholar Academic Graph](https://api.semanticscholar.org/api-docs/) · [OpenAIRE 조회 방식](https://graph.openaire.eu/docs/apis/graph-api-v4/quickstart/)
+
+확인한 초록으로 방법론을 다시 분류한다. 색인에는 초록 확인 위치와 링크, 짧은 방법 근거를 남긴다. 초록을 개별 대조한 일부 논문에는 한국어 요약도 제공한다. 출판사가 초록 미제공을 명시한 경우에는 해당 안내를 연결한다. 권호 표지(Cover and Front/Back matter), 감사의 글과 편집자 안내는 발행 목록에 보존하고 방법 분모에서 뺀다. 공식 목차가 일반 서평으로 분류한 글은 제외하고, 여러 연구를 함께 검토하는 서평 에세이(Book Review Essay)는 리뷰로 포함한다. 유형을 확인한 항목에서는 출판사의 표기를 연결한다. 이러한 유형 재분류는 새 초록 확인 수와 별도로 기록한다. 원어 초록은 연결한 출처에서 읽을 수 있다. 전체 발행 기록의 초록 수, 방법 집계 대상의 초록 수, 초록 또는 방법 적용 근거가 있는 논문의 수는 분모가 달라 각각 표시한다.
 
 ## 월별 실행과 장애
 

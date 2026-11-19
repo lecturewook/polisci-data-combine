@@ -122,17 +122,55 @@ def recover_abstracts(
     providers=BATCH_SOURCES,
     publisher_factory=Publisher,
     pause=time.sleep,
+    recheck_abstracts=False,
+    repec=None,
 ):
+    # Older Cambridge search metadata sometimes contains a book citation or a preview.
+    # Retain the superseded proof and only suspend method assignments derived from that field.
+    revalidate = set()
+    for key, a in index.rows.items():
+        proof = a.get("abstract_proof") or {}
+        if (
+            not counted(a)
+            or not a.get("has_abstract")
+            or "개별 대조" in proof.get("location", "")
+        ):
+            continue
+        suspect = (
+            proof.get("source") == "공식 저널"
+            and proof.get("location") == "citation_abstract"
+            and urlsplit(proof.get("url", "")).hostname == "www.cambridge.org"
+        )
+        if not suspect and not a.get("publisher_statement"):
+            continue
+        revalidate.add(key)
+        old = dict(proof)
+        retired = [
+            e
+            for e in a.get("methods", [])
+            if e.get("level") != "direct"
+            and e.get("location") == "공식 저널 · 초록"
+            and e.get("url") == proof.get("url")
+        ]
+        if retired:
+            old["methods"] = retired
+            a["methods"] = [e for e in a["methods"] if e not in retired]
+        a.setdefault("superseded_abstract", old)
+        a["has_abstract"] = False
+        a.pop("abstract_proof", None)
     missing = {
         key: a
         for key, a in index.rows.items()
-        if counted(a) and a.get("kind") != "notice" and not a.get("has_abstract")
+        if key in revalidate
+        or (counted(a) and a.get("kind") != "notice" and not a.get("has_abstract"))
     }
     found = set()
     checks = defaultdict(dict)
     summary = {}
     hosts = {}
+    reused = set()
     progress = Counter()
+    prior_kinds = {k: a.get("kind") for k, a in missing.items()}
     for a in missing.values():
         progress[a["journal"]] += 1
 
@@ -148,6 +186,8 @@ def recover_abstracts(
         # The paper has already been identified. Nothing in this pass creates a bibliographic record.
         article["has_abstract"] = True
         article["abstract_proof"] = proof
+        if source == "공식 저널" and article.get("publisher_statement"):
+            article["previous_publisher_statement"] = article.pop("publisher_statement")
         for e in evidence:
             if e not in article.setdefault("methods", []):
                 article["methods"].append(e)
@@ -158,9 +198,45 @@ def recover_abstracts(
     def visit(keys):
         groups = defaultdict(list)
         for key in keys:
-            url = publisher_url(missing[key])
+            a = missing[key]
+            url = publisher_url(a)
+            last = a.get("abstract_check") or {}
+            reason = (last.get("sources") or {}).get("공식 저널", "")
+            if (
+                not recheck_abstracts
+                and url
+                and last.get("date") == day
+                and last.get("publisher_url", url) == url
+                and (last.get("publisher_url") or reason != "확인 가능한 초록란 없음")
+                and reason.startswith(
+                    (
+                        "확인 가능한 초록란 없음",
+                        "출판사가 초록 미제공",
+                        "출판사 HTTP 403",
+                        "robots 정책에 따라 보류",
+                        "robots HTTP 403",
+                        "출판사 접근 확인 화면",
+                        "다른 주소로 이동 · 원문 확인 필요",
+                        "HTML 초록 페이지 미확인",
+                    )
+                )
+            ):
+                checks[key]["공식 저널"] = reason
+                reused.add(key)
+                continue
             if url:
-                groups[urlsplit(url).hostname].append((key, url))
+                host = urlsplit(url).hostname
+                if key in revalidate:
+                    canonical = publisher_url(
+                        {
+                            "publisher_url": (a.get("superseded_abstract") or {}).get(
+                                "url"
+                            )
+                        }
+                    )
+                    if canonical and urlsplit(canonical).hostname == host:
+                        url = canonical
+                groups[host].append((key, url))
             else:
                 checks[key]["공식 저널"] = "공식 게재처 주소 미확인"
 
@@ -178,6 +254,11 @@ def recover_abstracts(
         with ThreadPoolExecutor(max_workers=6) as pool:
             for results in pool.map(one_host, groups.items()):
                 for key, text, url, location in results:
+                    if location == "출판사가 초록 미제공으로 표시":
+                        missing[key].setdefault(
+                            "publisher_statement",
+                            {"url": url, "label": location, "checked": day},
+                        )
                     ok = keep(key, text, "공식 저널", url, location) if text else False
                     checks[key]["공식 저널"] = "확인" if ok else location
 
@@ -186,13 +267,40 @@ def recover_abstracts(
     for key in sorted(missing):
         a = missing[key]
         samples.setdefault((a["journal"], publication(a)[:4]), key)
-    visit(samples.values())
-    print(
-        f"공식 저널 우선 대조 {len(samples)}편 · 초록 {len(found)}편 확인", flush=True
-    )
+    first = list(dict.fromkeys([*sorted(revalidate), *samples.values()]))
+    visit(first)
+    print(f"공식 저널 우선 대조 {len(first)}편 · 초록 {len(found)}편 확인", flush=True)
 
-    for source, size, lookup in providers:
-        candidates = [k for k in missing if k not in found and missing[k].get("doi")]
+    scoped = [(source, size, lookup, None) for source, size, lookup in providers]
+    if repec:
+        from functools import partial
+        from .journal_repec import SERIES
+
+        scoped.extend(
+            ("RePEc · " + series, len(missing) or 1, partial(repec, jid), jid)
+            for jid, series in SERIES.items()
+        )
+    for source, size, lookup, journal in scoped:
+        candidates = []
+        reused_dois = 0
+        for key, a in missing.items():
+            if (
+                key in found
+                or not a.get("doi")
+                or (journal and a["journal"] != journal)
+            ):
+                continue
+            previous = a.get("abstract_check") or {}
+            outcome = (previous.get("sources") or {}).get(source)
+            if (
+                not recheck_abstracts
+                and previous.get("date") == day
+                and outcome in ("확인 가능한 초록 미수신", "DOI·표제 대조 보류")
+            ):
+                checks[key][source] = outcome
+                reused_dois += 1
+            else:
+                candidates.append(key)
         requests = 0
         error = ""
         consecutive_errors = 0
@@ -223,6 +331,9 @@ def recover_abstracts(
                     checks[key][source] = "확인 가능한 초록 미수신"
                     continue
                 title, text, url, location = result
+                if article.get("publisher_statement"):
+                    checks[key][source] = "출판사의 초록 미제공 표기와 대조 필요"
+                    continue
                 if not same_title(article.get("title"), title):
                     checks[key][source] = "DOI·표제 대조 보류"
                     continue
@@ -237,9 +348,10 @@ def recover_abstracts(
             requests=requests,
             errors=error,
             recovered=sum(v.get(source) == "확인" for v in checks.values()),
+            reused_same_day=reused_dois,
         )
         print(
-            f"{source} DOI 대조 · {requests}회 요청 · 보완 {summary[source]['recovered']}편 · {error}",
+            f"{source} DOI 대조 · {requests}회 요청 · 같은 날 확인 기록 {reused_dois}편 · 보완 {summary[source]['recovered']}편 · {error}",
             flush=True,
         )
 
@@ -252,16 +364,25 @@ def recover_abstracts(
         data = by_journal[a["journal"]]
         if "공식 저널" in checks[key]:
             data["publisher"][checks[key]["공식 저널"]] += 1
+        if key in reused:
+            data["publisher_reused"] = data.get("publisher_reused", 0) + 1
         if key in found:
             data["sources"][a["abstract_proof"]["source"]] += 1
         else:
-            a["abstract_check"] = dict(date=day, sources=checks[key])
+            a["abstract_check"] = dict(
+                date=day, sources=checks[key], publisher_url=publisher_url(a)
+            )
     summary["공식 저널"] = dict(
-        outcomes=dict(sum((row["publisher"] for row in by_journal.values()), Counter()))
+        outcomes=dict(
+            sum((row["publisher"] for row in by_journal.values()), Counter())
+        ),
+        reused_same_day=len(reused),
     )
-    return found, dict(
+    changed_kinds = {k for k, a in missing.items() if a.get("kind") != prior_kinds[k]}
+    return found | revalidate | changed_kinds, dict(
         targeted=len(missing),
         recovered=len(found),
+        revalidated=len(revalidate),
         providers=summary,
         journals=by_journal,
     )

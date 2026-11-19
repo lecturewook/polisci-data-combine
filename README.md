@@ -1,6 +1,6 @@
 # PoliHub · 정치학 비교연구 데이터 허브
 
-**[PoliHub-v5.html 바로 다운로드](https://github.com/lecturewook/polisci-data-combine/releases/latest/download/PoliHub-v5.html)** · [배포 기록](https://github.com/lecturewook/polisci-data-combine/releases)
+**[PoliHub-v6.html 바로 다운로드](https://github.com/lecturewook/polisci-data-combine/releases/latest/download/PoliHub-v6.html)** · [이전 v5 다운로드](https://github.com/lecturewook/polisci-data-combine/releases/download/polihub-v5-44434383132-1/PoliHub-v5.html) · [배포 기록](https://github.com/lecturewook/polisci-data-combine/releases)
 
 한국과 동아시아를 중심으로 선거, 정치태도, 의회, 행정, 정책, 민주주의 자료를 찾고 연구별로 수집하는 도구다. 화면과 Python CLI가 같은 카탈로그를 읽는다. 원자료 카탈로그 기준일은 2026년 11월 18일이다. 51개 저널의 논문·방법론 색인에는 별도로 수집 기간과 갱신일을 표시한다.
 
@@ -73,6 +73,8 @@ python -m polihub status --spec studies/my/study.json
 ## 저널·방법론 색인
 
 독립 HTML을 브라우저에서 열면 저널 색인이 먼저 표시된다. 상단 메뉴에서 원자료 탐색과 연구 작업공간으로 이동할 수 있다. 저널 화면에서 출처별 응답, 분야별 저널 목록, 연도별 근거 확보율을 확인할 수 있다.
+
+방법 그래프의 초록색 위 막대는 해당 방법의 적용을 확인한 논문을, 황토색 아래 막대는 방법명 단서만 찾은 논문을 센다. 논문을 선택하면 방법을 확인한 위치, 초록의 출처, Google Scholar에서 원제목을 검색하는 링크가 나온다. 저널별 확보 현황에서 연도별 초록 확인 편수와 분모를 볼 수 있다.
 
 첫 수집 기간은 2021년 11월 19일~2026년 11월 19일이다. Crossref에서 51종의 마지막 페이지까지 확인한 고유 발행 기록은 22,442건이다. 그중 서평·정정 등 1,798건을 제외한 20,644편을 방법 집계 대상으로 삼았다. OpenAlex 연도별 집계는 51종 모두 대조했고, 개별 레코드 조회는 저널당 첫 100건 이후 인증을 요구했다. [최초 수집 검증본](https://github.com/lecturewook/polisci-data-combine/releases/tag/polihub-v5-44434383132-1) · [수집·브라우저 검사 로그](https://github.com/lecturewook/polisci-data-combine/actions/runs/44434383132)
 

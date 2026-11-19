@@ -55,7 +55,7 @@ def publisher_url(a):
     return ""
 
 
-def publisher_abstract(html, article):
+def publisher_abstract(html, article, facts=None):
     soup = BeautifulSoup(html, "html.parser")
     meta = {}
     for tag in soup.find_all("meta", content=True):
@@ -77,11 +77,44 @@ def publisher_abstract(html, article):
         normalized(t) for t in titles if t
     }:
         return "", "논문 식별 미확인"
-    for field in ("citation_abstract", "dcterms.abstract", "dc.description.abstract"):
+    cambridge = urlsplit(publisher_url(article)).hostname == "www.cambridge.org"
+    if cambridge and facts is not None:
+        genres = {
+            "book review": "서평",
+            "book reviews": "서평",
+            "corrigendum": "정정·추가·철회",
+            "erratum": "정정·추가·철회",
+            "editorial": "편집자료",
+        }
+        for label in soup.find_all(string=re.compile(r"^\s*Type\s*$", re.I)):
+            for node in (label.parent, label.parent.parent):
+                if node is None or (value := node.find_next_sibling()) is None:
+                    continue
+                value = value.get_text(" ", strip=True)
+                if value.casefold() in genres:
+                    facts.update(
+                        notice_type=genres[value.casefold()],
+                        location="Cambridge Core · Information · " + value,
+                    )
+                    break
+            if facts:
+                break
+    if soup.find(
+        string=re.compile(
+            r"^\s*(?:an abstract is not available for this (?:article|content)|no abstract (?:is )?available for this (?:article|content))\b",
+            re.I,
+        )
+    ):
+        return "", "출판사가 초록 미제공으로 표시"
+    for field in (
+        ()
+        if cambridge
+        else ("citation_abstract", "dcterms.abstract", "dc.description.abstract")
+    ):
         for value in meta.get(field, []):
             if text := abstract_text(value):
                 return text, field
-    for tag in soup.select('script[type="application/ld+json"]'):
+    for tag in [] if cambridge else soup.select('script[type="application/ld+json"]'):
         try:
             payload = json.loads(tag.get_text())
         except (ValueError, TypeError):
@@ -116,6 +149,18 @@ def publisher_abstract(html, article):
             raw = " ".join(paragraphs) if paragraphs else area.get_text(" ", strip=True)
             if text := abstract_text(raw):
                 return text, "공식 페이지 Abstract"
+    if cambridge:
+        for heading in soup.find_all(["h2", "h3", "h4"]):
+            if heading.get_text(" ", strip=True).lower() != "abstract":
+                continue
+            body = heading.find_next_sibling()
+            if (
+                body
+                and body.name in ("p", "div")
+                and not body.find(["h1", "h2", "h3", "h4"])
+            ):
+                if text := abstract_text(body.get_text(" ", strip=True)):
+                    return text, "공식 페이지 Abstract"
     return "", "확인 가능한 초록란 없음"
 
 
@@ -200,7 +245,14 @@ class Publisher:
                     self.stop = "출판사 접근 확인 화면"
                     return "", url, self.stop
                 try:
-                    text, location = publisher_abstract(html, article)
+                    facts = {}
+                    text, location = publisher_abstract(html, article, facts)
+                    if facts and not article.get("genre_proof"):
+                        article.update(
+                            kind="notice",
+                            notice_type=facts["notice_type"],
+                            genre_proof={"url": url, "location": facts["location"]},
+                        )
                 except (ValueError, TypeError, RecursionError):
                     return "", url, "초록란 형식 확인 보류"
                 return text, url, location

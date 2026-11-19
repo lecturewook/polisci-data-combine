@@ -37,9 +37,21 @@ if audit.get("error"):
     print("\nHarvard Dataverse 서지 확인 실패 · " + audit["error"])
 abstracts = run.get("abstract_audit") or {}
 if abstracts:
-    print(
-        f"\n방법 집계 대상 {abstracts['eligible']:,}편 중 초록 확인 {abstracts['after']:,}편 · 이번에 처음 확인 {abstracts['gained']:,}편"
+    monthly = sum(
+        (entry.get("abstract_audit") or {}).get("after", 0)
+        - (entry.get("abstract_audit") or {}).get("before", 0)
+        for entry in state["runs"]
+        if entry["date"][:7] == run["date"][:7]
     )
+    print(
+        f"\n방법 집계 대상 {abstracts['eligible']:,}편 중 초록 확인 {abstracts['after']:,}편 · "
+        f"이번 실행에서 처음 확인 {abstracts['gained']:,}편 · 이달 보완 실행 후 확인 편수의 순증 {monthly:,}편"
+    )
+    if "reclassified" in abstracts:
+        print(
+            f"\n기존 발행 기록 중 방법 분모에서 제외한 서평·편집자료 등 {abstracts['reclassified']:,}건 · "
+            f"초록 근거를 재검토해 미확인으로 전환한 논문 {abstracts.get('unconfirmed_after_review', 0):,}편"
+        )
 print(
     "\n출판사 목차 대조 범위와 저널·연도별 분모는 HTML의 저널별 확보 현황에서 확인할 수 있습니다."
 )

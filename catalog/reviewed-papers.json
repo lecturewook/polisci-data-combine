@@ -297,7 +297,46 @@
         "evidence": "보조금 효과를 분석한 방법으로 도구변수 접근을 함께 명시한다.",
         "location": "공식 저널 · 초록",
         "url": "https://link.springer.com/article/10.1007/s11127-025-01354-6"
+      },
+      {
+        "method": "did",
+        "term": "generalized difference-in-differences",
+        "level": "direct",
+        "role": "연구 설계",
+        "evidence": "보조금을 받은 지방자치단체의 선거 시점에 따른 지출 변화를 비교하고, 처치 전 지출 추세를 위약 회귀로 점검했다.",
+        "location": "연구 설계 · 공통추세 점검 · 부록 표 9",
+        "url": "https://link.springer.com/article/10.1007/s11127-025-01354-6"
+      },
+      {
+        "method": "2sls",
+        "term": "two stage least squares estimator (2SLS)",
+        "level": "direct",
+        "role": "주 추정 · 정적 모형",
+        "evidence": "현직 시장의 재출마 결정에 연금 수급 자격과 연령을 도구로 사용했다. 표 3의 두 열에 정적 모형의 2단계 최소제곱 추정 결과를 보고했다.",
+        "location": "§ 5.3 · 표 3의 3·7열",
+        "url": "https://link.springer.com/article/10.1007/s11127-025-01354-6"
+      },
+      {
+        "method": "sysgmm",
+        "term": "Systems-GMM estimator",
+        "level": "direct",
+        "role": "주 추정 · 동적 모형",
+        "evidence": "저자들은 같은 표의 4열과 8열에서 동적 모형을 System GMM으로 추정했다고 명시했다.",
+        "location": "§ 5.3 · 표 3의 4·8열",
+        "url": "https://link.springer.com/article/10.1007/s11127-025-01354-6"
+      },
+      {
+        "method": "fe",
+        "term": "fixed effects",
+        "level": "direct",
+        "role": "기준 모형",
+        "evidence": "지자체 및 시점 고정효과를 포함한 기준 모형으로 보조금의 지출 효과를 추정했다.",
+        "location": "§ 5.1 · 표 3",
+        "url": "https://link.springer.com/article/10.1007/s11127-025-01354-6"
       }
+    ],
+    "sources": [
+      "Springer Nature · 본문"
     ]
   },
   {
@@ -366,6 +405,150 @@
         "evidence": "초록은 기존 유급 연구에서 쓰인 회귀불연속 설계를 소개한다. 이 문장만으로 이 논문의 주 추정 방법을 확정할 수 없다.",
         "location": "RePEc · 출판사 제공 서지 · 초록",
         "url": "https://ideas.repec.org/a/eee/pubeco/v253y2026ics0047272725002336.html"
+      }
+    ]
+  },
+  {
+    "journal": "pop",
+    "doi": "10.1017/s1537592721002267",
+    "title": "Ruling Divisions: The Politics of Brexit",
+    "online": "2021-12-09",
+    "published": "2021-12",
+    "issue_date": "2021-12",
+    "kind": "review-article",
+    "genre_proof": {
+      "url": "https://www.cambridge.org/core/journals/perspectives-on-politics/article/ruling-divisions-the-politics-of-brexit/9E66014A6701C5989B7FF3ABC0F01E4C",
+      "location": "Cambridge Core · Information · 서평 에세이 (Book Review Essay)"
+    },
+    "publisher_statement": {
+      "url": "https://www.cambridge.org/core/journals/perspectives-on-politics/article/ruling-divisions-the-politics-of-brexit/9E66014A6701C5989B7FF3ABC0F01E4C",
+      "label": "Cambridge Core가 이 서평 에세이에 별도 초록을 제공하지 않는다고 표시",
+      "checked": "2026-11-19"
+    }
+  },
+  {
+    "journal": "cq",
+    "doi": "10.1017/s0305741025101768",
+    "title": "CQY volume 264 Cover and Front matter",
+    "online": "2026-01-06",
+    "published": "2025-12",
+    "issue_date": "2025-12",
+    "kind": "notice",
+    "notice_type": "편집자료",
+    "publisher_statement": {
+      "url": "https://www.cambridge.org/core/journals/china-quarterly/article/cqy-volume-264-cover-and-front-matter/8EE11D4FE5C32E512613781E43945563",
+      "label": "Cambridge Core가 권호 표지·앞표지 자료의 초록 미제공을 명시",
+      "checked": "2026-11-19"
+    }
+  },
+  {
+    "journal": "ia",
+    "doi": "10.1093/ia/iiaf261",
+    "title": "Sentimental state(s): affective politics of order and belonging",
+    "online": "2026-01-08",
+    "published": "2026-01",
+    "issue_date": "2026-01-08",
+    "kind": "notice",
+    "notice_type": "서평",
+    "genre_proof": {
+      "url": "https://academic.oup.com/ia/issue/102/1",
+      "location": "Oxford Academic · Volume 102, Issue 1 · Book reviews"
+    }
+  },
+  {
+    "journal": "jop",
+    "doi": "10.1086/734529",
+    "title": "Legislature Size and Party Unity: Evidence from Historical US State Legislatures",
+    "online": "2025-09-18",
+    "issue_date": "2026-01-01",
+    "keywords": [
+      "party unity",
+      "state legislatures",
+      "legislative institutions",
+      "state politics"
+    ],
+    "has_abstract": true,
+    "abstract_proof": {
+      "source": "공식 저널",
+      "url": "https://www.journals.uchicago.edu/doi/abs/10.1086/734529?journalCode=jop",
+      "location": "Abstract · 개별 대조",
+      "checked": "2026-11-19"
+    },
+    "abstract_summary": "일리노이주 하원의 의석수가 두 차례 변한 시기의 기명투표를 분석하고 인디애나주와 비교했다. 의석이 많은 시기에 정당의 투표 응집력이 낮았으며 버몬트주와 뉴저지주 자료에서도 결과를 점검했다.",
+    "toc_url": "https://www.journals.uchicago.edu/toc/jop/2026/88/1"
+  },
+  {
+    "journal": "jpe",
+    "doi": "10.1016/j.jpubeco.2026.105636",
+    "title": "Corporate taxpayer responses to size-based enforcement and disclosure thresholds",
+    "issue_date": "2026-05",
+    "has_abstract": true,
+    "abstract_proof": {
+      "source": "RePEc · 출판사 제공 서지",
+      "url": "https://ideas.repec.org/a/eee/pubeco/v257y2026ics0047272726000721.html",
+      "location": "Abstract · 개별 대조",
+      "checked": "2026-11-19"
+    },
+    "abstract_summary": "미국 법인세 신고와 세무조사 자료를 이용해 자산 1,000만 달러 기준에 대한 기업의 반응을 분석했다. 기업 규모에 미친 지속 효과를 삼중차분으로 추정했다.",
+    "methods": [
+      {
+        "method": "ddd",
+        "term": "triple difference estimator",
+        "level": "stated",
+        "role": "효과 추정",
+        "evidence": "저자들은 자산 기준에 따른 세무 집행의 변화가 기업 규모에 미친 지속 효과를 삼중차분 추정량으로 평가했다.",
+        "location": "RePEc · 출판사 제공 서지 · 초록",
+        "url": "https://ideas.repec.org/a/eee/pubeco/v257y2026ics0047272726000721.html"
+      }
+    ]
+  },
+  {
+    "journal": "es",
+    "doi": "10.1016/j.electstud.2026.103110",
+    "title": "Hidden or declared? Evidence from a list experiment on homophobic motives in electoral behavior",
+    "issue_date": "2026-08",
+    "keywords": [
+      "Sexual minorities",
+      "List experiment",
+      "Social desirability bias",
+      "Presidential elections",
+      "Discrimination"
+    ],
+    "has_abstract": true,
+    "abstract_proof": {
+      "source": "University of Helsinki 연구 포털",
+      "url": "https://researchportal.helsinki.fi/en/publications/hidden-or-declared-evidence-from-a-list-experiment-on-homophobic-/",
+      "location": "Abstract · 개별 대조",
+      "checked": "2026-11-19"
+    },
+    "abstract_summary": "핀란드 2024년 대통령 선거를 배경으로 응답자 1,228명의 리스트 실험에서 후보의 동성 파트너 여부가 투표 의향에 미치는 효과를 추정했다. 직접 질문, 실험 집단 간 평균차, 최대우도추정을 함께 사용했다.",
+    "methods": [
+      {
+        "method": "listexp",
+        "term": "list experiment",
+        "level": "stated",
+        "role": "연구 설계",
+        "evidence": "핀란드 유권자 1,228명을 대상으로 리스트 실험을 실시했다고 초록에 명시했다.",
+        "location": "University of Helsinki 연구 포털 · 초록",
+        "url": "https://researchportal.helsinki.fi/en/publications/hidden-or-declared-evidence-from-a-list-experiment-on-homophobic-/"
+      },
+      {
+        "method": "diffmean",
+        "term": "experimental difference-in-means",
+        "level": "stated",
+        "role": "효과 추정",
+        "evidence": "실험 집단 간 평균차를 분석에 사용했다고 명시했다.",
+        "location": "University of Helsinki 연구 포털 · 초록",
+        "url": "https://researchportal.helsinki.fi/en/publications/hidden-or-declared-evidence-from-a-list-experiment-on-homophobic-/"
+      },
+      {
+        "method": "mle",
+        "term": "maximum likelihood estimation",
+        "level": "stated",
+        "role": "추정",
+        "evidence": "저자들이 제시한 추정 방법에 최대우도추정이 포함된다.",
+        "location": "University of Helsinki 연구 포털 · 초록",
+        "url": "https://researchportal.helsinki.fi/en/publications/hidden-or-declared-evidence-from-a-list-experiment-on-homophobic-/"
       }
     ]
   }

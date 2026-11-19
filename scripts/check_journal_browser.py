@@ -53,12 +53,32 @@ def check(browser, url, mobile):
         and "BERT, RoBERTa, or DeBERTa?" in parse_qs(scholar.query)["q"][0]
     )
     check_modal.get_by_role("button", name="닫기").click()
+    page.locator('[data-jfilter="abstract"]').select_option("unavailable")
+    page.get_by_role("searchbox", name="논문 검색").fill("10.1017/s0305741025101768")
+    page.locator("#journal-search").get_by_role(
+        "button", name="검색", exact=True
+    ).click()
+    page.locator("#jpapers .jlink").click()
+    assert (
+        "출판사가 별도 초록을 제공하지 않는다고 표시했습니다."
+        in check_modal.inner_text()
+    )
+    assert "편집자료 · 방법 집계 제외" in check_modal.inner_text()
+    check_modal.get_by_role("button", name="닫기").click()
     page.locator('[data-jour="reset"]').click()
     page.locator('[data-jour="directory"]').click()
     assert page.locator("#jdir-list section > details").count() == 51
     page.locator("#jdir-q").fill("APSR")
     page.locator("#jdir-list summary").first.click()
     assert "0003-0554" in page.locator("#jdir-list").inner_text()
+    table = page.locator("#jdir-list table")
+    assert table.get_by_role(
+        "columnheader", name="방법 집계 대상의 초록 확인 / 대상 논문"
+    ).is_visible()
+    assert any(
+        re.search(r"\d+\s*/\s*[\d,]+\s*\([\d.]+%\)", value)
+        for value in table.locator("tbody tr td:last-child").all_text_contents()
+    )
     page.locator('#jdir-list [data-jour="journal"]').click()
     assert page.locator('[data-jfilter="journal"]').input_value() == "apsr"
     page.locator('[data-jour="reset"]').click()

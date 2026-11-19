@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: '20 0 1 * *'
   workflow_dispatch:
+    inputs:
+      recheck_abstracts:
+        description: 같은 날 확인한 저널 페이지와 학술 색인의 초록 상태도 다시 조회
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths: ['catalog/site-version', 'catalog/reviewed-papers.json', 'catalog/journal-identities.json']
@@ -40,9 +45,12 @@ jobs:
         env:
           CROSSREF_MAILTO: ${{ vars.CROSSREF_MAILTO }}
           OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+          RECHECK_ABSTRACTS: ${{ inputs.recheck_abstracts }}
         run: |
           rc=0
-          python -m polihub.journals || rc=$?
+          args=()
+          if [[ "$RECHECK_ABSTRACTS" == "true" ]]; then args+=(--recheck-abstracts); fi
+          python -m polihub.journals "${args[@]}" || rc=$?
           if [[ "$rc" != 0 && "$rc" != 2 ]]; then exit "$rc"; fi
           python scripts/journal_summary.py >> "$GITHUB_STEP_SUMMARY"
       - name: 단일 파일 빌드

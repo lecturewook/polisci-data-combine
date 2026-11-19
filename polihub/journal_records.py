@@ -98,6 +98,14 @@ NONRESEARCH = re.compile(
 def notice_type(title, source_type=""):
     title = title or ""
     source_type = source_type or ""
+    if re.fullmatch(
+        r"(?:[a-z]{2,9}\s+)?volume\s+\d+.*\bcover and (?:front|back) matter\.?",
+        title,
+        re.I,
+    ) or re.fullmatch(
+        r"acknowledg(?:e)?ments\.?|editors?[’']\s+(?:note|foreword)\.?", title, re.I
+    ):
+        return "편집자료"
     if (
         re.search(r"book.review", source_type, re.I)
         or re.match(r"^book reviews?\b", title, re.I)

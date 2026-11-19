@@ -1,13 +1,15 @@
 import json
 import tempfile
 import unittest
+from types import SimpleNamespace
 from datetime import date
 from pathlib import Path
 from unittest.mock import patch
 
 from polihub.journal_abstracts import alex_batch, openaire_batch, recover_abstracts
 from polihub.journal_publisher import Publisher, publisher_abstract, publisher_url
-from polihub.journal_records import ArticleIndex, Methods, abstract_text
+from polihub.journal_records import ArticleIndex, Methods, abstract_text, notice_type
+from polihub.journal_repec import repec_batch
 from polihub.journals import CATALOG, read_index, refresh
 
 
@@ -53,6 +55,67 @@ class AbstractTest(unittest.TestCase):
         )
         self.assertFalse(abstract_text(self.text + "…"))
 
+    def test_explicit_publisher_statement_and_paratext(self):
+        head = "<meta name='citation_doi' content='10.1000/paper'>"
+        page = (
+            "<p>An abstract is not available for this content so a preview has been provided.</p>"
+            "<meta name='citation_abstract' content='" + self.text + "'>"
+        )
+        self.assertEqual(
+            publisher_abstract(head + page, self.a),
+            ("", "출판사가 초록 미제공으로 표시"),
+        )
+        self.assertEqual(
+            publisher_abstract(head.replace("/paper", "/incorrect") + page, self.a)[1],
+            "논문 식별 불일치",
+        )
+        for title in (
+            "CQY volume 264 Cover and Front matter",
+            "PSR volume 116 issue 2 Cover and Back matter",
+            "Acknowledgements",
+            "Editors’ Note",
+        ):
+            self.assertEqual(notice_type(title, "journal-article"), "편집자료")
+        for title in (
+            "Acknowledgements in political science",
+            "Ruling Divisions: The Politics of Brexit",
+        ):
+            self.assertFalse(notice_type(title, "journal-article"))
+
+        a = dict(self.a)
+
+        class PublisherWithStatement:
+            def __init__(self, host):
+                pass
+
+            def read(self, url, article):
+                return "", url, "출판사가 초록 미제공으로 표시"
+
+        found, _ = recover_abstracts(
+            ArticleIndex({a["doi"]: a}),
+            self.tax,
+            "2026-11-19",
+            providers=[
+                (
+                    "색인",
+                    50,
+                    lambda rows: {
+                        a["doi"]: (
+                            a["title"],
+                            self.text,
+                            "https://example.org/paper",
+                            "abstract",
+                        )
+                    },
+                )
+            ],
+            publisher_factory=PublisherWithStatement,
+        )
+        self.assertFalse(found)
+        self.assertNotIn("has_abstract", a)
+        self.assertEqual(a["publisher_statement"]["url"], a["publisher_url"])
+        self.assertIn("대조 필요", a["abstract_check"]["sources"]["색인"])
+
     def test_robots_and_access_denial(self):
         p = Publisher("www.journals.uchicago.edu")
         url = publisher_url(self.a)
@@ -78,6 +141,84 @@ class AbstractTest(unittest.TestCase):
             self.assertIn("보류", p.read(url, self.a)[2])
             self.assertEqual(req.call_count, 2)
 
+    def test_cambridge_preview_rechecked_and_old_evidence_retained(self):
+        url = "https://www.cambridge.org/core/journals/example/article/abc"
+        a = {**self.a, "publisher_url": url}
+        head = (
+            "<meta name='citation_doi' content='10.1000/paper'><meta name='citation_abstract' content='"
+            + self.text
+            + "'>"
+        )
+        self.assertFalse(publisher_abstract(head, a)[0])
+        facts = {}
+        no = (
+            head
+            + "<dl><dt>Type</dt><dd>Book Reviews</dd></dl><h2>Abstract</h2><p>An abstract is not available for this content.</p>"
+        )
+        self.assertEqual(
+            publisher_abstract(no, a, facts), ("", "출판사가 초록 미제공으로 표시")
+        )
+        self.assertEqual(facts["notice_type"], "서평")
+        self.assertEqual(
+            publisher_abstract(head + "<h2>Abstract</h2><p>" + self.text + "</p>", a)[
+                0
+            ],
+            self.text,
+        )
+        a.update(
+            has_abstract=True,
+            abstract_proof={
+                "source": "공식 저널",
+                "location": "citation_abstract",
+                "url": url,
+            },
+            methods=[
+                {"method": "ols", "level": "direct", "url": url},
+                {
+                    "method": "did",
+                    "level": "clue",
+                    "url": url,
+                    "location": "공식 저널 · 초록",
+                },
+            ],
+        )
+        with patch.object(
+            Publisher, "request", side_effect=[("", "text/plain"), (no, "text/html")]
+        ):
+            _, audit = recover_abstracts(
+                ArticleIndex({a["doi"]: a}), self.tax, "2026-11-19", providers=[]
+            )
+        self.assertEqual(audit["revalidated"], 1)
+        self.assertFalse(a["has_abstract"])
+        self.assertEqual(a["superseded_abstract"]["methods"][0]["method"], "did")
+        self.assertEqual(a["methods"][0]["level"], "direct")
+        self.assertEqual(a["kind"], "notice")
+
+    def test_repec_matches_publisher_series_and_identifier(self):
+        def mirror(args, **kwargs):
+            archive = Path(args[-1])
+            (archive / "articles.redif").write_text(
+                "Template-Type: ReDIF-Article 1.0\nTitle: Example One\nDOI: 10.1000/paper\nAbstract: "
+                + self.text
+                + "\nHandle: RePEc:eee:pubeco:example\nTemplate-Type: ReDIF-Article 1.0\nTitle: Example Two\nAbstract: "
+                + self.text
+                + "\nHandle: RePEc:eee:pubeco:v:200:y:2021:i:c:s0047272721000200\n"
+            )
+            return SimpleNamespace(returncode=0)
+
+        second = {
+            **self.a,
+            "doi": "10.1000/other",
+            "publisher_url": "https://linkinghub.elsevier.com/retrieve/pii/S0047272721000200",
+        }
+        with (
+            patch("polihub.journal_repec.shutil.which", return_value="/usr/bin/rsync"),
+            patch("polihub.journal_repec.subprocess.run", side_effect=mirror),
+        ):
+            match = repec_batch("jpe", [self.a, second])
+            self.assertEqual(set(match), {self.a["doi"], second["doi"]})
+            self.assertEqual(match[second["doi"]][1], self.text)
+
     def test_batch_validated_and_secondary_sources(self):
         data = {
             "results": [
@@ -102,6 +243,36 @@ class AbstractTest(unittest.TestCase):
             "polihub.journal_abstracts.fetch", return_value={"results": [entry]}
         ):
             self.assertEqual(openaire_batch([self.a])[self.a["doi"]][1], self.text)
+
+    def test_publisher_reuses_same_day_denial_but_retries_on_request_or_new_day(self):
+        clients = []
+        queries = []
+
+        def lookup(rows):
+            queries.append([a["doi"] for a in rows])
+            return {}
+
+        class NotAvailable:
+            def __init__(self, host):
+                clients.append(host)
+
+            def read(self, url, article):
+                return "", url, "출판사 HTTP 403"
+
+        index = ArticleIndex({self.a["doi"]: self.a})
+        args = dict(
+            providers=[("학술 색인", 50, lookup)], publisher_factory=NotAvailable
+        )
+        recover_abstracts(index, self.tax, "2026-11-19", **args)
+        _, audit = recover_abstracts(index, self.tax, "2026-11-19", **args)
+        self.assertEqual(audit["providers"]["공식 저널"]["reused_same_day"], 1)
+        self.assertEqual(len(clients), 1)
+        self.assertEqual(audit["providers"]["학술 색인"]["reused_same_day"], 1)
+        self.assertEqual(len(queries), 1)
+        recover_abstracts(index, self.tax, "2026-11-19", recheck_abstracts=True, **args)
+        recover_abstracts(index, self.tax, "2026-11-20", **args)
+        self.assertEqual(len(clients), 3)
+        self.assertEqual(len(queries), 3)
 
     def test_recover_preserves_previous_records_and_ranks_new_evidence(self):
         a = self.a
@@ -229,3 +400,17 @@ class AbstractTest(unittest.TestCase):
                 (year["abstracts"], year["eligible_abstracts"], year["eligible"]),
                 (1, 1, 1),
             )
+            third = refresh(
+                path,
+                **{
+                    **args,
+                    "reviews": [{**self.a, "kind": "notice", "notice_type": "서평"}],
+                },
+            )
+            audit = third["abstract_audit"]
+            self.assertEqual(third["total"], 1)
+            self.assertEqual(
+                (audit["before"], audit["before_same_cohort"], audit["after"]),
+                (1, 0, 0),
+            )
+            self.assertEqual((audit["gained"], audit["reclassified"]), (0, 1))
