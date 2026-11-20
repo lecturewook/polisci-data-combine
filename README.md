@@ -1,12 +1,12 @@
 # PoliHub · 정치학 비교연구 데이터 허브
 
-**[PoliHub-v6.html 다운로드](https://github.com/lecturewook/polisci-data-combine/releases/download/polihub-v6-44513527044-1/PoliHub-v6.html)** · [이전 v5 다운로드](https://github.com/lecturewook/polisci-data-combine/releases/download/polihub-v5-44434383132-1/PoliHub-v5.html) · [배포 기록](https://github.com/lecturewook/polisci-data-combine/releases)
+**[PoliHub-v7.html 다운로드](https://github.com/lecturewook/polisci-data-combine/releases/download/polihub-v7-44642268512-1/PoliHub-v7.html)** · [v7 Release](https://github.com/lecturewook/polisci-data-combine/releases/tag/polihub-v7-44642268512-1) · [이전 v6](https://github.com/lecturewook/polisci-data-combine/releases/download/polihub-v6-44513527044-1/PoliHub-v6.html) · [이전 v5](https://github.com/lecturewook/polisci-data-combine/releases/download/polihub-v5-44434383132-1/PoliHub-v5.html) · [배포 기록](https://github.com/lecturewook/polisci-data-combine/releases)
 
 한국과 동아시아를 중심으로 선거, 정치태도, 의회, 행정, 정책, 민주주의 자료를 찾고 연구별로 수집하는 도구다. 화면과 Python CLI가 같은 카탈로그를 읽는다. 원자료 카탈로그 기준일은 2026년 11월 18일이다. 69개 저널의 논문·방법론 색인에는 별도로 수집 기간과 갱신일을 표시한다.
 
 ## 시작하기
 
-단독 배포본 **PoliHub.html**을 브라우저에서 열면 설치 없이 자료 탐색, 비교표, 연구명세 내보내기를 사용할 수 있다. 브라우저의 외부 파일 접근이 허용된 경우 제작자 배포처에서 파일을 받아 해시도 대조한다. 연구 폴더에 원자료를 수집하고 R·Stata를 실행하려면 소스 묶음을 풀고 아래 명령을 실행한다.
+위에서 내려받은 **PoliHub-v7.html**을 브라우저에서 열면 설치 없이 저널·방법론 색인이 표시된다. 상단 메뉴에서 원자료 탐색, 비교표, 연구명세 내보내기를 이용할 수 있다. 브라우저의 외부 파일 접근이 허용된 경우 제작자 배포처에서 파일을 받아 해시도 대조한다. 연구 폴더에 원자료를 수집하고 R·Stata를 실행하려면 소스 묶음을 풀고 아래 명령을 실행한다.
 
 ```bash
 # Python 3.11–3.13. 검증 환경은 Python 3.12 / Linux x86_64
@@ -75,6 +75,10 @@ python -m polihub status --spec studies/my/study.json
 독립 HTML을 브라우저에서 열면 저널 색인이 먼저 표시된다. 상단 메뉴에서 원자료 탐색과 연구 작업공간으로 이동할 수 있다. 저널 화면에서 출처별 응답, 분야별 저널 목록, 연도별 근거 확보율을 확인할 수 있다. 관심사별 저널에서 인구학·인구정책, 국제이주·난민, 인종·민족과 대표성, 선거·정당일체감, 인과추론·정책평가, 한국 전문 저널, 동아시아 지역연구, 미국, 정치학 종합 중 하나를 고르면 해당 저널의 발행 목록과 방법 그래프가 함께 바뀐다. v7에서 추가한 18종은 각 저널의 선정 이유와 근거 출처를 열 수 있다.
 
 방법 그래프의 초록색 위 막대는 해당 방법의 적용을 확인한 논문을, 황토색 아래 막대는 방법명 단서만 찾은 논문을 센다. 논문을 선택하면 방법을 확인한 위치, 초록의 출처, Google Scholar에서 원제목을 검색하는 링크가 나온다. 저널별 확보 현황에서 연도별 초록 확인 편수와 분모를 볼 수 있다.
+
+2026년 11월 20일 v7 검증본에는 69종의 고유 발행 기록 29,448건이 있다. 추가한 18종에서 6,988건을 수집했고, 그중 6,680편이 방법론 집계 대상이다. 전체 방법론 집계 대상 26,637편 중 24,240편(91.0%)에서 출처가 있는 초록을 확인했다. 69종 모두 Crossref가 보고한 건수를 마지막 페이지까지 수신했다. 출판사 전체 목차와의 대조를 마친 저널은 아직 없으며, 화면에서 실제 대조한 권호와 연도별 초록 확보율을 확인할 수 있다. [v7 수집·다운로드 검사 로그](https://github.com/lecturewook/polisci-data-combine/actions/runs/44642268512)
+
+한국 전문 저널의 방법론 집계 대상은 『한국정치학회보』 124편, 『한국인구학』 86편, *Korea Observer* 126편이다. 세 저널 모두 2022~2026년 권호 발행연도별 논문 수가 확인일의 KCI 집계와 일치한다. *Korea Observer*의 55권 4호 목차 1건은 발행 목록에 별도로 보존했다. [Korea Observer 57권 3호](https://www.kci.go.kr/kciportal/po/search/poSereArtiList.kci?sereId=000783&volIsseId=VOL000200372) · [55권 4호 목차 서지](https://m.riss.kr/search/detail/DetailView.do?control_no=cf91561014fcdfceb7998d826d417196&p_mat_type=1a0202e37d52c72d)
 
 첫 수집 기간은 2021년 11월 19일~2026년 11월 19일이다. v5 최초 검증본은 51종 모두 Crossref의 마지막 페이지까지 조회했고, 출처를 합친 고유 발행 기록 22,442건을 수록했다. 그중 서평·정정 등 1,798건을 제외한 20,644편을 방법 집계 대상으로 삼았다. OpenAlex 연도별 집계는 51종 모두 대조했고, 개별 레코드 조회는 저널당 첫 100건 이후 인증을 요구했다. [최초 수집 검증본](https://github.com/lecturewook/polisci-data-combine/releases/tag/polihub-v5-44434383132-1) · [수집·브라우저 검사 로그](https://github.com/lecturewook/polisci-data-combine/actions/runs/44434383132)
 
