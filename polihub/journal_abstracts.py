@@ -125,26 +125,25 @@ def recover_abstracts(
     recheck_abstracts=False,
     repec=None,
 ):
-    # Older Cambridge search metadata sometimes contains a book citation or a preview.
+    # Legacy flags can lack a source, and Cambridge search metadata can contain a preview.
     # Retain the superseded proof and only suspend method assignments derived from that field.
     revalidate = set()
     for key, a in index.rows.items():
         proof = a.get("abstract_proof") or {}
-        if (
-            not counted(a)
-            or not a.get("has_abstract")
-            or "개별 대조" in proof.get("location", "")
-        ):
+        if not counted(a) or not a.get("has_abstract"):
+            continue
+        attributed = bool(proof.get("source") and proof.get("url"))
+        if attributed and "개별 대조" in proof.get("location", ""):
             continue
         suspect = (
             proof.get("source") == "공식 저널"
             and proof.get("location") == "citation_abstract"
             and urlsplit(proof.get("url", "")).hostname == "www.cambridge.org"
         )
-        if not suspect and not a.get("publisher_statement"):
+        if attributed and not suspect and not a.get("publisher_statement"):
             continue
         revalidate.add(key)
-        old = dict(proof)
+        old = dict(proof) or {"location": "이전 색인의 초록 확인 표시 · 출처 미기록"}
         retired = [
             e
             for e in a.get("methods", [])

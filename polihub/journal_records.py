@@ -380,6 +380,14 @@ class ArticleIndex:
             elif k == "kind" and old[k] == "journal-article" and v != "journal-article":
                 old[k] = v
                 changed = True
+            elif k == "authors" and d and old[k] != v and len(old[k]) == len(v):
+                # Accept a second rendering of the same DOI only when the full names and order agree.
+                if all(
+                    original == name or (" " in name and original == f"{name} {name}")
+                    for original, name in zip(old[k], v)
+                ):
+                    old[k] = v
+                    changed = True
         if changed:
             self.index(key, old)
         return ("updated" if changed else "duplicate"), key

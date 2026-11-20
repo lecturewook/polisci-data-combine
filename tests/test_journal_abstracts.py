@@ -280,6 +280,10 @@ class AbstractTest(unittest.TestCase):
             **a,
             "doi": "10.1000/known",
             "has_abstract": True,
+            "abstract_proof": {
+                "source": "Crossref",
+                "url": "https://api.crossref.org/works/10.1000/known",
+            },
             "methods": [{"method": "ols", "level": "direct"}],
         }
         other = {**a, "doi": "10.1000/other"}
@@ -336,6 +340,30 @@ class AbstractTest(unittest.TestCase):
             "https://example.org",
         )
         self.assertEqual(ev[0]["level"], "clue")
+
+    def test_unattributed_legacy_abstract_is_rechecked_without_losing_direct_evidence(self):
+        direct = {"method": "ols", "level": "direct"}
+        a = {**self.a, "has_abstract": True, "methods": [direct]}
+        index = ArticleIndex({a["doi"]: a})
+        args = dict(
+            publisher_factory=lambda host: SimpleNamespace(
+                read=lambda url, paper: ("", url, "출판사 HTTP 403")
+            ),
+            providers=[],
+            pause=lambda _: None,
+        )
+        changed, audit = recover_abstracts(index, self.tax, "2026-11-20", **args)
+        self.assertEqual((changed, audit["revalidated"]), ({a["doi"]}, 1))
+        self.assertFalse(a["has_abstract"])
+        self.assertIn("출처 미기록", a["superseded_abstract"]["location"])
+        self.assertEqual(a["methods"], [direct])
+        def lookup(batch):
+            return {a["doi"]: (a["title"], self.text, a["publisher_url"], "논문 초록")}
+
+        args["providers"] = [("검증 출처", 1, lookup)]
+        recover_abstracts(index, self.tax, "2026-11-21", **args)
+        self.assertTrue(a["has_abstract"])
+        self.assertEqual(a["abstract_proof"]["source"], "검증 출처")
 
     def test_coverage_after_recovery_and_repeat(self):
         j = next(

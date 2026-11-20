@@ -406,6 +406,23 @@ class JournalTest(unittest.TestCase):
         self.assertEqual(ranks["conjoint"], 1)
         self.assertFalse(methods_by_level({"kind": "notice", "methods": ev}, self.tax))
 
+    def test_duplicate_full_names_need_a_matching_doi_and_author_list(self):
+        item = dict(
+            self.items[0],
+            author=[
+                {"given": "Jieun Choi", "family": "Jieun Choi"},
+                {"given": "Li", "family": "Li"},
+            ],
+        )
+        paper = record_cr(item, self.j, self.tax)
+        self.assertEqual(paper["authors"], ["Jieun Choi", "Li Li"])
+        original = dict(paper, authors=["Jieun Choi Jieun Choi", "Li Li"])
+        index = ArticleIndex({paper["doi"]: original})
+        self.assertEqual(index.put(paper, "2026-11-20")[0], "updated")
+        self.assertEqual(index.put(paper, "2026-11-20")[0], "duplicate")
+        index.put(dict(paper, authors=["Another Person", "Li Li"]), "2026-11-20")
+        self.assertEqual(original["authors"], ["Jieun Choi", "Li Li"])
+
     def test_dates_exclude_repository_deposit_and_subjects(self):
         a = record_cr(
             {

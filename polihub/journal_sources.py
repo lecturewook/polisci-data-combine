@@ -210,6 +210,16 @@ def openalex_years(j, start, end, get):
         return dict(scope="미확인", counts={}, errors=[*errors, str(e)[:140]])
 
 
+def crossref_author(author):
+    if author.get("name"):
+        return clean(author["name"])
+    given = clean(author.get("given") or "")
+    family = clean(author.get("family") or "")
+    if given == family and " " in given:
+        return given
+    return " ".join(part for part in (given, family) if part)
+
+
 def record_cr(item, j, methods):
     observed = set(item.get("ISSN") or [])
     if observed and not observed.intersection(issns(j)):
@@ -224,12 +234,7 @@ def record_cr(item, j, methods):
         or ("https://doi.org/" + d if d else "")
     )
     abstract = abstract_text(item.get("abstract"))
-    authors = [
-        clean(
-            r.get("name") or " ".join(x for x in (r.get("given"), r.get("family")) if x)
-        )
-        for r in item.get("author", [])
-    ]
+    authors = [crossref_author(author) for author in item.get("author", [])]
     issue = item.get("journal-issue") or {}
     kind = item.get("subtype") or item.get("type") or "journal-article"
     if item.get("update-to"):
